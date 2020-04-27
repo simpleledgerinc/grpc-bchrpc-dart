@@ -1,6 +1,6 @@
 name: grpc_bchrpc
-version: 0.0.1
-description: A BCHD gRPC client for Dart and Flutter.
+version: 0.0.2
+description: Connect to a BCHD full node with a simplified gRPC client wrapper.
 homepage: https://github.com/simpleledgerinc/grpc-bchrpc-dart
 environment:
   sdk: '>=2.2.0 <3.0.0'

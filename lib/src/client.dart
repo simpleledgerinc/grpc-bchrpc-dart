@@ -10,11 +10,11 @@ class GrpcClient {
       String host = "",
       int port = 443,
       bool useSsl = true,
-      List<int> certs = null,
+      List<int> certs,
       bool testnet = false
     }) {
     ChannelCredentials _channelCredentials;
-    if (host.length == 0) {
+    if (host.isEmpty) {
       if (testnet) { 
         host = "bchd-testnet.greyh.at";
         port = 18335;
@@ -27,15 +27,15 @@ class GrpcClient {
       // non-SSL may not even work with bchd
       _channelCredentials = ChannelCredentials.insecure();
     } else {
-      if (certs != null && certs.length == 0) {
+      if (certs != null && certs.isEmpty) {
         _channelCredentials = ChannelCredentials.secure();
       } else {
         _channelCredentials = ChannelCredentials.secure(certificates: certs);
       }
     }
-    _channelOptions = new ChannelOptions(credentials: _channelCredentials);
-    _channel = new ClientChannel(host, port: port, options: _channelOptions);
-    _stub = new bchrpcClient(_channel);
+    _channelOptions = ChannelOptions(credentials: _channelCredentials);
+    _channel = ClientChannel(host, port: port, options: _channelOptions);
+    _stub = bchrpcClient(_channel);
   }
 
     close() {
@@ -43,13 +43,13 @@ class GrpcClient {
     }
 
     Future<GetMempoolInfoResponse> getMempoolInfo() {
-      return this._stub.getMempoolInfo(new GetMempoolInfoRequest());
+      return this._stub.getMempoolInfo(GetMempoolInfoRequest());
     }
 
     Future<GetMempoolResponse> getRawMempool({
       bool getFullTransaction = false
       }) {
-      final req = new GetMempoolRequest();
+      final req = GetMempoolRequest();
       req.fullTransactions = getFullTransaction;
       return this._stub.getMempool(req);
     }
@@ -58,7 +58,7 @@ class GrpcClient {
       List<int> hash,
       bool reversedHashOrder = false
       }) {
-      final req = new GetRawTransactionRequest();
+      final req = GetRawTransactionRequest();
       if (reversedHashOrder) {
         req.hash = hash.reversed.toList();
       } else {
@@ -71,7 +71,7 @@ class GrpcClient {
       List<int> hash,
       bool reversedHashOrder = false
       }) {
-      final req = new GetTransactionRequest();
+      final req = GetTransactionRequest();
       if (reversedHashOrder) {
         req.hash = hash.reversed.toList();
       } else {
@@ -88,7 +88,7 @@ class GrpcClient {
         List<int> hash,
         bool reversedHashOrder= false
       }) {
-        final req = new GetAddressTransactionsRequest();
+        final req = GetAddressTransactionsRequest();
         if (nbSkip > -1) {
           req.nbSkip = nbSkip;
         }
@@ -114,7 +114,7 @@ class GrpcClient {
       bool reversedHashOrder = false,
       bool includeMempool = false
       }) {
-        final req = new GetUnspentOutputRequest();
+        final req = GetUnspentOutputRequest();
         if (includeMempool) {
           req.includeMempool = includeMempool;
         }
@@ -131,7 +131,7 @@ class GrpcClient {
       String address,
       bool includeMempool = false
       }) {
-      final req = new GetAddressUnspentOutputsRequest();
+      final req = GetAddressUnspentOutputsRequest();
       req.address = address;
       if (includeMempool) {
         req.includeMempool = includeMempool;
@@ -143,7 +143,7 @@ class GrpcClient {
       List<int> hash,
       bool reversedHashOrder = false
       }) {
-      final req = new GetRawBlockRequest();
+      final req = GetRawBlockRequest();
       if (reversedHashOrder) {
         req.hash = hash.reversed.toList();
       } else {
@@ -157,7 +157,7 @@ class GrpcClient {
       int height = -1,
       bool reversedHashOrder = false
       }) {
-        final req = new GetBlockRequest();
+        final req = GetBlockRequest();
         if (height > -1) {
           req.height = height;
         } else if (reversedHashOrder) {
@@ -173,7 +173,7 @@ class GrpcClient {
       bool reversedHashOrder = false,
       int height = -1,
     }) {
-      final req = new GetBlockInfoRequest();
+      final req = GetBlockInfoRequest();
       if (height > -1) {
         req.height = height;
       } else if (reversedHashOrder) {
@@ -185,11 +185,11 @@ class GrpcClient {
     }
 
     Future<GetBlockchainInfoResponse> getBlockchainInfo() {
-      return this._stub.getBlockchainInfo(new GetBlockchainInfoRequest());
+      return this._stub.getBlockchainInfo(GetBlockchainInfoRequest());
     }
 
     Future<SubmitTransactionResponse> submitTansaction(List<int> txn) {
-      final req = new SubmitTransactionRequest();
+      final req = SubmitTransactionRequest();
       req.transaction = txn;
       return this._stub.submitTransaction(req);
     }
@@ -199,7 +199,7 @@ class GrpcClient {
       bool includeBlockAcceptance = false,
       bool includeSerializedTxn = false
     }) {
-      final req = new SubscribeTransactionsRequest();
+      final req = SubscribeTransactionsRequest();
       includeMempoolAcceptance ? req.includeMempool = true : req.includeMempool = false;
       includeBlockAcceptance ? req.includeInBlock = true : req.includeInBlock = false;
       includeSerializedTxn ? req.serializeTx = true : req.serializeTx = false;
@@ -211,7 +211,7 @@ class GrpcClient {
       bool includeTxnHashes = false,
       includeTxnData = false
     }) {
-      final req = new SubscribeBlocksRequest();
+      final req = SubscribeBlocksRequest();
       includeTxnHashes ? req.fullBlock = true : req.fullBlock = false;
       includeTxnData ? req.fullTransactions = true : req.fullTransactions = false;
       includeSerializedBlock ? req.serializeBlock = true : req.serializeBlock = false;
