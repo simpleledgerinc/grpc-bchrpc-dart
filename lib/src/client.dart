@@ -54,9 +54,9 @@ class GrpcClient {
       return this._stub.getMempool(req);
     }
 
-    Future<GetRawTransactionResponse> getRawTransaction({
+    Future<GetRawTransactionResponse> getRawTransaction(
       List<int> hash,
-      bool reversedHashOrder = false
+      { bool reversedHashOrder = false
       }) {
       final req = GetRawTransactionRequest();
       if (reversedHashOrder) {
@@ -67,9 +67,9 @@ class GrpcClient {
       return this._stub.getRawTransaction(req);
     }
 
-    Future<GetTransactionResponse> getTransaction({
+    Future<GetTransactionResponse> getTransaction(
       List<int> hash,
-      bool reversedHashOrder = false
+      { bool reversedHashOrder = false
       }) {
       final req = GetTransactionRequest();
       if (reversedHashOrder) {
@@ -97,7 +97,7 @@ class GrpcClient {
         }
         if (height > -1) {
           req.height = height;
-        } else if (hash.length > 0) {
+        } else if (hash != null && ! hash.isEmpty) {
           if (reversedHashOrder) {
             req.hash = hash.reversed.toList();
           } else {
@@ -108,10 +108,10 @@ class GrpcClient {
         return this._stub.getAddressTransactions(req);
     }
 
-    Future<GetUnspentOutputResponse> getUnspentOutput({
+    Future<GetUnspentOutputResponse> getUnspentOutput(
       List<int> hash,
       int vout,
-      bool reversedHashOrder = false,
+      { bool reversedHashOrder = false,
       bool includeMempool = false
       }) {
         final req = GetUnspentOutputRequest();
@@ -127,9 +127,9 @@ class GrpcClient {
         return this._stub.getUnspentOutput(req);
     }
 
-    Future<GetAddressUnspentOutputsResponse> getAddressUtxos({
+    Future<GetAddressUnspentOutputsResponse> getAddressUtxos(
       String address,
-      bool includeMempool = false
+      { bool includeMempool = false
       }) {
       final req = GetAddressUnspentOutputsRequest();
       req.address = address;
@@ -139,9 +139,9 @@ class GrpcClient {
       return this._stub.getAddressUnspentOutputs(req);
     }
 
-    Future<GetRawBlockResponse> getRawBlock({
+    Future<GetRawBlockResponse> getRawBlock(
       List<int> hash,
-      bool reversedHashOrder = false
+      { bool reversedHashOrder = false
       }) {
       final req = GetRawBlockRequest();
       if (reversedHashOrder) {
@@ -160,10 +160,12 @@ class GrpcClient {
         final req = GetBlockRequest();
         if (height > -1) {
           req.height = height;
-        } else if (reversedHashOrder) {
+        } else if (hash != null && reversedHashOrder) {
           req.hash = hash.reversed.toList();
-        } else {
+        } else if (hash != null) {
           req.hash = hash;
+        } else {
+          throw("Must provide either block height or block hash");
         }
         return this._stub.getBlock(req);
     }
@@ -176,10 +178,12 @@ class GrpcClient {
       final req = GetBlockInfoRequest();
       if (height > -1) {
         req.height = height;
-      } else if (reversedHashOrder) {
+      } else if (hash != null && reversedHashOrder) {
         req.hash = hash.reversed.toList();
-      } else {
+      } else if (hash != null) {
         req.hash = hash;
+      } else {
+        throw("Must provide either block height or block hash");
       }
       return this._stub.getBlockInfo(req);
     }
