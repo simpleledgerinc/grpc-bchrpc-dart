@@ -80,9 +80,9 @@ class GrpcClient {
       return this._stub.getTransaction(req);
     }
 
-    Future<GetAddressTransactionsResponse> getAddressTransactions({
+    Future<GetAddressTransactionsResponse> getAddressTransactions(
         String address,
-        int nbSkip = -1,
+      { int nbSkip = -1,
         int nbFetch = -1,
         int height = -1,
         List<int> hash,
@@ -213,7 +213,7 @@ class GrpcClient {
     ResponseStream<BlockNotification> subscribeBlocks({
       bool includeSerializedBlock = false,
       bool includeTxnHashes = false,
-      includeTxnData = false
+      bool includeTxnData = false
     }) {
       final req = SubscribeBlocksRequest();
       includeTxnHashes ? req.fullBlock = true : req.fullBlock = false;

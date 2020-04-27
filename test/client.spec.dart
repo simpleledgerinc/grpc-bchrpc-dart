@@ -25,7 +25,7 @@ void main() {
     final client = GrpcClient();
     var exampleAddress = "bitcoincash:qregyd3kcklc58fd6r8epfwulpvd9f4mr5gxg8n8y7";
     var firstTxid = "5248906d6ac8425f287727797307d7305291f57d30406cb627e6573bbb77a344";
-    final res = await client.getAddressTransactions(address: exampleAddress, height: 0);
+    final res = await client.getAddressTransactions(exampleAddress, height: 0);
     var txns = res.confirmedTransactions;
     expect(txns.toList().length >= 3, true);
     var tx1 = txns.firstWhere((t) { return hex.encode(t.hash.reversed.toList()) == firstTxid; });
