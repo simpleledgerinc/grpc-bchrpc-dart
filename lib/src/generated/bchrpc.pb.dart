@@ -220,6 +220,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
     ..aInt64(5, 'medianTime')
     ..aOB(6, 'txIndex')
     ..aOB(7, 'addrIndex')
+    ..aOB(8, 'slpIndex')
     ..hasRequiredFields = false
   ;
 
@@ -300,6 +301,15 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   $core.bool hasAddrIndex() => $_has(6);
   @$pb.TagNumber(7)
   void clearAddrIndex() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.bool get slpIndex => $_getBF(7);
+  @$pb.TagNumber(8)
+  set slpIndex($core.bool v) { $_setBool(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasSlpIndex() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearSlpIndex() => clearField(8);
 }
 
 enum GetBlockInfoRequest_HashOrHeight {
@@ -727,6 +737,7 @@ class GetHeadersResponse extends $pb.GeneratedMessage {
 class GetTransactionRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTransactionRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, 'hash', $pb.PbFieldType.OY)
+    ..aOB(2, 'includeTokenMetadata')
     ..hasRequiredFields = false
   ;
 
@@ -753,11 +764,21 @@ class GetTransactionRequest extends $pb.GeneratedMessage {
   $core.bool hasHash() => $_has(0);
   @$pb.TagNumber(1)
   void clearHash() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get includeTokenMetadata => $_getBF(1);
+  @$pb.TagNumber(2)
+  set includeTokenMetadata($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasIncludeTokenMetadata() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearIncludeTokenMetadata() => clearField(2);
 }
 
 class GetTransactionResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTransactionResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..aOM<Transaction>(1, 'transaction', subBuilder: Transaction.create)
+    ..aOM<TokenMetadata>(2, 'tokenMetadata', subBuilder: TokenMetadata.create)
     ..hasRequiredFields = false
   ;
 
@@ -786,6 +807,17 @@ class GetTransactionResponse extends $pb.GeneratedMessage {
   void clearTransaction() => clearField(1);
   @$pb.TagNumber(1)
   Transaction ensureTransaction() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  TokenMetadata get tokenMetadata => $_getN(1);
+  @$pb.TagNumber(2)
+  set tokenMetadata(TokenMetadata v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTokenMetadata() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTokenMetadata() => clearField(2);
+  @$pb.TagNumber(2)
+  TokenMetadata ensureTokenMetadata() => $_ensure(1);
 }
 
 class GetRawTransactionRequest extends $pb.GeneratedMessage {
@@ -1084,6 +1116,7 @@ class GetAddressUnspentOutputsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetAddressUnspentOutputsRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..aOS(1, 'address')
     ..aOB(2, 'includeMempool')
+    ..aOB(3, 'includeTokenMetadata')
     ..hasRequiredFields = false
   ;
 
@@ -1119,11 +1152,21 @@ class GetAddressUnspentOutputsRequest extends $pb.GeneratedMessage {
   $core.bool hasIncludeMempool() => $_has(1);
   @$pb.TagNumber(2)
   void clearIncludeMempool() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.bool get includeTokenMetadata => $_getBF(2);
+  @$pb.TagNumber(3)
+  set includeTokenMetadata($core.bool v) { $_setBool(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasIncludeTokenMetadata() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearIncludeTokenMetadata() => clearField(3);
 }
 
 class GetAddressUnspentOutputsResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetAddressUnspentOutputsResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..pc<UnspentOutput>(1, 'outputs', $pb.PbFieldType.PM, subBuilder: UnspentOutput.create)
+    ..pc<TokenMetadata>(2, 'tokenMetadata', $pb.PbFieldType.PM, subBuilder: TokenMetadata.create)
     ..hasRequiredFields = false
   ;
 
@@ -1144,6 +1187,9 @@ class GetAddressUnspentOutputsResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.List<UnspentOutput> get outputs => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.List<TokenMetadata> get tokenMetadata => $_getList(1);
 }
 
 class GetUnspentOutputRequest extends $pb.GeneratedMessage {
@@ -1151,6 +1197,7 @@ class GetUnspentOutputRequest extends $pb.GeneratedMessage {
     ..a<$core.List<$core.int>>(1, 'hash', $pb.PbFieldType.OY)
     ..a<$core.int>(2, 'index', $pb.PbFieldType.OU3)
     ..aOB(3, 'includeMempool')
+    ..aOB(4, 'includeTokenMetadata')
     ..hasRequiredFields = false
   ;
 
@@ -1195,6 +1242,15 @@ class GetUnspentOutputRequest extends $pb.GeneratedMessage {
   $core.bool hasIncludeMempool() => $_has(2);
   @$pb.TagNumber(3)
   void clearIncludeMempool() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.bool get includeTokenMetadata => $_getBF(3);
+  @$pb.TagNumber(4)
+  set includeTokenMetadata($core.bool v) { $_setBool(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasIncludeTokenMetadata() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearIncludeTokenMetadata() => clearField(4);
 }
 
 class GetUnspentOutputResponse extends $pb.GeneratedMessage {
@@ -1204,6 +1260,8 @@ class GetUnspentOutputResponse extends $pb.GeneratedMessage {
     ..aInt64(3, 'value')
     ..aOB(4, 'isCoinbase')
     ..a<$core.int>(5, 'blockHeight', $pb.PbFieldType.O3)
+    ..aOM<SlpToken>(6, 'slpToken', subBuilder: SlpToken.create)
+    ..aOM<TokenMetadata>(7, 'tokenMetadata', subBuilder: TokenMetadata.create)
     ..hasRequiredFields = false
   ;
 
@@ -1268,6 +1326,28 @@ class GetUnspentOutputResponse extends $pb.GeneratedMessage {
   $core.bool hasBlockHeight() => $_has(4);
   @$pb.TagNumber(5)
   void clearBlockHeight() => clearField(5);
+
+  @$pb.TagNumber(6)
+  SlpToken get slpToken => $_getN(5);
+  @$pb.TagNumber(6)
+  set slpToken(SlpToken v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasSlpToken() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearSlpToken() => clearField(6);
+  @$pb.TagNumber(6)
+  SlpToken ensureSlpToken() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  TokenMetadata get tokenMetadata => $_getN(6);
+  @$pb.TagNumber(7)
+  set tokenMetadata(TokenMetadata v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasTokenMetadata() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearTokenMetadata() => clearField(7);
+  @$pb.TagNumber(7)
+  TokenMetadata ensureTokenMetadata() => $_ensure(6);
 }
 
 class GetMerkleProofRequest extends $pb.GeneratedMessage {
@@ -1351,6 +1431,8 @@ class GetMerkleProofResponse extends $pb.GeneratedMessage {
 class SubmitTransactionRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SubmitTransactionRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, 'transaction', $pb.PbFieldType.OY)
+    ..aOB(2, 'skipSlpValidityCheck')
+    ..pc<SlpRequiredBurn>(3, 'requiredSlpBurns', $pb.PbFieldType.PM, subBuilder: SlpRequiredBurn.create)
     ..hasRequiredFields = false
   ;
 
@@ -1377,6 +1459,18 @@ class SubmitTransactionRequest extends $pb.GeneratedMessage {
   $core.bool hasTransaction() => $_has(0);
   @$pb.TagNumber(1)
   void clearTransaction() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get skipSlpValidityCheck => $_getBF(1);
+  @$pb.TagNumber(2)
+  set skipSlpValidityCheck($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasSkipSlpValidityCheck() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearSkipSlpValidityCheck() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<SlpRequiredBurn> get requiredSlpBurns => $_getList(2);
 }
 
 class SubmitTransactionResponse extends $pb.GeneratedMessage {
@@ -1408,6 +1502,72 @@ class SubmitTransactionResponse extends $pb.GeneratedMessage {
   $core.bool hasHash() => $_has(0);
   @$pb.TagNumber(1)
   void clearHash() => clearField(1);
+}
+
+class CheckSlpTransactionRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('CheckSlpTransactionRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'transaction', $pb.PbFieldType.OY)
+    ..pc<SlpRequiredBurn>(2, 'requiredSlpBurns', $pb.PbFieldType.PM, subBuilder: SlpRequiredBurn.create)
+    ..hasRequiredFields = false
+  ;
+
+  CheckSlpTransactionRequest._() : super();
+  factory CheckSlpTransactionRequest() => create();
+  factory CheckSlpTransactionRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CheckSlpTransactionRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  CheckSlpTransactionRequest clone() => CheckSlpTransactionRequest()..mergeFromMessage(this);
+  CheckSlpTransactionRequest copyWith(void Function(CheckSlpTransactionRequest) updates) => super.copyWith((message) => updates(message as CheckSlpTransactionRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static CheckSlpTransactionRequest create() => CheckSlpTransactionRequest._();
+  CheckSlpTransactionRequest createEmptyInstance() => create();
+  static $pb.PbList<CheckSlpTransactionRequest> createRepeated() => $pb.PbList<CheckSlpTransactionRequest>();
+  @$core.pragma('dart2js:noInline')
+  static CheckSlpTransactionRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CheckSlpTransactionRequest>(create);
+  static CheckSlpTransactionRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get transaction => $_getN(0);
+  @$pb.TagNumber(1)
+  set transaction($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTransaction() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTransaction() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<SlpRequiredBurn> get requiredSlpBurns => $_getList(1);
+}
+
+class CheckSlpTransactionResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('CheckSlpTransactionResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..aOB(1, 'isValid')
+    ..hasRequiredFields = false
+  ;
+
+  CheckSlpTransactionResponse._() : super();
+  factory CheckSlpTransactionResponse() => create();
+  factory CheckSlpTransactionResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory CheckSlpTransactionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  CheckSlpTransactionResponse clone() => CheckSlpTransactionResponse()..mergeFromMessage(this);
+  CheckSlpTransactionResponse copyWith(void Function(CheckSlpTransactionResponse) updates) => super.copyWith((message) => updates(message as CheckSlpTransactionResponse));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static CheckSlpTransactionResponse create() => CheckSlpTransactionResponse._();
+  CheckSlpTransactionResponse createEmptyInstance() => create();
+  static $pb.PbList<CheckSlpTransactionResponse> createRepeated() => $pb.PbList<CheckSlpTransactionResponse>();
+  @$core.pragma('dart2js:noInline')
+  static CheckSlpTransactionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<CheckSlpTransactionResponse>(create);
+  static CheckSlpTransactionResponse _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.bool get isValid => $_getBF(0);
+  @$pb.TagNumber(1)
+  set isValid($core.bool v) { $_setBool(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasIsValid() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearIsValid() => clearField(1);
 }
 
 class SubscribeTransactionsRequest extends $pb.GeneratedMessage {
@@ -1534,6 +1694,538 @@ class SubscribeBlocksRequest extends $pb.GeneratedMessage {
   $core.bool hasSerializeBlock() => $_has(2);
   @$pb.TagNumber(3)
   void clearSerializeBlock() => clearField(3);
+}
+
+class GetTokenMetadataRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTokenMetadataRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..p<$core.List<$core.int>>(1, 'tokenIds', $pb.PbFieldType.PY)
+    ..hasRequiredFields = false
+  ;
+
+  GetTokenMetadataRequest._() : super();
+  factory GetTokenMetadataRequest() => create();
+  factory GetTokenMetadataRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTokenMetadataRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetTokenMetadataRequest clone() => GetTokenMetadataRequest()..mergeFromMessage(this);
+  GetTokenMetadataRequest copyWith(void Function(GetTokenMetadataRequest) updates) => super.copyWith((message) => updates(message as GetTokenMetadataRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetTokenMetadataRequest create() => GetTokenMetadataRequest._();
+  GetTokenMetadataRequest createEmptyInstance() => create();
+  static $pb.PbList<GetTokenMetadataRequest> createRepeated() => $pb.PbList<GetTokenMetadataRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetTokenMetadataRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTokenMetadataRequest>(create);
+  static GetTokenMetadataRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.List<$core.int>> get tokenIds => $_getList(0);
+}
+
+class GetTokenMetadataResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTokenMetadataResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..pc<TokenMetadata>(1, 'tokenMetadata', $pb.PbFieldType.PM, subBuilder: TokenMetadata.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetTokenMetadataResponse._() : super();
+  factory GetTokenMetadataResponse() => create();
+  factory GetTokenMetadataResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTokenMetadataResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetTokenMetadataResponse clone() => GetTokenMetadataResponse()..mergeFromMessage(this);
+  GetTokenMetadataResponse copyWith(void Function(GetTokenMetadataResponse) updates) => super.copyWith((message) => updates(message as GetTokenMetadataResponse));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetTokenMetadataResponse create() => GetTokenMetadataResponse._();
+  GetTokenMetadataResponse createEmptyInstance() => create();
+  static $pb.PbList<GetTokenMetadataResponse> createRepeated() => $pb.PbList<GetTokenMetadataResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetTokenMetadataResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTokenMetadataResponse>(create);
+  static GetTokenMetadataResponse _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<TokenMetadata> get tokenMetadata => $_getList(0);
+}
+
+class GetParsedSlpScriptRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetParsedSlpScriptRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'slpOpreturnScript', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  GetParsedSlpScriptRequest._() : super();
+  factory GetParsedSlpScriptRequest() => create();
+  factory GetParsedSlpScriptRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetParsedSlpScriptRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetParsedSlpScriptRequest clone() => GetParsedSlpScriptRequest()..mergeFromMessage(this);
+  GetParsedSlpScriptRequest copyWith(void Function(GetParsedSlpScriptRequest) updates) => super.copyWith((message) => updates(message as GetParsedSlpScriptRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetParsedSlpScriptRequest create() => GetParsedSlpScriptRequest._();
+  GetParsedSlpScriptRequest createEmptyInstance() => create();
+  static $pb.PbList<GetParsedSlpScriptRequest> createRepeated() => $pb.PbList<GetParsedSlpScriptRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetParsedSlpScriptRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetParsedSlpScriptRequest>(create);
+  static GetParsedSlpScriptRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get slpOpreturnScript => $_getN(0);
+  @$pb.TagNumber(1)
+  set slpOpreturnScript($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSlpOpreturnScript() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSlpOpreturnScript() => clearField(1);
+}
+
+enum GetParsedSlpScriptResponse_SlpMetadata {
+  v1Genesis, 
+  v1Mint, 
+  v1Send, 
+  nft1ChildGenesis, 
+  nft1ChildSend, 
+  notSet
+}
+
+class GetParsedSlpScriptResponse extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, GetParsedSlpScriptResponse_SlpMetadata> _GetParsedSlpScriptResponse_SlpMetadataByTag = {
+    5 : GetParsedSlpScriptResponse_SlpMetadata.v1Genesis,
+    6 : GetParsedSlpScriptResponse_SlpMetadata.v1Mint,
+    7 : GetParsedSlpScriptResponse_SlpMetadata.v1Send,
+    8 : GetParsedSlpScriptResponse_SlpMetadata.nft1ChildGenesis,
+    9 : GetParsedSlpScriptResponse_SlpMetadata.nft1ChildSend,
+    0 : GetParsedSlpScriptResponse_SlpMetadata.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetParsedSlpScriptResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..oo(0, [5, 6, 7, 8, 9])
+    ..aOS(1, 'parsingError')
+    ..a<$core.List<$core.int>>(2, 'tokenId', $pb.PbFieldType.OY)
+    ..e<SlpAction>(3, 'slpAction', $pb.PbFieldType.OE, defaultOrMaker: SlpAction.NON_SLP, valueOf: SlpAction.valueOf, enumValues: SlpAction.values)
+    ..a<$core.int>(4, 'tokenType', $pb.PbFieldType.OU3)
+    ..aOM<SlpV1GenesisMetadata>(5, 'v1Genesis', subBuilder: SlpV1GenesisMetadata.create)
+    ..aOM<SlpV1MintMetadata>(6, 'v1Mint', subBuilder: SlpV1MintMetadata.create)
+    ..aOM<SlpV1SendMetadata>(7, 'v1Send', subBuilder: SlpV1SendMetadata.create)
+    ..aOM<SlpNft1ChildGenesisMetadata>(8, 'nft1ChildGenesis', subBuilder: SlpNft1ChildGenesisMetadata.create)
+    ..aOM<SlpNft1ChildSendMetadata>(9, 'nft1ChildSend', subBuilder: SlpNft1ChildSendMetadata.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetParsedSlpScriptResponse._() : super();
+  factory GetParsedSlpScriptResponse() => create();
+  factory GetParsedSlpScriptResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetParsedSlpScriptResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetParsedSlpScriptResponse clone() => GetParsedSlpScriptResponse()..mergeFromMessage(this);
+  GetParsedSlpScriptResponse copyWith(void Function(GetParsedSlpScriptResponse) updates) => super.copyWith((message) => updates(message as GetParsedSlpScriptResponse));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetParsedSlpScriptResponse create() => GetParsedSlpScriptResponse._();
+  GetParsedSlpScriptResponse createEmptyInstance() => create();
+  static $pb.PbList<GetParsedSlpScriptResponse> createRepeated() => $pb.PbList<GetParsedSlpScriptResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetParsedSlpScriptResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetParsedSlpScriptResponse>(create);
+  static GetParsedSlpScriptResponse _defaultInstance;
+
+  GetParsedSlpScriptResponse_SlpMetadata whichSlpMetadata() => _GetParsedSlpScriptResponse_SlpMetadataByTag[$_whichOneof(0)];
+  void clearSlpMetadata() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  $core.String get parsingError => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set parsingError($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasParsingError() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearParsingError() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get tokenId => $_getN(1);
+  @$pb.TagNumber(2)
+  set tokenId($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTokenId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTokenId() => clearField(2);
+
+  @$pb.TagNumber(3)
+  SlpAction get slpAction => $_getN(2);
+  @$pb.TagNumber(3)
+  set slpAction(SlpAction v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasSlpAction() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSlpAction() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.int get tokenType => $_getIZ(3);
+  @$pb.TagNumber(4)
+  set tokenType($core.int v) { $_setUnsignedInt32(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasTokenType() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTokenType() => clearField(4);
+
+  @$pb.TagNumber(5)
+  SlpV1GenesisMetadata get v1Genesis => $_getN(4);
+  @$pb.TagNumber(5)
+  set v1Genesis(SlpV1GenesisMetadata v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasV1Genesis() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearV1Genesis() => clearField(5);
+  @$pb.TagNumber(5)
+  SlpV1GenesisMetadata ensureV1Genesis() => $_ensure(4);
+
+  @$pb.TagNumber(6)
+  SlpV1MintMetadata get v1Mint => $_getN(5);
+  @$pb.TagNumber(6)
+  set v1Mint(SlpV1MintMetadata v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasV1Mint() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearV1Mint() => clearField(6);
+  @$pb.TagNumber(6)
+  SlpV1MintMetadata ensureV1Mint() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  SlpV1SendMetadata get v1Send => $_getN(6);
+  @$pb.TagNumber(7)
+  set v1Send(SlpV1SendMetadata v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasV1Send() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearV1Send() => clearField(7);
+  @$pb.TagNumber(7)
+  SlpV1SendMetadata ensureV1Send() => $_ensure(6);
+
+  @$pb.TagNumber(8)
+  SlpNft1ChildGenesisMetadata get nft1ChildGenesis => $_getN(7);
+  @$pb.TagNumber(8)
+  set nft1ChildGenesis(SlpNft1ChildGenesisMetadata v) { setField(8, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasNft1ChildGenesis() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearNft1ChildGenesis() => clearField(8);
+  @$pb.TagNumber(8)
+  SlpNft1ChildGenesisMetadata ensureNft1ChildGenesis() => $_ensure(7);
+
+  @$pb.TagNumber(9)
+  SlpNft1ChildSendMetadata get nft1ChildSend => $_getN(8);
+  @$pb.TagNumber(9)
+  set nft1ChildSend(SlpNft1ChildSendMetadata v) { setField(9, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasNft1ChildSend() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearNft1ChildSend() => clearField(9);
+  @$pb.TagNumber(9)
+  SlpNft1ChildSendMetadata ensureNft1ChildSend() => $_ensure(8);
+}
+
+class GetTrustedSlpValidationRequest_Query extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationRequest.Query', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'prevOutHash', $pb.PbFieldType.OY)
+    ..a<$core.int>(2, 'prevOutVout', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  GetTrustedSlpValidationRequest_Query._() : super();
+  factory GetTrustedSlpValidationRequest_Query() => create();
+  factory GetTrustedSlpValidationRequest_Query.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTrustedSlpValidationRequest_Query.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetTrustedSlpValidationRequest_Query clone() => GetTrustedSlpValidationRequest_Query()..mergeFromMessage(this);
+  GetTrustedSlpValidationRequest_Query copyWith(void Function(GetTrustedSlpValidationRequest_Query) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationRequest_Query));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationRequest_Query create() => GetTrustedSlpValidationRequest_Query._();
+  GetTrustedSlpValidationRequest_Query createEmptyInstance() => create();
+  static $pb.PbList<GetTrustedSlpValidationRequest_Query> createRepeated() => $pb.PbList<GetTrustedSlpValidationRequest_Query>();
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationRequest_Query getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationRequest_Query>(create);
+  static GetTrustedSlpValidationRequest_Query _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get prevOutHash => $_getN(0);
+  @$pb.TagNumber(1)
+  set prevOutHash($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasPrevOutHash() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPrevOutHash() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get prevOutVout => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set prevOutVout($core.int v) { $_setUnsignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPrevOutVout() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPrevOutVout() => clearField(2);
+}
+
+class GetTrustedSlpValidationRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..pc<GetTrustedSlpValidationRequest_Query>(1, 'queries', $pb.PbFieldType.PM, subBuilder: GetTrustedSlpValidationRequest_Query.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetTrustedSlpValidationRequest._() : super();
+  factory GetTrustedSlpValidationRequest() => create();
+  factory GetTrustedSlpValidationRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTrustedSlpValidationRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetTrustedSlpValidationRequest clone() => GetTrustedSlpValidationRequest()..mergeFromMessage(this);
+  GetTrustedSlpValidationRequest copyWith(void Function(GetTrustedSlpValidationRequest) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationRequest create() => GetTrustedSlpValidationRequest._();
+  GetTrustedSlpValidationRequest createEmptyInstance() => create();
+  static $pb.PbList<GetTrustedSlpValidationRequest> createRepeated() => $pb.PbList<GetTrustedSlpValidationRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationRequest>(create);
+  static GetTrustedSlpValidationRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<GetTrustedSlpValidationRequest_Query> get queries => $_getList(0);
+}
+
+enum GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType {
+  v1TokenAmount, 
+  v1MintBaton, 
+  notSet
+}
+
+class GetTrustedSlpValidationResponse_ValidityResult extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType> _GetTrustedSlpValidationResponse_ValidityResult_ValidityResultTypeByTag = {
+    6 : GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType.v1TokenAmount,
+    7 : GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType.v1MintBaton,
+    0 : GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationResponse.ValidityResult', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..oo(0, [6, 7])
+    ..a<$core.List<$core.int>>(1, 'prevOutHash', $pb.PbFieldType.OY)
+    ..a<$core.int>(2, 'prevOutVout', $pb.PbFieldType.OU3)
+    ..a<$core.List<$core.int>>(3, 'tokenId', $pb.PbFieldType.OY)
+    ..e<SlpAction>(4, 'slpAction', $pb.PbFieldType.OE, defaultOrMaker: SlpAction.NON_SLP, valueOf: SlpAction.valueOf, enumValues: SlpAction.values)
+    ..a<$core.int>(5, 'tokenType', $pb.PbFieldType.OU3)
+    ..a<$fixnum.Int64>(6, 'v1TokenAmount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOB(7, 'v1MintBaton')
+    ..a<$core.List<$core.int>>(8, 'slpTxnOpreturn', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  GetTrustedSlpValidationResponse_ValidityResult._() : super();
+  factory GetTrustedSlpValidationResponse_ValidityResult() => create();
+  factory GetTrustedSlpValidationResponse_ValidityResult.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTrustedSlpValidationResponse_ValidityResult.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetTrustedSlpValidationResponse_ValidityResult clone() => GetTrustedSlpValidationResponse_ValidityResult()..mergeFromMessage(this);
+  GetTrustedSlpValidationResponse_ValidityResult copyWith(void Function(GetTrustedSlpValidationResponse_ValidityResult) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationResponse_ValidityResult));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationResponse_ValidityResult create() => GetTrustedSlpValidationResponse_ValidityResult._();
+  GetTrustedSlpValidationResponse_ValidityResult createEmptyInstance() => create();
+  static $pb.PbList<GetTrustedSlpValidationResponse_ValidityResult> createRepeated() => $pb.PbList<GetTrustedSlpValidationResponse_ValidityResult>();
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationResponse_ValidityResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationResponse_ValidityResult>(create);
+  static GetTrustedSlpValidationResponse_ValidityResult _defaultInstance;
+
+  GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType whichValidityResultType() => _GetTrustedSlpValidationResponse_ValidityResult_ValidityResultTypeByTag[$_whichOneof(0)];
+  void clearValidityResultType() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get prevOutHash => $_getN(0);
+  @$pb.TagNumber(1)
+  set prevOutHash($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasPrevOutHash() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPrevOutHash() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get prevOutVout => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set prevOutVout($core.int v) { $_setUnsignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPrevOutVout() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPrevOutVout() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get tokenId => $_getN(2);
+  @$pb.TagNumber(3)
+  set tokenId($core.List<$core.int> v) { $_setBytes(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasTokenId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTokenId() => clearField(3);
+
+  @$pb.TagNumber(4)
+  SlpAction get slpAction => $_getN(3);
+  @$pb.TagNumber(4)
+  set slpAction(SlpAction v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasSlpAction() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearSlpAction() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get tokenType => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set tokenType($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasTokenType() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearTokenType() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $fixnum.Int64 get v1TokenAmount => $_getI64(5);
+  @$pb.TagNumber(6)
+  set v1TokenAmount($fixnum.Int64 v) { $_setInt64(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasV1TokenAmount() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearV1TokenAmount() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.bool get v1MintBaton => $_getBF(6);
+  @$pb.TagNumber(7)
+  set v1MintBaton($core.bool v) { $_setBool(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasV1MintBaton() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearV1MintBaton() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.List<$core.int> get slpTxnOpreturn => $_getN(7);
+  @$pb.TagNumber(8)
+  set slpTxnOpreturn($core.List<$core.int> v) { $_setBytes(7, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasSlpTxnOpreturn() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearSlpTxnOpreturn() => clearField(8);
+}
+
+class GetTrustedSlpValidationResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..pc<GetTrustedSlpValidationResponse_ValidityResult>(1, 'results', $pb.PbFieldType.PM, subBuilder: GetTrustedSlpValidationResponse_ValidityResult.create)
+    ..hasRequiredFields = false
+  ;
+
+  GetTrustedSlpValidationResponse._() : super();
+  factory GetTrustedSlpValidationResponse() => create();
+  factory GetTrustedSlpValidationResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTrustedSlpValidationResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetTrustedSlpValidationResponse clone() => GetTrustedSlpValidationResponse()..mergeFromMessage(this);
+  GetTrustedSlpValidationResponse copyWith(void Function(GetTrustedSlpValidationResponse) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationResponse));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationResponse create() => GetTrustedSlpValidationResponse._();
+  GetTrustedSlpValidationResponse createEmptyInstance() => create();
+  static $pb.PbList<GetTrustedSlpValidationResponse> createRepeated() => $pb.PbList<GetTrustedSlpValidationResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetTrustedSlpValidationResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationResponse>(create);
+  static GetTrustedSlpValidationResponse _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<GetTrustedSlpValidationResponse_ValidityResult> get results => $_getList(0);
+}
+
+class GetBip44HdAddressRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetBip44HdAddressRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..aOS(1, 'xpub')
+    ..aOB(2, 'change')
+    ..a<$core.int>(3, 'addressIndex', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  GetBip44HdAddressRequest._() : super();
+  factory GetBip44HdAddressRequest() => create();
+  factory GetBip44HdAddressRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetBip44HdAddressRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetBip44HdAddressRequest clone() => GetBip44HdAddressRequest()..mergeFromMessage(this);
+  GetBip44HdAddressRequest copyWith(void Function(GetBip44HdAddressRequest) updates) => super.copyWith((message) => updates(message as GetBip44HdAddressRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetBip44HdAddressRequest create() => GetBip44HdAddressRequest._();
+  GetBip44HdAddressRequest createEmptyInstance() => create();
+  static $pb.PbList<GetBip44HdAddressRequest> createRepeated() => $pb.PbList<GetBip44HdAddressRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetBip44HdAddressRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBip44HdAddressRequest>(create);
+  static GetBip44HdAddressRequest _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get xpub => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set xpub($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasXpub() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearXpub() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.bool get change => $_getBF(1);
+  @$pb.TagNumber(2)
+  set change($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasChange() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearChange() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.int get addressIndex => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set addressIndex($core.int v) { $_setUnsignedInt32(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasAddressIndex() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearAddressIndex() => clearField(3);
+}
+
+class GetBip44HdAddressResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetBip44HdAddressResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'pubKey', $pb.PbFieldType.OY)
+    ..aOS(2, 'cashAddr')
+    ..aOS(3, 'slpAddr')
+    ..hasRequiredFields = false
+  ;
+
+  GetBip44HdAddressResponse._() : super();
+  factory GetBip44HdAddressResponse() => create();
+  factory GetBip44HdAddressResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetBip44HdAddressResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetBip44HdAddressResponse clone() => GetBip44HdAddressResponse()..mergeFromMessage(this);
+  GetBip44HdAddressResponse copyWith(void Function(GetBip44HdAddressResponse) updates) => super.copyWith((message) => updates(message as GetBip44HdAddressResponse));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static GetBip44HdAddressResponse create() => GetBip44HdAddressResponse._();
+  GetBip44HdAddressResponse createEmptyInstance() => create();
+  static $pb.PbList<GetBip44HdAddressResponse> createRepeated() => $pb.PbList<GetBip44HdAddressResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetBip44HdAddressResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBip44HdAddressResponse>(create);
+  static GetBip44HdAddressResponse _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get pubKey => $_getN(0);
+  @$pb.TagNumber(1)
+  set pubKey($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasPubKey() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearPubKey() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get cashAddr => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set cashAddr($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasCashAddr() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearCashAddr() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get slpAddr => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set slpAddr($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasSlpAddr() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearSlpAddr() => clearField(3);
 }
 
 enum BlockNotification_Block {
@@ -1996,6 +2688,7 @@ class Transaction_Input extends $pb.GeneratedMessage {
     ..aInt64(5, 'value')
     ..a<$core.List<$core.int>>(6, 'previousScript', $pb.PbFieldType.OY)
     ..aOS(7, 'address')
+    ..aOM<SlpToken>(8, 'slpToken', subBuilder: SlpToken.create)
     ..hasRequiredFields = false
   ;
 
@@ -2078,6 +2771,17 @@ class Transaction_Input extends $pb.GeneratedMessage {
   $core.bool hasAddress() => $_has(6);
   @$pb.TagNumber(7)
   void clearAddress() => clearField(7);
+
+  @$pb.TagNumber(8)
+  SlpToken get slpToken => $_getN(7);
+  @$pb.TagNumber(8)
+  set slpToken(SlpToken v) { setField(8, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasSlpToken() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearSlpToken() => clearField(8);
+  @$pb.TagNumber(8)
+  SlpToken ensureSlpToken() => $_ensure(7);
 }
 
 class Transaction_Output extends $pb.GeneratedMessage {
@@ -2088,6 +2792,7 @@ class Transaction_Output extends $pb.GeneratedMessage {
     ..aOS(4, 'address')
     ..aOS(5, 'scriptClass')
     ..aOS(6, 'disassembledScript')
+    ..aOM<SlpToken>(7, 'slpToken', subBuilder: SlpToken.create)
     ..hasRequiredFields = false
   ;
 
@@ -2159,6 +2864,17 @@ class Transaction_Output extends $pb.GeneratedMessage {
   $core.bool hasDisassembledScript() => $_has(5);
   @$pb.TagNumber(6)
   void clearDisassembledScript() => clearField(6);
+
+  @$pb.TagNumber(7)
+  SlpToken get slpToken => $_getN(6);
+  @$pb.TagNumber(7)
+  set slpToken(SlpToken v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasSlpToken() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearSlpToken() => clearField(7);
+  @$pb.TagNumber(7)
+  SlpToken ensureSlpToken() => $_ensure(6);
 }
 
 class Transaction extends $pb.GeneratedMessage {
@@ -2173,6 +2889,7 @@ class Transaction extends $pb.GeneratedMessage {
     ..a<$core.int>(10, 'confirmations', $pb.PbFieldType.O3)
     ..a<$core.int>(11, 'blockHeight', $pb.PbFieldType.O3)
     ..a<$core.List<$core.int>>(12, 'blockHash', $pb.PbFieldType.OY)
+    ..aOM<SlpTransactionInfo>(13, 'slpTransactionInfo', subBuilder: SlpTransactionInfo.create)
     ..hasRequiredFields = false
   ;
 
@@ -2268,6 +2985,17 @@ class Transaction extends $pb.GeneratedMessage {
   $core.bool hasBlockHash() => $_has(9);
   @$pb.TagNumber(12)
   void clearBlockHash() => clearField(12);
+
+  @$pb.TagNumber(13)
+  SlpTransactionInfo get slpTransactionInfo => $_getN(10);
+  @$pb.TagNumber(13)
+  set slpTransactionInfo(SlpTransactionInfo v) { setField(13, v); }
+  @$pb.TagNumber(13)
+  $core.bool hasSlpTransactionInfo() => $_has(10);
+  @$pb.TagNumber(13)
+  void clearSlpTransactionInfo() => clearField(13);
+  @$pb.TagNumber(13)
+  SlpTransactionInfo ensureSlpTransactionInfo() => $_ensure(10);
 }
 
 class MempoolTransaction extends $pb.GeneratedMessage {
@@ -2360,6 +3088,7 @@ class UnspentOutput extends $pb.GeneratedMessage {
     ..aInt64(3, 'value')
     ..aOB(4, 'isCoinbase')
     ..a<$core.int>(5, 'blockHeight', $pb.PbFieldType.O3)
+    ..aOM<SlpToken>(6, 'slpToken', subBuilder: SlpToken.create)
     ..hasRequiredFields = false
   ;
 
@@ -2424,6 +3153,17 @@ class UnspentOutput extends $pb.GeneratedMessage {
   $core.bool hasBlockHeight() => $_has(4);
   @$pb.TagNumber(5)
   void clearBlockHeight() => clearField(5);
+
+  @$pb.TagNumber(6)
+  SlpToken get slpToken => $_getN(5);
+  @$pb.TagNumber(6)
+  set slpToken(SlpToken v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasSlpToken() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearSlpToken() => clearField(6);
+  @$pb.TagNumber(6)
+  SlpToken ensureSlpToken() => $_ensure(5);
 }
 
 class TransactionFilter extends $pb.GeneratedMessage {
@@ -2432,6 +3172,8 @@ class TransactionFilter extends $pb.GeneratedMessage {
     ..pc<Transaction_Input_Outpoint>(2, 'outpoints', $pb.PbFieldType.PM, subBuilder: Transaction_Input_Outpoint.create)
     ..p<$core.List<$core.int>>(3, 'dataElements', $pb.PbFieldType.PY)
     ..aOB(4, 'allTransactions')
+    ..aOB(5, 'allSlpTransactions')
+    ..p<$core.List<$core.int>>(6, 'slpTokenIds', $pb.PbFieldType.PY)
     ..hasRequiredFields = false
   ;
 
@@ -2467,5 +3209,958 @@ class TransactionFilter extends $pb.GeneratedMessage {
   $core.bool hasAllTransactions() => $_has(3);
   @$pb.TagNumber(4)
   void clearAllTransactions() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.bool get allSlpTransactions => $_getBF(4);
+  @$pb.TagNumber(5)
+  set allSlpTransactions($core.bool v) { $_setBool(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasAllSlpTransactions() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearAllSlpTransactions() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.List<$core.List<$core.int>> get slpTokenIds => $_getList(5);
+}
+
+class SlpToken extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpToken', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'tokenId', $pb.PbFieldType.OY)
+    ..a<$fixnum.Int64>(2, 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..aOB(3, 'isMintBaton')
+    ..aOS(4, 'address')
+    ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
+    ..e<SlpAction>(6, 'slpAction', $pb.PbFieldType.OE, defaultOrMaker: SlpAction.NON_SLP, valueOf: SlpAction.valueOf, enumValues: SlpAction.values)
+    ..a<$core.int>(7, 'tokenType', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  SlpToken._() : super();
+  factory SlpToken() => create();
+  factory SlpToken.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpToken.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpToken clone() => SlpToken()..mergeFromMessage(this);
+  SlpToken copyWith(void Function(SlpToken) updates) => super.copyWith((message) => updates(message as SlpToken));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpToken create() => SlpToken._();
+  SlpToken createEmptyInstance() => create();
+  static $pb.PbList<SlpToken> createRepeated() => $pb.PbList<SlpToken>();
+  @$core.pragma('dart2js:noInline')
+  static SlpToken getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpToken>(create);
+  static SlpToken _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get tokenId => $_getN(0);
+  @$pb.TagNumber(1)
+  set tokenId($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTokenId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTokenId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get amount => $_getI64(1);
+  @$pb.TagNumber(2)
+  set amount($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasAmount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearAmount() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.bool get isMintBaton => $_getBF(2);
+  @$pb.TagNumber(3)
+  set isMintBaton($core.bool v) { $_setBool(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasIsMintBaton() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearIsMintBaton() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get address => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set address($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasAddress() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearAddress() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get decimals => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set decimals($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasDecimals() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearDecimals() => clearField(5);
+
+  @$pb.TagNumber(6)
+  SlpAction get slpAction => $_getN(5);
+  @$pb.TagNumber(6)
+  set slpAction(SlpAction v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasSlpAction() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearSlpAction() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get tokenType => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set tokenType($core.int v) { $_setUnsignedInt32(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasTokenType() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearTokenType() => clearField(7);
+}
+
+enum SlpTransactionInfo_TxMetadata {
+  v1Genesis, 
+  v1Mint, 
+  v1Send, 
+  nft1ChildGenesis, 
+  nft1ChildSend, 
+  notSet
+}
+
+class SlpTransactionInfo extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, SlpTransactionInfo_TxMetadata> _SlpTransactionInfo_TxMetadataByTag = {
+    6 : SlpTransactionInfo_TxMetadata.v1Genesis,
+    7 : SlpTransactionInfo_TxMetadata.v1Mint,
+    8 : SlpTransactionInfo_TxMetadata.v1Send,
+    9 : SlpTransactionInfo_TxMetadata.nft1ChildGenesis,
+    10 : SlpTransactionInfo_TxMetadata.nft1ChildSend,
+    0 : SlpTransactionInfo_TxMetadata.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpTransactionInfo', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..oo(0, [6, 7, 8, 9, 10])
+    ..e<SlpAction>(1, 'slpAction', $pb.PbFieldType.OE, defaultOrMaker: SlpAction.NON_SLP, valueOf: SlpAction.valueOf, enumValues: SlpAction.values)
+    ..e<SlpTransactionInfo_ValidityJudgement>(2, 'validityJudgement', $pb.PbFieldType.OE, defaultOrMaker: SlpTransactionInfo_ValidityJudgement.UNKNOWN_OR_INVALID, valueOf: SlpTransactionInfo_ValidityJudgement.valueOf, enumValues: SlpTransactionInfo_ValidityJudgement.values)
+    ..aOS(3, 'parseError')
+    ..a<$core.List<$core.int>>(4, 'tokenId', $pb.PbFieldType.OY)
+    ..pc<SlpTransactionInfo_BurnFlags>(5, 'burnFlags', $pb.PbFieldType.PE, valueOf: SlpTransactionInfo_BurnFlags.valueOf, enumValues: SlpTransactionInfo_BurnFlags.values)
+    ..aOM<SlpV1GenesisMetadata>(6, 'v1Genesis', subBuilder: SlpV1GenesisMetadata.create)
+    ..aOM<SlpV1MintMetadata>(7, 'v1Mint', subBuilder: SlpV1MintMetadata.create)
+    ..aOM<SlpV1SendMetadata>(8, 'v1Send', subBuilder: SlpV1SendMetadata.create)
+    ..aOM<SlpNft1ChildGenesisMetadata>(9, 'nft1ChildGenesis', subBuilder: SlpNft1ChildGenesisMetadata.create)
+    ..aOM<SlpNft1ChildSendMetadata>(10, 'nft1ChildSend', subBuilder: SlpNft1ChildSendMetadata.create)
+    ..hasRequiredFields = false
+  ;
+
+  SlpTransactionInfo._() : super();
+  factory SlpTransactionInfo() => create();
+  factory SlpTransactionInfo.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpTransactionInfo.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpTransactionInfo clone() => SlpTransactionInfo()..mergeFromMessage(this);
+  SlpTransactionInfo copyWith(void Function(SlpTransactionInfo) updates) => super.copyWith((message) => updates(message as SlpTransactionInfo));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpTransactionInfo create() => SlpTransactionInfo._();
+  SlpTransactionInfo createEmptyInstance() => create();
+  static $pb.PbList<SlpTransactionInfo> createRepeated() => $pb.PbList<SlpTransactionInfo>();
+  @$core.pragma('dart2js:noInline')
+  static SlpTransactionInfo getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpTransactionInfo>(create);
+  static SlpTransactionInfo _defaultInstance;
+
+  SlpTransactionInfo_TxMetadata whichTxMetadata() => _SlpTransactionInfo_TxMetadataByTag[$_whichOneof(0)];
+  void clearTxMetadata() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  SlpAction get slpAction => $_getN(0);
+  @$pb.TagNumber(1)
+  set slpAction(SlpAction v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasSlpAction() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearSlpAction() => clearField(1);
+
+  @$pb.TagNumber(2)
+  SlpTransactionInfo_ValidityJudgement get validityJudgement => $_getN(1);
+  @$pb.TagNumber(2)
+  set validityJudgement(SlpTransactionInfo_ValidityJudgement v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasValidityJudgement() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearValidityJudgement() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get parseError => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set parseError($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasParseError() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearParseError() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.int> get tokenId => $_getN(3);
+  @$pb.TagNumber(4)
+  set tokenId($core.List<$core.int> v) { $_setBytes(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasTokenId() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTokenId() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.List<SlpTransactionInfo_BurnFlags> get burnFlags => $_getList(4);
+
+  @$pb.TagNumber(6)
+  SlpV1GenesisMetadata get v1Genesis => $_getN(5);
+  @$pb.TagNumber(6)
+  set v1Genesis(SlpV1GenesisMetadata v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasV1Genesis() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearV1Genesis() => clearField(6);
+  @$pb.TagNumber(6)
+  SlpV1GenesisMetadata ensureV1Genesis() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  SlpV1MintMetadata get v1Mint => $_getN(6);
+  @$pb.TagNumber(7)
+  set v1Mint(SlpV1MintMetadata v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasV1Mint() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearV1Mint() => clearField(7);
+  @$pb.TagNumber(7)
+  SlpV1MintMetadata ensureV1Mint() => $_ensure(6);
+
+  @$pb.TagNumber(8)
+  SlpV1SendMetadata get v1Send => $_getN(7);
+  @$pb.TagNumber(8)
+  set v1Send(SlpV1SendMetadata v) { setField(8, v); }
+  @$pb.TagNumber(8)
+  $core.bool hasV1Send() => $_has(7);
+  @$pb.TagNumber(8)
+  void clearV1Send() => clearField(8);
+  @$pb.TagNumber(8)
+  SlpV1SendMetadata ensureV1Send() => $_ensure(7);
+
+  @$pb.TagNumber(9)
+  SlpNft1ChildGenesisMetadata get nft1ChildGenesis => $_getN(8);
+  @$pb.TagNumber(9)
+  set nft1ChildGenesis(SlpNft1ChildGenesisMetadata v) { setField(9, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasNft1ChildGenesis() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearNft1ChildGenesis() => clearField(9);
+  @$pb.TagNumber(9)
+  SlpNft1ChildGenesisMetadata ensureNft1ChildGenesis() => $_ensure(8);
+
+  @$pb.TagNumber(10)
+  SlpNft1ChildSendMetadata get nft1ChildSend => $_getN(9);
+  @$pb.TagNumber(10)
+  set nft1ChildSend(SlpNft1ChildSendMetadata v) { setField(10, v); }
+  @$pb.TagNumber(10)
+  $core.bool hasNft1ChildSend() => $_has(9);
+  @$pb.TagNumber(10)
+  void clearNft1ChildSend() => clearField(10);
+  @$pb.TagNumber(10)
+  SlpNft1ChildSendMetadata ensureNft1ChildSend() => $_ensure(9);
+}
+
+class SlpV1GenesisMetadata extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpV1GenesisMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'name', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, 'ticker', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, 'documentUrl', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(4, 'documentHash', $pb.PbFieldType.OY)
+    ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
+    ..a<$core.int>(6, 'mintBatonVout', $pb.PbFieldType.OU3)
+    ..a<$fixnum.Int64>(7, 'mintAmount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  SlpV1GenesisMetadata._() : super();
+  factory SlpV1GenesisMetadata() => create();
+  factory SlpV1GenesisMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpV1GenesisMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpV1GenesisMetadata clone() => SlpV1GenesisMetadata()..mergeFromMessage(this);
+  SlpV1GenesisMetadata copyWith(void Function(SlpV1GenesisMetadata) updates) => super.copyWith((message) => updates(message as SlpV1GenesisMetadata));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpV1GenesisMetadata create() => SlpV1GenesisMetadata._();
+  SlpV1GenesisMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpV1GenesisMetadata> createRepeated() => $pb.PbList<SlpV1GenesisMetadata>();
+  @$core.pragma('dart2js:noInline')
+  static SlpV1GenesisMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpV1GenesisMetadata>(create);
+  static SlpV1GenesisMetadata _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get name => $_getN(0);
+  @$pb.TagNumber(1)
+  set name($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get ticker => $_getN(1);
+  @$pb.TagNumber(2)
+  set ticker($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTicker() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTicker() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get documentUrl => $_getN(2);
+  @$pb.TagNumber(3)
+  set documentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasDocumentUrl() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearDocumentUrl() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.int> get documentHash => $_getN(3);
+  @$pb.TagNumber(4)
+  set documentHash($core.List<$core.int> v) { $_setBytes(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasDocumentHash() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearDocumentHash() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get decimals => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set decimals($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasDecimals() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearDecimals() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.int get mintBatonVout => $_getIZ(5);
+  @$pb.TagNumber(6)
+  set mintBatonVout($core.int v) { $_setUnsignedInt32(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasMintBatonVout() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearMintBatonVout() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $fixnum.Int64 get mintAmount => $_getI64(6);
+  @$pb.TagNumber(7)
+  set mintAmount($fixnum.Int64 v) { $_setInt64(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasMintAmount() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearMintAmount() => clearField(7);
+}
+
+class SlpV1MintMetadata extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpV1MintMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.int>(1, 'mintBatonVout', $pb.PbFieldType.OU3)
+    ..a<$fixnum.Int64>(2, 'mintAmount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  SlpV1MintMetadata._() : super();
+  factory SlpV1MintMetadata() => create();
+  factory SlpV1MintMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpV1MintMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpV1MintMetadata clone() => SlpV1MintMetadata()..mergeFromMessage(this);
+  SlpV1MintMetadata copyWith(void Function(SlpV1MintMetadata) updates) => super.copyWith((message) => updates(message as SlpV1MintMetadata));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpV1MintMetadata create() => SlpV1MintMetadata._();
+  SlpV1MintMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpV1MintMetadata> createRepeated() => $pb.PbList<SlpV1MintMetadata>();
+  @$core.pragma('dart2js:noInline')
+  static SlpV1MintMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpV1MintMetadata>(create);
+  static SlpV1MintMetadata _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get mintBatonVout => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set mintBatonVout($core.int v) { $_setUnsignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasMintBatonVout() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearMintBatonVout() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $fixnum.Int64 get mintAmount => $_getI64(1);
+  @$pb.TagNumber(2)
+  set mintAmount($fixnum.Int64 v) { $_setInt64(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasMintAmount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearMintAmount() => clearField(2);
+}
+
+class SlpV1SendMetadata extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpV1SendMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..p<$fixnum.Int64>(1, 'amounts', $pb.PbFieldType.PU6)
+    ..hasRequiredFields = false
+  ;
+
+  SlpV1SendMetadata._() : super();
+  factory SlpV1SendMetadata() => create();
+  factory SlpV1SendMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpV1SendMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpV1SendMetadata clone() => SlpV1SendMetadata()..mergeFromMessage(this);
+  SlpV1SendMetadata copyWith(void Function(SlpV1SendMetadata) updates) => super.copyWith((message) => updates(message as SlpV1SendMetadata));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpV1SendMetadata create() => SlpV1SendMetadata._();
+  SlpV1SendMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpV1SendMetadata> createRepeated() => $pb.PbList<SlpV1SendMetadata>();
+  @$core.pragma('dart2js:noInline')
+  static SlpV1SendMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpV1SendMetadata>(create);
+  static SlpV1SendMetadata _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$fixnum.Int64> get amounts => $_getList(0);
+}
+
+class SlpNft1ChildGenesisMetadata extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpNft1ChildGenesisMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'name', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, 'ticker', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, 'documentUrl', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(4, 'documentHash', $pb.PbFieldType.OY)
+    ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
+    ..a<$core.List<$core.int>>(6, 'groupTokenId', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  SlpNft1ChildGenesisMetadata._() : super();
+  factory SlpNft1ChildGenesisMetadata() => create();
+  factory SlpNft1ChildGenesisMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpNft1ChildGenesisMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpNft1ChildGenesisMetadata clone() => SlpNft1ChildGenesisMetadata()..mergeFromMessage(this);
+  SlpNft1ChildGenesisMetadata copyWith(void Function(SlpNft1ChildGenesisMetadata) updates) => super.copyWith((message) => updates(message as SlpNft1ChildGenesisMetadata));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpNft1ChildGenesisMetadata create() => SlpNft1ChildGenesisMetadata._();
+  SlpNft1ChildGenesisMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpNft1ChildGenesisMetadata> createRepeated() => $pb.PbList<SlpNft1ChildGenesisMetadata>();
+  @$core.pragma('dart2js:noInline')
+  static SlpNft1ChildGenesisMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpNft1ChildGenesisMetadata>(create);
+  static SlpNft1ChildGenesisMetadata _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get name => $_getN(0);
+  @$pb.TagNumber(1)
+  set name($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get ticker => $_getN(1);
+  @$pb.TagNumber(2)
+  set ticker($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTicker() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTicker() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get documentUrl => $_getN(2);
+  @$pb.TagNumber(3)
+  set documentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasDocumentUrl() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearDocumentUrl() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.int> get documentHash => $_getN(3);
+  @$pb.TagNumber(4)
+  set documentHash($core.List<$core.int> v) { $_setBytes(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasDocumentHash() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearDocumentHash() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get decimals => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set decimals($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasDecimals() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearDecimals() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.List<$core.int> get groupTokenId => $_getN(5);
+  @$pb.TagNumber(6)
+  set groupTokenId($core.List<$core.int> v) { $_setBytes(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasGroupTokenId() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearGroupTokenId() => clearField(6);
+}
+
+class SlpNft1ChildSendMetadata extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpNft1ChildSendMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'groupTokenId', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  SlpNft1ChildSendMetadata._() : super();
+  factory SlpNft1ChildSendMetadata() => create();
+  factory SlpNft1ChildSendMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpNft1ChildSendMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpNft1ChildSendMetadata clone() => SlpNft1ChildSendMetadata()..mergeFromMessage(this);
+  SlpNft1ChildSendMetadata copyWith(void Function(SlpNft1ChildSendMetadata) updates) => super.copyWith((message) => updates(message as SlpNft1ChildSendMetadata));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpNft1ChildSendMetadata create() => SlpNft1ChildSendMetadata._();
+  SlpNft1ChildSendMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpNft1ChildSendMetadata> createRepeated() => $pb.PbList<SlpNft1ChildSendMetadata>();
+  @$core.pragma('dart2js:noInline')
+  static SlpNft1ChildSendMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpNft1ChildSendMetadata>(create);
+  static SlpNft1ChildSendMetadata _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get groupTokenId => $_getN(0);
+  @$pb.TagNumber(1)
+  set groupTokenId($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasGroupTokenId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearGroupTokenId() => clearField(1);
+}
+
+class TokenMetadataTokenType1 extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadataTokenType1', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'tokenTicker', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, 'tokenName', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, 'tokenDocumentUrl', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(4, 'tokenDocumentHash', $pb.PbFieldType.OY)
+    ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
+    ..a<$core.List<$core.int>>(6, 'mintBatonTxid', $pb.PbFieldType.OY)
+    ..a<$core.int>(7, 'mintBatonVout', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  TokenMetadataTokenType1._() : super();
+  factory TokenMetadataTokenType1() => create();
+  factory TokenMetadataTokenType1.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory TokenMetadataTokenType1.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  TokenMetadataTokenType1 clone() => TokenMetadataTokenType1()..mergeFromMessage(this);
+  TokenMetadataTokenType1 copyWith(void Function(TokenMetadataTokenType1) updates) => super.copyWith((message) => updates(message as TokenMetadataTokenType1));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadataTokenType1 create() => TokenMetadataTokenType1._();
+  TokenMetadataTokenType1 createEmptyInstance() => create();
+  static $pb.PbList<TokenMetadataTokenType1> createRepeated() => $pb.PbList<TokenMetadataTokenType1>();
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadataTokenType1 getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadataTokenType1>(create);
+  static TokenMetadataTokenType1 _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get tokenTicker => $_getN(0);
+  @$pb.TagNumber(1)
+  set tokenTicker($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTokenTicker() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTokenTicker() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get tokenName => $_getN(1);
+  @$pb.TagNumber(2)
+  set tokenName($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTokenName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTokenName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get tokenDocumentUrl => $_getN(2);
+  @$pb.TagNumber(3)
+  set tokenDocumentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasTokenDocumentUrl() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTokenDocumentUrl() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.int> get tokenDocumentHash => $_getN(3);
+  @$pb.TagNumber(4)
+  set tokenDocumentHash($core.List<$core.int> v) { $_setBytes(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasTokenDocumentHash() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTokenDocumentHash() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get decimals => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set decimals($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasDecimals() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearDecimals() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.List<$core.int> get mintBatonTxid => $_getN(5);
+  @$pb.TagNumber(6)
+  set mintBatonTxid($core.List<$core.int> v) { $_setBytes(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasMintBatonTxid() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearMintBatonTxid() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get mintBatonVout => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set mintBatonVout($core.int v) { $_setUnsignedInt32(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasMintBatonVout() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearMintBatonVout() => clearField(7);
+}
+
+class TokenMetadataNFT1Group extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadataNFT1Group', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'tokenTicker', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, 'tokenName', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, 'tokenDocumentUrl', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(4, 'tokenDocumentHash', $pb.PbFieldType.OY)
+    ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
+    ..a<$core.List<$core.int>>(6, 'mintBatonTxid', $pb.PbFieldType.OY)
+    ..a<$core.int>(7, 'mintBatonVout', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  TokenMetadataNFT1Group._() : super();
+  factory TokenMetadataNFT1Group() => create();
+  factory TokenMetadataNFT1Group.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory TokenMetadataNFT1Group.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  TokenMetadataNFT1Group clone() => TokenMetadataNFT1Group()..mergeFromMessage(this);
+  TokenMetadataNFT1Group copyWith(void Function(TokenMetadataNFT1Group) updates) => super.copyWith((message) => updates(message as TokenMetadataNFT1Group));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadataNFT1Group create() => TokenMetadataNFT1Group._();
+  TokenMetadataNFT1Group createEmptyInstance() => create();
+  static $pb.PbList<TokenMetadataNFT1Group> createRepeated() => $pb.PbList<TokenMetadataNFT1Group>();
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadataNFT1Group getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadataNFT1Group>(create);
+  static TokenMetadataNFT1Group _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get tokenTicker => $_getN(0);
+  @$pb.TagNumber(1)
+  set tokenTicker($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTokenTicker() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTokenTicker() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get tokenName => $_getN(1);
+  @$pb.TagNumber(2)
+  set tokenName($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTokenName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTokenName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get tokenDocumentUrl => $_getN(2);
+  @$pb.TagNumber(3)
+  set tokenDocumentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasTokenDocumentUrl() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTokenDocumentUrl() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.int> get tokenDocumentHash => $_getN(3);
+  @$pb.TagNumber(4)
+  set tokenDocumentHash($core.List<$core.int> v) { $_setBytes(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasTokenDocumentHash() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTokenDocumentHash() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get decimals => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set decimals($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasDecimals() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearDecimals() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.List<$core.int> get mintBatonTxid => $_getN(5);
+  @$pb.TagNumber(6)
+  set mintBatonTxid($core.List<$core.int> v) { $_setBytes(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasMintBatonTxid() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearMintBatonTxid() => clearField(6);
+
+  @$pb.TagNumber(7)
+  $core.int get mintBatonVout => $_getIZ(6);
+  @$pb.TagNumber(7)
+  set mintBatonVout($core.int v) { $_setUnsignedInt32(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasMintBatonVout() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearMintBatonVout() => clearField(7);
+}
+
+class TokenMetadataNFT1Child extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadataNFT1Child', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'tokenTicker', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(2, 'tokenName', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(3, 'tokenDocumentUrl', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(4, 'tokenDocumentHash', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(5, 'groupId', $pb.PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  TokenMetadataNFT1Child._() : super();
+  factory TokenMetadataNFT1Child() => create();
+  factory TokenMetadataNFT1Child.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory TokenMetadataNFT1Child.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  TokenMetadataNFT1Child clone() => TokenMetadataNFT1Child()..mergeFromMessage(this);
+  TokenMetadataNFT1Child copyWith(void Function(TokenMetadataNFT1Child) updates) => super.copyWith((message) => updates(message as TokenMetadataNFT1Child));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadataNFT1Child create() => TokenMetadataNFT1Child._();
+  TokenMetadataNFT1Child createEmptyInstance() => create();
+  static $pb.PbList<TokenMetadataNFT1Child> createRepeated() => $pb.PbList<TokenMetadataNFT1Child>();
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadataNFT1Child getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadataNFT1Child>(create);
+  static TokenMetadataNFT1Child _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get tokenTicker => $_getN(0);
+  @$pb.TagNumber(1)
+  set tokenTicker($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTokenTicker() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTokenTicker() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get tokenName => $_getN(1);
+  @$pb.TagNumber(2)
+  set tokenName($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTokenName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTokenName() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.int> get tokenDocumentUrl => $_getN(2);
+  @$pb.TagNumber(3)
+  set tokenDocumentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasTokenDocumentUrl() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTokenDocumentUrl() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.List<$core.int> get tokenDocumentHash => $_getN(3);
+  @$pb.TagNumber(4)
+  set tokenDocumentHash($core.List<$core.int> v) { $_setBytes(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasTokenDocumentHash() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearTokenDocumentHash() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.List<$core.int> get groupId => $_getN(4);
+  @$pb.TagNumber(5)
+  set groupId($core.List<$core.int> v) { $_setBytes(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasGroupId() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearGroupId() => clearField(5);
+}
+
+enum TokenMetadata_TypeMetadata {
+  type1, 
+  nft1Group, 
+  nft1Child, 
+  notSet
+}
+
+class TokenMetadata extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, TokenMetadata_TypeMetadata> _TokenMetadata_TypeMetadataByTag = {
+    3 : TokenMetadata_TypeMetadata.type1,
+    4 : TokenMetadata_TypeMetadata.nft1Group,
+    5 : TokenMetadata_TypeMetadata.nft1Child,
+    0 : TokenMetadata_TypeMetadata.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..oo(0, [3, 4, 5])
+    ..a<$core.List<$core.int>>(1, 'tokenId', $pb.PbFieldType.OY)
+    ..a<$core.int>(2, 'tokenType', $pb.PbFieldType.OU3)
+    ..aOM<TokenMetadataTokenType1>(3, 'type1', subBuilder: TokenMetadataTokenType1.create)
+    ..aOM<TokenMetadataNFT1Group>(4, 'nft1Group', subBuilder: TokenMetadataNFT1Group.create)
+    ..aOM<TokenMetadataNFT1Child>(5, 'nft1Child', subBuilder: TokenMetadataNFT1Child.create)
+    ..hasRequiredFields = false
+  ;
+
+  TokenMetadata._() : super();
+  factory TokenMetadata() => create();
+  factory TokenMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory TokenMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  TokenMetadata clone() => TokenMetadata()..mergeFromMessage(this);
+  TokenMetadata copyWith(void Function(TokenMetadata) updates) => super.copyWith((message) => updates(message as TokenMetadata));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadata create() => TokenMetadata._();
+  TokenMetadata createEmptyInstance() => create();
+  static $pb.PbList<TokenMetadata> createRepeated() => $pb.PbList<TokenMetadata>();
+  @$core.pragma('dart2js:noInline')
+  static TokenMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadata>(create);
+  static TokenMetadata _defaultInstance;
+
+  TokenMetadata_TypeMetadata whichTypeMetadata() => _TokenMetadata_TypeMetadataByTag[$_whichOneof(0)];
+  void clearTypeMetadata() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  $core.List<$core.int> get tokenId => $_getN(0);
+  @$pb.TagNumber(1)
+  set tokenId($core.List<$core.int> v) { $_setBytes(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasTokenId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearTokenId() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get tokenType => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set tokenType($core.int v) { $_setUnsignedInt32(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTokenType() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTokenType() => clearField(2);
+
+  @$pb.TagNumber(3)
+  TokenMetadataTokenType1 get type1 => $_getN(2);
+  @$pb.TagNumber(3)
+  set type1(TokenMetadataTokenType1 v) { setField(3, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasType1() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearType1() => clearField(3);
+  @$pb.TagNumber(3)
+  TokenMetadataTokenType1 ensureType1() => $_ensure(2);
+
+  @$pb.TagNumber(4)
+  TokenMetadataNFT1Group get nft1Group => $_getN(3);
+  @$pb.TagNumber(4)
+  set nft1Group(TokenMetadataNFT1Group v) { setField(4, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasNft1Group() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearNft1Group() => clearField(4);
+  @$pb.TagNumber(4)
+  TokenMetadataNFT1Group ensureNft1Group() => $_ensure(3);
+
+  @$pb.TagNumber(5)
+  TokenMetadataNFT1Child get nft1Child => $_getN(4);
+  @$pb.TagNumber(5)
+  set nft1Child(TokenMetadataNFT1Child v) { setField(5, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasNft1Child() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearNft1Child() => clearField(5);
+  @$pb.TagNumber(5)
+  TokenMetadataNFT1Child ensureNft1Child() => $_ensure(4);
+}
+
+enum SlpRequiredBurn_BurnIntention {
+  amount, 
+  mintBatonVout, 
+  notSet
+}
+
+class SlpRequiredBurn extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, SlpRequiredBurn_BurnIntention> _SlpRequiredBurn_BurnIntentionByTag = {
+    4 : SlpRequiredBurn_BurnIntention.amount,
+    5 : SlpRequiredBurn_BurnIntention.mintBatonVout,
+    0 : SlpRequiredBurn_BurnIntention.notSet
+  };
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpRequiredBurn', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..oo(0, [4, 5])
+    ..aOM<Transaction_Input_Outpoint>(1, 'outpoint', subBuilder: Transaction_Input_Outpoint.create)
+    ..a<$core.List<$core.int>>(2, 'tokenId', $pb.PbFieldType.OY)
+    ..a<$core.int>(3, 'tokenType', $pb.PbFieldType.OU3)
+    ..a<$fixnum.Int64>(4, 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
+    ..a<$core.int>(5, 'mintBatonVout', $pb.PbFieldType.OU3)
+    ..hasRequiredFields = false
+  ;
+
+  SlpRequiredBurn._() : super();
+  factory SlpRequiredBurn() => create();
+  factory SlpRequiredBurn.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpRequiredBurn.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpRequiredBurn clone() => SlpRequiredBurn()..mergeFromMessage(this);
+  SlpRequiredBurn copyWith(void Function(SlpRequiredBurn) updates) => super.copyWith((message) => updates(message as SlpRequiredBurn));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static SlpRequiredBurn create() => SlpRequiredBurn._();
+  SlpRequiredBurn createEmptyInstance() => create();
+  static $pb.PbList<SlpRequiredBurn> createRepeated() => $pb.PbList<SlpRequiredBurn>();
+  @$core.pragma('dart2js:noInline')
+  static SlpRequiredBurn getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpRequiredBurn>(create);
+  static SlpRequiredBurn _defaultInstance;
+
+  SlpRequiredBurn_BurnIntention whichBurnIntention() => _SlpRequiredBurn_BurnIntentionByTag[$_whichOneof(0)];
+  void clearBurnIntention() => clearField($_whichOneof(0));
+
+  @$pb.TagNumber(1)
+  Transaction_Input_Outpoint get outpoint => $_getN(0);
+  @$pb.TagNumber(1)
+  set outpoint(Transaction_Input_Outpoint v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasOutpoint() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearOutpoint() => clearField(1);
+  @$pb.TagNumber(1)
+  Transaction_Input_Outpoint ensureOutpoint() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.List<$core.int> get tokenId => $_getN(1);
+  @$pb.TagNumber(2)
+  set tokenId($core.List<$core.int> v) { $_setBytes(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasTokenId() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearTokenId() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.int get tokenType => $_getIZ(2);
+  @$pb.TagNumber(3)
+  set tokenType($core.int v) { $_setUnsignedInt32(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasTokenType() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearTokenType() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $fixnum.Int64 get amount => $_getI64(3);
+  @$pb.TagNumber(4)
+  set amount($fixnum.Int64 v) { $_setInt64(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasAmount() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearAmount() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.int get mintBatonVout => $_getIZ(4);
+  @$pb.TagNumber(5)
+  set mintBatonVout($core.int v) { $_setUnsignedInt32(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasMintBatonVout() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearMintBatonVout() => clearField(5);
 }
 
