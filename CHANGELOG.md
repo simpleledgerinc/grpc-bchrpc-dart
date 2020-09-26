@@ -1,3 +1,9 @@
+## 0.1.2
+    * Remove experimental client for grpc-web, cannot use grpc-web in same project
+
+## 0.1.1
+    * Add experimental client for grpc-web
+
 ## 0.1.0
     * Updated bchrpc with SLP support!
 
