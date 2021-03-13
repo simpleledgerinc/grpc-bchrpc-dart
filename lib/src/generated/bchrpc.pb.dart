@@ -221,6 +221,7 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
     ..aOB(6, 'txIndex')
     ..aOB(7, 'addrIndex')
     ..aOB(8, 'slpIndex')
+    ..aOB(9, 'slpGraphsearch')
     ..hasRequiredFields = false
   ;
 
@@ -310,6 +311,15 @@ class GetBlockchainInfoResponse extends $pb.GeneratedMessage {
   $core.bool hasSlpIndex() => $_has(7);
   @$pb.TagNumber(8)
   void clearSlpIndex() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.bool get slpGraphsearch => $_getBF(8);
+  @$pb.TagNumber(9)
+  set slpGraphsearch($core.bool v) { $_setBool(8, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasSlpGraphsearch() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearSlpGraphsearch() => clearField(9);
 }
 
 enum GetBlockInfoRequest_HashOrHeight {
@@ -778,7 +788,7 @@ class GetTransactionRequest extends $pb.GeneratedMessage {
 class GetTransactionResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTransactionResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..aOM<Transaction>(1, 'transaction', subBuilder: Transaction.create)
-    ..aOM<TokenMetadata>(2, 'tokenMetadata', subBuilder: TokenMetadata.create)
+    ..aOM<SlpTokenMetadata>(2, 'tokenMetadata', subBuilder: SlpTokenMetadata.create)
     ..hasRequiredFields = false
   ;
 
@@ -809,15 +819,15 @@ class GetTransactionResponse extends $pb.GeneratedMessage {
   Transaction ensureTransaction() => $_ensure(0);
 
   @$pb.TagNumber(2)
-  TokenMetadata get tokenMetadata => $_getN(1);
+  SlpTokenMetadata get tokenMetadata => $_getN(1);
   @$pb.TagNumber(2)
-  set tokenMetadata(TokenMetadata v) { setField(2, v); }
+  set tokenMetadata(SlpTokenMetadata v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasTokenMetadata() => $_has(1);
   @$pb.TagNumber(2)
   void clearTokenMetadata() => clearField(2);
   @$pb.TagNumber(2)
-  TokenMetadata ensureTokenMetadata() => $_ensure(1);
+  SlpTokenMetadata ensureTokenMetadata() => $_ensure(1);
 }
 
 class GetRawTransactionRequest extends $pb.GeneratedMessage {
@@ -1166,7 +1176,7 @@ class GetAddressUnspentOutputsRequest extends $pb.GeneratedMessage {
 class GetAddressUnspentOutputsResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetAddressUnspentOutputsResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..pc<UnspentOutput>(1, 'outputs', $pb.PbFieldType.PM, subBuilder: UnspentOutput.create)
-    ..pc<TokenMetadata>(2, 'tokenMetadata', $pb.PbFieldType.PM, subBuilder: TokenMetadata.create)
+    ..pc<SlpTokenMetadata>(2, 'tokenMetadata', $pb.PbFieldType.PM, subBuilder: SlpTokenMetadata.create)
     ..hasRequiredFields = false
   ;
 
@@ -1189,7 +1199,7 @@ class GetAddressUnspentOutputsResponse extends $pb.GeneratedMessage {
   $core.List<UnspentOutput> get outputs => $_getList(0);
 
   @$pb.TagNumber(2)
-  $core.List<TokenMetadata> get tokenMetadata => $_getList(1);
+  $core.List<SlpTokenMetadata> get tokenMetadata => $_getList(1);
 }
 
 class GetUnspentOutputRequest extends $pb.GeneratedMessage {
@@ -1261,7 +1271,7 @@ class GetUnspentOutputResponse extends $pb.GeneratedMessage {
     ..aOB(4, 'isCoinbase')
     ..a<$core.int>(5, 'blockHeight', $pb.PbFieldType.O3)
     ..aOM<SlpToken>(6, 'slpToken', subBuilder: SlpToken.create)
-    ..aOM<TokenMetadata>(7, 'tokenMetadata', subBuilder: TokenMetadata.create)
+    ..aOM<SlpTokenMetadata>(7, 'tokenMetadata', subBuilder: SlpTokenMetadata.create)
     ..hasRequiredFields = false
   ;
 
@@ -1339,15 +1349,15 @@ class GetUnspentOutputResponse extends $pb.GeneratedMessage {
   SlpToken ensureSlpToken() => $_ensure(5);
 
   @$pb.TagNumber(7)
-  TokenMetadata get tokenMetadata => $_getN(6);
+  SlpTokenMetadata get tokenMetadata => $_getN(6);
   @$pb.TagNumber(7)
-  set tokenMetadata(TokenMetadata v) { setField(7, v); }
+  set tokenMetadata(SlpTokenMetadata v) { setField(7, v); }
   @$pb.TagNumber(7)
   $core.bool hasTokenMetadata() => $_has(6);
   @$pb.TagNumber(7)
   void clearTokenMetadata() => clearField(7);
   @$pb.TagNumber(7)
-  TokenMetadata ensureTokenMetadata() => $_ensure(6);
+  SlpTokenMetadata ensureTokenMetadata() => $_ensure(6);
 }
 
 class GetMerkleProofRequest extends $pb.GeneratedMessage {
@@ -1508,6 +1518,7 @@ class CheckSlpTransactionRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('CheckSlpTransactionRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, 'transaction', $pb.PbFieldType.OY)
     ..pc<SlpRequiredBurn>(2, 'requiredSlpBurns', $pb.PbFieldType.PM, subBuilder: SlpRequiredBurn.create)
+    ..aOB(3, 'useSpecValidityJudgement')
     ..hasRequiredFields = false
   ;
 
@@ -1537,11 +1548,21 @@ class CheckSlpTransactionRequest extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.List<SlpRequiredBurn> get requiredSlpBurns => $_getList(1);
+
+  @$pb.TagNumber(3)
+  $core.bool get useSpecValidityJudgement => $_getBF(2);
+  @$pb.TagNumber(3)
+  set useSpecValidityJudgement($core.bool v) { $_setBool(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasUseSpecValidityJudgement() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearUseSpecValidityJudgement() => clearField(3);
 }
 
 class CheckSlpTransactionResponse extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('CheckSlpTransactionResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..aOB(1, 'isValid')
+    ..aOS(2, 'invalidReason')
     ..hasRequiredFields = false
   ;
 
@@ -1568,6 +1589,15 @@ class CheckSlpTransactionResponse extends $pb.GeneratedMessage {
   $core.bool hasIsValid() => $_has(0);
   @$pb.TagNumber(1)
   void clearIsValid() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get invalidReason => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set invalidReason($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasInvalidReason() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearInvalidReason() => clearField(2);
 }
 
 class SubscribeTransactionsRequest extends $pb.GeneratedMessage {
@@ -1696,76 +1726,76 @@ class SubscribeBlocksRequest extends $pb.GeneratedMessage {
   void clearSerializeBlock() => clearField(3);
 }
 
-class GetTokenMetadataRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTokenMetadataRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+class GetSlpTokenMetadataRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpTokenMetadataRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..p<$core.List<$core.int>>(1, 'tokenIds', $pb.PbFieldType.PY)
     ..hasRequiredFields = false
   ;
 
-  GetTokenMetadataRequest._() : super();
-  factory GetTokenMetadataRequest() => create();
-  factory GetTokenMetadataRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetTokenMetadataRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetTokenMetadataRequest clone() => GetTokenMetadataRequest()..mergeFromMessage(this);
-  GetTokenMetadataRequest copyWith(void Function(GetTokenMetadataRequest) updates) => super.copyWith((message) => updates(message as GetTokenMetadataRequest));
+  GetSlpTokenMetadataRequest._() : super();
+  factory GetSlpTokenMetadataRequest() => create();
+  factory GetSlpTokenMetadataRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpTokenMetadataRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpTokenMetadataRequest clone() => GetSlpTokenMetadataRequest()..mergeFromMessage(this);
+  GetSlpTokenMetadataRequest copyWith(void Function(GetSlpTokenMetadataRequest) updates) => super.copyWith((message) => updates(message as GetSlpTokenMetadataRequest));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetTokenMetadataRequest create() => GetTokenMetadataRequest._();
-  GetTokenMetadataRequest createEmptyInstance() => create();
-  static $pb.PbList<GetTokenMetadataRequest> createRepeated() => $pb.PbList<GetTokenMetadataRequest>();
+  static GetSlpTokenMetadataRequest create() => GetSlpTokenMetadataRequest._();
+  GetSlpTokenMetadataRequest createEmptyInstance() => create();
+  static $pb.PbList<GetSlpTokenMetadataRequest> createRepeated() => $pb.PbList<GetSlpTokenMetadataRequest>();
   @$core.pragma('dart2js:noInline')
-  static GetTokenMetadataRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTokenMetadataRequest>(create);
-  static GetTokenMetadataRequest _defaultInstance;
+  static GetSlpTokenMetadataRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpTokenMetadataRequest>(create);
+  static GetSlpTokenMetadataRequest _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<$core.List<$core.int>> get tokenIds => $_getList(0);
 }
 
-class GetTokenMetadataResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTokenMetadataResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..pc<TokenMetadata>(1, 'tokenMetadata', $pb.PbFieldType.PM, subBuilder: TokenMetadata.create)
+class GetSlpTokenMetadataResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpTokenMetadataResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..pc<SlpTokenMetadata>(1, 'tokenMetadata', $pb.PbFieldType.PM, subBuilder: SlpTokenMetadata.create)
     ..hasRequiredFields = false
   ;
 
-  GetTokenMetadataResponse._() : super();
-  factory GetTokenMetadataResponse() => create();
-  factory GetTokenMetadataResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetTokenMetadataResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetTokenMetadataResponse clone() => GetTokenMetadataResponse()..mergeFromMessage(this);
-  GetTokenMetadataResponse copyWith(void Function(GetTokenMetadataResponse) updates) => super.copyWith((message) => updates(message as GetTokenMetadataResponse));
+  GetSlpTokenMetadataResponse._() : super();
+  factory GetSlpTokenMetadataResponse() => create();
+  factory GetSlpTokenMetadataResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpTokenMetadataResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpTokenMetadataResponse clone() => GetSlpTokenMetadataResponse()..mergeFromMessage(this);
+  GetSlpTokenMetadataResponse copyWith(void Function(GetSlpTokenMetadataResponse) updates) => super.copyWith((message) => updates(message as GetSlpTokenMetadataResponse));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetTokenMetadataResponse create() => GetTokenMetadataResponse._();
-  GetTokenMetadataResponse createEmptyInstance() => create();
-  static $pb.PbList<GetTokenMetadataResponse> createRepeated() => $pb.PbList<GetTokenMetadataResponse>();
+  static GetSlpTokenMetadataResponse create() => GetSlpTokenMetadataResponse._();
+  GetSlpTokenMetadataResponse createEmptyInstance() => create();
+  static $pb.PbList<GetSlpTokenMetadataResponse> createRepeated() => $pb.PbList<GetSlpTokenMetadataResponse>();
   @$core.pragma('dart2js:noInline')
-  static GetTokenMetadataResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTokenMetadataResponse>(create);
-  static GetTokenMetadataResponse _defaultInstance;
+  static GetSlpTokenMetadataResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpTokenMetadataResponse>(create);
+  static GetSlpTokenMetadataResponse _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<TokenMetadata> get tokenMetadata => $_getList(0);
+  $core.List<SlpTokenMetadata> get tokenMetadata => $_getList(0);
 }
 
-class GetParsedSlpScriptRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetParsedSlpScriptRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+class GetSlpParsedScriptRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpParsedScriptRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, 'slpOpreturnScript', $pb.PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
-  GetParsedSlpScriptRequest._() : super();
-  factory GetParsedSlpScriptRequest() => create();
-  factory GetParsedSlpScriptRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetParsedSlpScriptRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetParsedSlpScriptRequest clone() => GetParsedSlpScriptRequest()..mergeFromMessage(this);
-  GetParsedSlpScriptRequest copyWith(void Function(GetParsedSlpScriptRequest) updates) => super.copyWith((message) => updates(message as GetParsedSlpScriptRequest));
+  GetSlpParsedScriptRequest._() : super();
+  factory GetSlpParsedScriptRequest() => create();
+  factory GetSlpParsedScriptRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpParsedScriptRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpParsedScriptRequest clone() => GetSlpParsedScriptRequest()..mergeFromMessage(this);
+  GetSlpParsedScriptRequest copyWith(void Function(GetSlpParsedScriptRequest) updates) => super.copyWith((message) => updates(message as GetSlpParsedScriptRequest));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetParsedSlpScriptRequest create() => GetParsedSlpScriptRequest._();
-  GetParsedSlpScriptRequest createEmptyInstance() => create();
-  static $pb.PbList<GetParsedSlpScriptRequest> createRepeated() => $pb.PbList<GetParsedSlpScriptRequest>();
+  static GetSlpParsedScriptRequest create() => GetSlpParsedScriptRequest._();
+  GetSlpParsedScriptRequest createEmptyInstance() => create();
+  static $pb.PbList<GetSlpParsedScriptRequest> createRepeated() => $pb.PbList<GetSlpParsedScriptRequest>();
   @$core.pragma('dart2js:noInline')
-  static GetParsedSlpScriptRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetParsedSlpScriptRequest>(create);
-  static GetParsedSlpScriptRequest _defaultInstance;
+  static GetSlpParsedScriptRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpParsedScriptRequest>(create);
+  static GetSlpParsedScriptRequest _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<$core.int> get slpOpreturnScript => $_getN(0);
@@ -1777,54 +1807,54 @@ class GetParsedSlpScriptRequest extends $pb.GeneratedMessage {
   void clearSlpOpreturnScript() => clearField(1);
 }
 
-enum GetParsedSlpScriptResponse_SlpMetadata {
+enum GetSlpParsedScriptResponse_SlpMetadata {
   v1Genesis, 
   v1Mint, 
   v1Send, 
-  nft1ChildGenesis, 
-  nft1ChildSend, 
+  v1Nft1ChildGenesis, 
+  v1Nft1ChildSend, 
   notSet
 }
 
-class GetParsedSlpScriptResponse extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, GetParsedSlpScriptResponse_SlpMetadata> _GetParsedSlpScriptResponse_SlpMetadataByTag = {
-    5 : GetParsedSlpScriptResponse_SlpMetadata.v1Genesis,
-    6 : GetParsedSlpScriptResponse_SlpMetadata.v1Mint,
-    7 : GetParsedSlpScriptResponse_SlpMetadata.v1Send,
-    8 : GetParsedSlpScriptResponse_SlpMetadata.nft1ChildGenesis,
-    9 : GetParsedSlpScriptResponse_SlpMetadata.nft1ChildSend,
-    0 : GetParsedSlpScriptResponse_SlpMetadata.notSet
+class GetSlpParsedScriptResponse extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, GetSlpParsedScriptResponse_SlpMetadata> _GetSlpParsedScriptResponse_SlpMetadataByTag = {
+    5 : GetSlpParsedScriptResponse_SlpMetadata.v1Genesis,
+    6 : GetSlpParsedScriptResponse_SlpMetadata.v1Mint,
+    7 : GetSlpParsedScriptResponse_SlpMetadata.v1Send,
+    8 : GetSlpParsedScriptResponse_SlpMetadata.v1Nft1ChildGenesis,
+    9 : GetSlpParsedScriptResponse_SlpMetadata.v1Nft1ChildSend,
+    0 : GetSlpParsedScriptResponse_SlpMetadata.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetParsedSlpScriptResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpParsedScriptResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..oo(0, [5, 6, 7, 8, 9])
     ..aOS(1, 'parsingError')
     ..a<$core.List<$core.int>>(2, 'tokenId', $pb.PbFieldType.OY)
     ..e<SlpAction>(3, 'slpAction', $pb.PbFieldType.OE, defaultOrMaker: SlpAction.NON_SLP, valueOf: SlpAction.valueOf, enumValues: SlpAction.values)
-    ..a<$core.int>(4, 'tokenType', $pb.PbFieldType.OU3)
+    ..e<SlpTokenType>(4, 'tokenType', $pb.PbFieldType.OE, defaultOrMaker: SlpTokenType.VERSION_NOT_SET, valueOf: SlpTokenType.valueOf, enumValues: SlpTokenType.values)
     ..aOM<SlpV1GenesisMetadata>(5, 'v1Genesis', subBuilder: SlpV1GenesisMetadata.create)
     ..aOM<SlpV1MintMetadata>(6, 'v1Mint', subBuilder: SlpV1MintMetadata.create)
     ..aOM<SlpV1SendMetadata>(7, 'v1Send', subBuilder: SlpV1SendMetadata.create)
-    ..aOM<SlpNft1ChildGenesisMetadata>(8, 'nft1ChildGenesis', subBuilder: SlpNft1ChildGenesisMetadata.create)
-    ..aOM<SlpNft1ChildSendMetadata>(9, 'nft1ChildSend', subBuilder: SlpNft1ChildSendMetadata.create)
+    ..aOM<SlpV1Nft1ChildGenesisMetadata>(8, 'v1Nft1ChildGenesis', subBuilder: SlpV1Nft1ChildGenesisMetadata.create)
+    ..aOM<SlpV1Nft1ChildSendMetadata>(9, 'v1Nft1ChildSend', subBuilder: SlpV1Nft1ChildSendMetadata.create)
     ..hasRequiredFields = false
   ;
 
-  GetParsedSlpScriptResponse._() : super();
-  factory GetParsedSlpScriptResponse() => create();
-  factory GetParsedSlpScriptResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetParsedSlpScriptResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetParsedSlpScriptResponse clone() => GetParsedSlpScriptResponse()..mergeFromMessage(this);
-  GetParsedSlpScriptResponse copyWith(void Function(GetParsedSlpScriptResponse) updates) => super.copyWith((message) => updates(message as GetParsedSlpScriptResponse));
+  GetSlpParsedScriptResponse._() : super();
+  factory GetSlpParsedScriptResponse() => create();
+  factory GetSlpParsedScriptResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpParsedScriptResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpParsedScriptResponse clone() => GetSlpParsedScriptResponse()..mergeFromMessage(this);
+  GetSlpParsedScriptResponse copyWith(void Function(GetSlpParsedScriptResponse) updates) => super.copyWith((message) => updates(message as GetSlpParsedScriptResponse));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetParsedSlpScriptResponse create() => GetParsedSlpScriptResponse._();
-  GetParsedSlpScriptResponse createEmptyInstance() => create();
-  static $pb.PbList<GetParsedSlpScriptResponse> createRepeated() => $pb.PbList<GetParsedSlpScriptResponse>();
+  static GetSlpParsedScriptResponse create() => GetSlpParsedScriptResponse._();
+  GetSlpParsedScriptResponse createEmptyInstance() => create();
+  static $pb.PbList<GetSlpParsedScriptResponse> createRepeated() => $pb.PbList<GetSlpParsedScriptResponse>();
   @$core.pragma('dart2js:noInline')
-  static GetParsedSlpScriptResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetParsedSlpScriptResponse>(create);
-  static GetParsedSlpScriptResponse _defaultInstance;
+  static GetSlpParsedScriptResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpParsedScriptResponse>(create);
+  static GetSlpParsedScriptResponse _defaultInstance;
 
-  GetParsedSlpScriptResponse_SlpMetadata whichSlpMetadata() => _GetParsedSlpScriptResponse_SlpMetadataByTag[$_whichOneof(0)];
+  GetSlpParsedScriptResponse_SlpMetadata whichSlpMetadata() => _GetSlpParsedScriptResponse_SlpMetadataByTag[$_whichOneof(0)];
   void clearSlpMetadata() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -1855,9 +1885,9 @@ class GetParsedSlpScriptResponse extends $pb.GeneratedMessage {
   void clearSlpAction() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.int get tokenType => $_getIZ(3);
+  SlpTokenType get tokenType => $_getN(3);
   @$pb.TagNumber(4)
-  set tokenType($core.int v) { $_setUnsignedInt32(3, v); }
+  set tokenType(SlpTokenType v) { setField(4, v); }
   @$pb.TagNumber(4)
   $core.bool hasTokenType() => $_has(3);
   @$pb.TagNumber(4)
@@ -1897,49 +1927,50 @@ class GetParsedSlpScriptResponse extends $pb.GeneratedMessage {
   SlpV1SendMetadata ensureV1Send() => $_ensure(6);
 
   @$pb.TagNumber(8)
-  SlpNft1ChildGenesisMetadata get nft1ChildGenesis => $_getN(7);
+  SlpV1Nft1ChildGenesisMetadata get v1Nft1ChildGenesis => $_getN(7);
   @$pb.TagNumber(8)
-  set nft1ChildGenesis(SlpNft1ChildGenesisMetadata v) { setField(8, v); }
+  set v1Nft1ChildGenesis(SlpV1Nft1ChildGenesisMetadata v) { setField(8, v); }
   @$pb.TagNumber(8)
-  $core.bool hasNft1ChildGenesis() => $_has(7);
+  $core.bool hasV1Nft1ChildGenesis() => $_has(7);
   @$pb.TagNumber(8)
-  void clearNft1ChildGenesis() => clearField(8);
+  void clearV1Nft1ChildGenesis() => clearField(8);
   @$pb.TagNumber(8)
-  SlpNft1ChildGenesisMetadata ensureNft1ChildGenesis() => $_ensure(7);
+  SlpV1Nft1ChildGenesisMetadata ensureV1Nft1ChildGenesis() => $_ensure(7);
 
   @$pb.TagNumber(9)
-  SlpNft1ChildSendMetadata get nft1ChildSend => $_getN(8);
+  SlpV1Nft1ChildSendMetadata get v1Nft1ChildSend => $_getN(8);
   @$pb.TagNumber(9)
-  set nft1ChildSend(SlpNft1ChildSendMetadata v) { setField(9, v); }
+  set v1Nft1ChildSend(SlpV1Nft1ChildSendMetadata v) { setField(9, v); }
   @$pb.TagNumber(9)
-  $core.bool hasNft1ChildSend() => $_has(8);
+  $core.bool hasV1Nft1ChildSend() => $_has(8);
   @$pb.TagNumber(9)
-  void clearNft1ChildSend() => clearField(9);
+  void clearV1Nft1ChildSend() => clearField(9);
   @$pb.TagNumber(9)
-  SlpNft1ChildSendMetadata ensureNft1ChildSend() => $_ensure(8);
+  SlpV1Nft1ChildSendMetadata ensureV1Nft1ChildSend() => $_ensure(8);
 }
 
-class GetTrustedSlpValidationRequest_Query extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationRequest.Query', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+class GetSlpTrustedValidationRequest_Query extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpTrustedValidationRequest.Query', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, 'prevOutHash', $pb.PbFieldType.OY)
     ..a<$core.int>(2, 'prevOutVout', $pb.PbFieldType.OU3)
+    ..p<$core.List<$core.int>>(3, 'graphsearchValidHashes', $pb.PbFieldType.PY)
     ..hasRequiredFields = false
   ;
 
-  GetTrustedSlpValidationRequest_Query._() : super();
-  factory GetTrustedSlpValidationRequest_Query() => create();
-  factory GetTrustedSlpValidationRequest_Query.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetTrustedSlpValidationRequest_Query.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetTrustedSlpValidationRequest_Query clone() => GetTrustedSlpValidationRequest_Query()..mergeFromMessage(this);
-  GetTrustedSlpValidationRequest_Query copyWith(void Function(GetTrustedSlpValidationRequest_Query) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationRequest_Query));
+  GetSlpTrustedValidationRequest_Query._() : super();
+  factory GetSlpTrustedValidationRequest_Query() => create();
+  factory GetSlpTrustedValidationRequest_Query.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpTrustedValidationRequest_Query.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpTrustedValidationRequest_Query clone() => GetSlpTrustedValidationRequest_Query()..mergeFromMessage(this);
+  GetSlpTrustedValidationRequest_Query copyWith(void Function(GetSlpTrustedValidationRequest_Query) updates) => super.copyWith((message) => updates(message as GetSlpTrustedValidationRequest_Query));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationRequest_Query create() => GetTrustedSlpValidationRequest_Query._();
-  GetTrustedSlpValidationRequest_Query createEmptyInstance() => create();
-  static $pb.PbList<GetTrustedSlpValidationRequest_Query> createRepeated() => $pb.PbList<GetTrustedSlpValidationRequest_Query>();
+  static GetSlpTrustedValidationRequest_Query create() => GetSlpTrustedValidationRequest_Query._();
+  GetSlpTrustedValidationRequest_Query createEmptyInstance() => create();
+  static $pb.PbList<GetSlpTrustedValidationRequest_Query> createRepeated() => $pb.PbList<GetSlpTrustedValidationRequest_Query>();
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationRequest_Query getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationRequest_Query>(create);
-  static GetTrustedSlpValidationRequest_Query _defaultInstance;
+  static GetSlpTrustedValidationRequest_Query getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpTrustedValidationRequest_Query>(create);
+  static GetSlpTrustedValidationRequest_Query _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<$core.int> get prevOutHash => $_getN(0);
@@ -1958,74 +1989,88 @@ class GetTrustedSlpValidationRequest_Query extends $pb.GeneratedMessage {
   $core.bool hasPrevOutVout() => $_has(1);
   @$pb.TagNumber(2)
   void clearPrevOutVout() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.List<$core.List<$core.int>> get graphsearchValidHashes => $_getList(2);
 }
 
-class GetTrustedSlpValidationRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..pc<GetTrustedSlpValidationRequest_Query>(1, 'queries', $pb.PbFieldType.PM, subBuilder: GetTrustedSlpValidationRequest_Query.create)
+class GetSlpTrustedValidationRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpTrustedValidationRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..pc<GetSlpTrustedValidationRequest_Query>(1, 'queries', $pb.PbFieldType.PM, subBuilder: GetSlpTrustedValidationRequest_Query.create)
+    ..aOB(2, 'includeGraphsearchCount')
     ..hasRequiredFields = false
   ;
 
-  GetTrustedSlpValidationRequest._() : super();
-  factory GetTrustedSlpValidationRequest() => create();
-  factory GetTrustedSlpValidationRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetTrustedSlpValidationRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetTrustedSlpValidationRequest clone() => GetTrustedSlpValidationRequest()..mergeFromMessage(this);
-  GetTrustedSlpValidationRequest copyWith(void Function(GetTrustedSlpValidationRequest) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationRequest));
+  GetSlpTrustedValidationRequest._() : super();
+  factory GetSlpTrustedValidationRequest() => create();
+  factory GetSlpTrustedValidationRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpTrustedValidationRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpTrustedValidationRequest clone() => GetSlpTrustedValidationRequest()..mergeFromMessage(this);
+  GetSlpTrustedValidationRequest copyWith(void Function(GetSlpTrustedValidationRequest) updates) => super.copyWith((message) => updates(message as GetSlpTrustedValidationRequest));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationRequest create() => GetTrustedSlpValidationRequest._();
-  GetTrustedSlpValidationRequest createEmptyInstance() => create();
-  static $pb.PbList<GetTrustedSlpValidationRequest> createRepeated() => $pb.PbList<GetTrustedSlpValidationRequest>();
+  static GetSlpTrustedValidationRequest create() => GetSlpTrustedValidationRequest._();
+  GetSlpTrustedValidationRequest createEmptyInstance() => create();
+  static $pb.PbList<GetSlpTrustedValidationRequest> createRepeated() => $pb.PbList<GetSlpTrustedValidationRequest>();
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationRequest>(create);
-  static GetTrustedSlpValidationRequest _defaultInstance;
+  static GetSlpTrustedValidationRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpTrustedValidationRequest>(create);
+  static GetSlpTrustedValidationRequest _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<GetTrustedSlpValidationRequest_Query> get queries => $_getList(0);
+  $core.List<GetSlpTrustedValidationRequest_Query> get queries => $_getList(0);
+
+  @$pb.TagNumber(2)
+  $core.bool get includeGraphsearchCount => $_getBF(1);
+  @$pb.TagNumber(2)
+  set includeGraphsearchCount($core.bool v) { $_setBool(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasIncludeGraphsearchCount() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearIncludeGraphsearchCount() => clearField(2);
 }
 
-enum GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType {
+enum GetSlpTrustedValidationResponse_ValidityResult_ValidityResultType {
   v1TokenAmount, 
   v1MintBaton, 
   notSet
 }
 
-class GetTrustedSlpValidationResponse_ValidityResult extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType> _GetTrustedSlpValidationResponse_ValidityResult_ValidityResultTypeByTag = {
-    6 : GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType.v1TokenAmount,
-    7 : GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType.v1MintBaton,
-    0 : GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType.notSet
+class GetSlpTrustedValidationResponse_ValidityResult extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, GetSlpTrustedValidationResponse_ValidityResult_ValidityResultType> _GetSlpTrustedValidationResponse_ValidityResult_ValidityResultTypeByTag = {
+    6 : GetSlpTrustedValidationResponse_ValidityResult_ValidityResultType.v1TokenAmount,
+    7 : GetSlpTrustedValidationResponse_ValidityResult_ValidityResultType.v1MintBaton,
+    0 : GetSlpTrustedValidationResponse_ValidityResult_ValidityResultType.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationResponse.ValidityResult', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpTrustedValidationResponse.ValidityResult', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..oo(0, [6, 7])
     ..a<$core.List<$core.int>>(1, 'prevOutHash', $pb.PbFieldType.OY)
     ..a<$core.int>(2, 'prevOutVout', $pb.PbFieldType.OU3)
     ..a<$core.List<$core.int>>(3, 'tokenId', $pb.PbFieldType.OY)
     ..e<SlpAction>(4, 'slpAction', $pb.PbFieldType.OE, defaultOrMaker: SlpAction.NON_SLP, valueOf: SlpAction.valueOf, enumValues: SlpAction.values)
-    ..a<$core.int>(5, 'tokenType', $pb.PbFieldType.OU3)
+    ..e<SlpTokenType>(5, 'tokenType', $pb.PbFieldType.OE, defaultOrMaker: SlpTokenType.VERSION_NOT_SET, valueOf: SlpTokenType.valueOf, enumValues: SlpTokenType.values)
     ..a<$fixnum.Int64>(6, 'v1TokenAmount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..aOB(7, 'v1MintBaton')
     ..a<$core.List<$core.int>>(8, 'slpTxnOpreturn', $pb.PbFieldType.OY)
+    ..a<$core.int>(9, 'graphsearchTxnCount', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
-  GetTrustedSlpValidationResponse_ValidityResult._() : super();
-  factory GetTrustedSlpValidationResponse_ValidityResult() => create();
-  factory GetTrustedSlpValidationResponse_ValidityResult.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetTrustedSlpValidationResponse_ValidityResult.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetTrustedSlpValidationResponse_ValidityResult clone() => GetTrustedSlpValidationResponse_ValidityResult()..mergeFromMessage(this);
-  GetTrustedSlpValidationResponse_ValidityResult copyWith(void Function(GetTrustedSlpValidationResponse_ValidityResult) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationResponse_ValidityResult));
+  GetSlpTrustedValidationResponse_ValidityResult._() : super();
+  factory GetSlpTrustedValidationResponse_ValidityResult() => create();
+  factory GetSlpTrustedValidationResponse_ValidityResult.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpTrustedValidationResponse_ValidityResult.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpTrustedValidationResponse_ValidityResult clone() => GetSlpTrustedValidationResponse_ValidityResult()..mergeFromMessage(this);
+  GetSlpTrustedValidationResponse_ValidityResult copyWith(void Function(GetSlpTrustedValidationResponse_ValidityResult) updates) => super.copyWith((message) => updates(message as GetSlpTrustedValidationResponse_ValidityResult));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationResponse_ValidityResult create() => GetTrustedSlpValidationResponse_ValidityResult._();
-  GetTrustedSlpValidationResponse_ValidityResult createEmptyInstance() => create();
-  static $pb.PbList<GetTrustedSlpValidationResponse_ValidityResult> createRepeated() => $pb.PbList<GetTrustedSlpValidationResponse_ValidityResult>();
+  static GetSlpTrustedValidationResponse_ValidityResult create() => GetSlpTrustedValidationResponse_ValidityResult._();
+  GetSlpTrustedValidationResponse_ValidityResult createEmptyInstance() => create();
+  static $pb.PbList<GetSlpTrustedValidationResponse_ValidityResult> createRepeated() => $pb.PbList<GetSlpTrustedValidationResponse_ValidityResult>();
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationResponse_ValidityResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationResponse_ValidityResult>(create);
-  static GetTrustedSlpValidationResponse_ValidityResult _defaultInstance;
+  static GetSlpTrustedValidationResponse_ValidityResult getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpTrustedValidationResponse_ValidityResult>(create);
+  static GetSlpTrustedValidationResponse_ValidityResult _defaultInstance;
 
-  GetTrustedSlpValidationResponse_ValidityResult_ValidityResultType whichValidityResultType() => _GetTrustedSlpValidationResponse_ValidityResult_ValidityResultTypeByTag[$_whichOneof(0)];
+  GetSlpTrustedValidationResponse_ValidityResult_ValidityResultType whichValidityResultType() => _GetSlpTrustedValidationResponse_ValidityResult_ValidityResultTypeByTag[$_whichOneof(0)];
   void clearValidityResultType() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -2065,9 +2110,9 @@ class GetTrustedSlpValidationResponse_ValidityResult extends $pb.GeneratedMessag
   void clearSlpAction() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.int get tokenType => $_getIZ(4);
+  SlpTokenType get tokenType => $_getN(4);
   @$pb.TagNumber(5)
-  set tokenType($core.int v) { $_setUnsignedInt32(4, v); }
+  set tokenType(SlpTokenType v) { setField(5, v); }
   @$pb.TagNumber(5)
   $core.bool hasTokenType() => $_has(4);
   @$pb.TagNumber(5)
@@ -2099,133 +2144,100 @@ class GetTrustedSlpValidationResponse_ValidityResult extends $pb.GeneratedMessag
   $core.bool hasSlpTxnOpreturn() => $_has(7);
   @$pb.TagNumber(8)
   void clearSlpTxnOpreturn() => clearField(8);
+
+  @$pb.TagNumber(9)
+  $core.int get graphsearchTxnCount => $_getIZ(8);
+  @$pb.TagNumber(9)
+  set graphsearchTxnCount($core.int v) { $_setUnsignedInt32(8, v); }
+  @$pb.TagNumber(9)
+  $core.bool hasGraphsearchTxnCount() => $_has(8);
+  @$pb.TagNumber(9)
+  void clearGraphsearchTxnCount() => clearField(9);
 }
 
-class GetTrustedSlpValidationResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetTrustedSlpValidationResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..pc<GetTrustedSlpValidationResponse_ValidityResult>(1, 'results', $pb.PbFieldType.PM, subBuilder: GetTrustedSlpValidationResponse_ValidityResult.create)
+class GetSlpTrustedValidationResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpTrustedValidationResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..pc<GetSlpTrustedValidationResponse_ValidityResult>(1, 'results', $pb.PbFieldType.PM, subBuilder: GetSlpTrustedValidationResponse_ValidityResult.create)
     ..hasRequiredFields = false
   ;
 
-  GetTrustedSlpValidationResponse._() : super();
-  factory GetTrustedSlpValidationResponse() => create();
-  factory GetTrustedSlpValidationResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetTrustedSlpValidationResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetTrustedSlpValidationResponse clone() => GetTrustedSlpValidationResponse()..mergeFromMessage(this);
-  GetTrustedSlpValidationResponse copyWith(void Function(GetTrustedSlpValidationResponse) updates) => super.copyWith((message) => updates(message as GetTrustedSlpValidationResponse));
+  GetSlpTrustedValidationResponse._() : super();
+  factory GetSlpTrustedValidationResponse() => create();
+  factory GetSlpTrustedValidationResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpTrustedValidationResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpTrustedValidationResponse clone() => GetSlpTrustedValidationResponse()..mergeFromMessage(this);
+  GetSlpTrustedValidationResponse copyWith(void Function(GetSlpTrustedValidationResponse) updates) => super.copyWith((message) => updates(message as GetSlpTrustedValidationResponse));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationResponse create() => GetTrustedSlpValidationResponse._();
-  GetTrustedSlpValidationResponse createEmptyInstance() => create();
-  static $pb.PbList<GetTrustedSlpValidationResponse> createRepeated() => $pb.PbList<GetTrustedSlpValidationResponse>();
+  static GetSlpTrustedValidationResponse create() => GetSlpTrustedValidationResponse._();
+  GetSlpTrustedValidationResponse createEmptyInstance() => create();
+  static $pb.PbList<GetSlpTrustedValidationResponse> createRepeated() => $pb.PbList<GetSlpTrustedValidationResponse>();
   @$core.pragma('dart2js:noInline')
-  static GetTrustedSlpValidationResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTrustedSlpValidationResponse>(create);
-  static GetTrustedSlpValidationResponse _defaultInstance;
+  static GetSlpTrustedValidationResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpTrustedValidationResponse>(create);
+  static GetSlpTrustedValidationResponse _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<GetTrustedSlpValidationResponse_ValidityResult> get results => $_getList(0);
+  $core.List<GetSlpTrustedValidationResponse_ValidityResult> get results => $_getList(0);
 }
 
-class GetBip44HdAddressRequest extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetBip44HdAddressRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..aOS(1, 'xpub')
-    ..aOB(2, 'change')
-    ..a<$core.int>(3, 'addressIndex', $pb.PbFieldType.OU3)
+class GetSlpGraphSearchRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpGraphSearchRequest', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..a<$core.List<$core.int>>(1, 'hash', $pb.PbFieldType.OY)
+    ..p<$core.List<$core.int>>(2, 'validHashes', $pb.PbFieldType.PY)
     ..hasRequiredFields = false
   ;
 
-  GetBip44HdAddressRequest._() : super();
-  factory GetBip44HdAddressRequest() => create();
-  factory GetBip44HdAddressRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetBip44HdAddressRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetBip44HdAddressRequest clone() => GetBip44HdAddressRequest()..mergeFromMessage(this);
-  GetBip44HdAddressRequest copyWith(void Function(GetBip44HdAddressRequest) updates) => super.copyWith((message) => updates(message as GetBip44HdAddressRequest));
+  GetSlpGraphSearchRequest._() : super();
+  factory GetSlpGraphSearchRequest() => create();
+  factory GetSlpGraphSearchRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpGraphSearchRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpGraphSearchRequest clone() => GetSlpGraphSearchRequest()..mergeFromMessage(this);
+  GetSlpGraphSearchRequest copyWith(void Function(GetSlpGraphSearchRequest) updates) => super.copyWith((message) => updates(message as GetSlpGraphSearchRequest));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetBip44HdAddressRequest create() => GetBip44HdAddressRequest._();
-  GetBip44HdAddressRequest createEmptyInstance() => create();
-  static $pb.PbList<GetBip44HdAddressRequest> createRepeated() => $pb.PbList<GetBip44HdAddressRequest>();
+  static GetSlpGraphSearchRequest create() => GetSlpGraphSearchRequest._();
+  GetSlpGraphSearchRequest createEmptyInstance() => create();
+  static $pb.PbList<GetSlpGraphSearchRequest> createRepeated() => $pb.PbList<GetSlpGraphSearchRequest>();
   @$core.pragma('dart2js:noInline')
-  static GetBip44HdAddressRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBip44HdAddressRequest>(create);
-  static GetBip44HdAddressRequest _defaultInstance;
+  static GetSlpGraphSearchRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpGraphSearchRequest>(create);
+  static GetSlpGraphSearchRequest _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get xpub => $_getSZ(0);
+  $core.List<$core.int> get hash => $_getN(0);
   @$pb.TagNumber(1)
-  set xpub($core.String v) { $_setString(0, v); }
+  set hash($core.List<$core.int> v) { $_setBytes(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasXpub() => $_has(0);
+  $core.bool hasHash() => $_has(0);
   @$pb.TagNumber(1)
-  void clearXpub() => clearField(1);
+  void clearHash() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.bool get change => $_getBF(1);
-  @$pb.TagNumber(2)
-  set change($core.bool v) { $_setBool(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasChange() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearChange() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.int get addressIndex => $_getIZ(2);
-  @$pb.TagNumber(3)
-  set addressIndex($core.int v) { $_setUnsignedInt32(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasAddressIndex() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearAddressIndex() => clearField(3);
+  $core.List<$core.List<$core.int>> get validHashes => $_getList(1);
 }
 
-class GetBip44HdAddressResponse extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetBip44HdAddressResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(1, 'pubKey', $pb.PbFieldType.OY)
-    ..aOS(2, 'cashAddr')
-    ..aOS(3, 'slpAddr')
+class GetSlpGraphSearchResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('GetSlpGraphSearchResponse', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..p<$core.List<$core.int>>(1, 'txdata', $pb.PbFieldType.PY)
     ..hasRequiredFields = false
   ;
 
-  GetBip44HdAddressResponse._() : super();
-  factory GetBip44HdAddressResponse() => create();
-  factory GetBip44HdAddressResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory GetBip44HdAddressResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  GetBip44HdAddressResponse clone() => GetBip44HdAddressResponse()..mergeFromMessage(this);
-  GetBip44HdAddressResponse copyWith(void Function(GetBip44HdAddressResponse) updates) => super.copyWith((message) => updates(message as GetBip44HdAddressResponse));
+  GetSlpGraphSearchResponse._() : super();
+  factory GetSlpGraphSearchResponse() => create();
+  factory GetSlpGraphSearchResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetSlpGraphSearchResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  GetSlpGraphSearchResponse clone() => GetSlpGraphSearchResponse()..mergeFromMessage(this);
+  GetSlpGraphSearchResponse copyWith(void Function(GetSlpGraphSearchResponse) updates) => super.copyWith((message) => updates(message as GetSlpGraphSearchResponse));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static GetBip44HdAddressResponse create() => GetBip44HdAddressResponse._();
-  GetBip44HdAddressResponse createEmptyInstance() => create();
-  static $pb.PbList<GetBip44HdAddressResponse> createRepeated() => $pb.PbList<GetBip44HdAddressResponse>();
+  static GetSlpGraphSearchResponse create() => GetSlpGraphSearchResponse._();
+  GetSlpGraphSearchResponse createEmptyInstance() => create();
+  static $pb.PbList<GetSlpGraphSearchResponse> createRepeated() => $pb.PbList<GetSlpGraphSearchResponse>();
   @$core.pragma('dart2js:noInline')
-  static GetBip44HdAddressResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetBip44HdAddressResponse>(create);
-  static GetBip44HdAddressResponse _defaultInstance;
+  static GetSlpGraphSearchResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetSlpGraphSearchResponse>(create);
+  static GetSlpGraphSearchResponse _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$core.int> get pubKey => $_getN(0);
-  @$pb.TagNumber(1)
-  set pubKey($core.List<$core.int> v) { $_setBytes(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasPubKey() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearPubKey() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get cashAddr => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set cashAddr($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasCashAddr() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearCashAddr() => clearField(2);
-
-  @$pb.TagNumber(3)
-  $core.String get slpAddr => $_getSZ(2);
-  @$pb.TagNumber(3)
-  set slpAddr($core.String v) { $_setString(2, v); }
-  @$pb.TagNumber(3)
-  $core.bool hasSlpAddr() => $_has(2);
-  @$pb.TagNumber(3)
-  void clearSlpAddr() => clearField(3);
+  $core.List<$core.List<$core.int>> get txdata => $_getList(0);
 }
 
 enum BlockNotification_Block {
@@ -3231,7 +3243,7 @@ class SlpToken extends $pb.GeneratedMessage {
     ..aOS(4, 'address')
     ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
     ..e<SlpAction>(6, 'slpAction', $pb.PbFieldType.OE, defaultOrMaker: SlpAction.NON_SLP, valueOf: SlpAction.valueOf, enumValues: SlpAction.values)
-    ..a<$core.int>(7, 'tokenType', $pb.PbFieldType.OU3)
+    ..e<SlpTokenType>(7, 'tokenType', $pb.PbFieldType.OE, defaultOrMaker: SlpTokenType.VERSION_NOT_SET, valueOf: SlpTokenType.valueOf, enumValues: SlpTokenType.values)
     ..hasRequiredFields = false
   ;
 
@@ -3305,9 +3317,9 @@ class SlpToken extends $pb.GeneratedMessage {
   void clearSlpAction() => clearField(6);
 
   @$pb.TagNumber(7)
-  $core.int get tokenType => $_getIZ(6);
+  SlpTokenType get tokenType => $_getN(6);
   @$pb.TagNumber(7)
-  set tokenType($core.int v) { $_setUnsignedInt32(6, v); }
+  set tokenType(SlpTokenType v) { setField(7, v); }
   @$pb.TagNumber(7)
   $core.bool hasTokenType() => $_has(6);
   @$pb.TagNumber(7)
@@ -3318,8 +3330,8 @@ enum SlpTransactionInfo_TxMetadata {
   v1Genesis, 
   v1Mint, 
   v1Send, 
-  nft1ChildGenesis, 
-  nft1ChildSend, 
+  v1Nft1ChildGenesis, 
+  v1Nft1ChildSend, 
   notSet
 }
 
@@ -3328,8 +3340,8 @@ class SlpTransactionInfo extends $pb.GeneratedMessage {
     6 : SlpTransactionInfo_TxMetadata.v1Genesis,
     7 : SlpTransactionInfo_TxMetadata.v1Mint,
     8 : SlpTransactionInfo_TxMetadata.v1Send,
-    9 : SlpTransactionInfo_TxMetadata.nft1ChildGenesis,
-    10 : SlpTransactionInfo_TxMetadata.nft1ChildSend,
+    9 : SlpTransactionInfo_TxMetadata.v1Nft1ChildGenesis,
+    10 : SlpTransactionInfo_TxMetadata.v1Nft1ChildSend,
     0 : SlpTransactionInfo_TxMetadata.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpTransactionInfo', package: const $pb.PackageName('pb'), createEmptyInstance: create)
@@ -3342,8 +3354,8 @@ class SlpTransactionInfo extends $pb.GeneratedMessage {
     ..aOM<SlpV1GenesisMetadata>(6, 'v1Genesis', subBuilder: SlpV1GenesisMetadata.create)
     ..aOM<SlpV1MintMetadata>(7, 'v1Mint', subBuilder: SlpV1MintMetadata.create)
     ..aOM<SlpV1SendMetadata>(8, 'v1Send', subBuilder: SlpV1SendMetadata.create)
-    ..aOM<SlpNft1ChildGenesisMetadata>(9, 'nft1ChildGenesis', subBuilder: SlpNft1ChildGenesisMetadata.create)
-    ..aOM<SlpNft1ChildSendMetadata>(10, 'nft1ChildSend', subBuilder: SlpNft1ChildSendMetadata.create)
+    ..aOM<SlpV1Nft1ChildGenesisMetadata>(9, 'v1Nft1ChildGenesis', subBuilder: SlpV1Nft1ChildGenesisMetadata.create)
+    ..aOM<SlpV1Nft1ChildSendMetadata>(10, 'v1Nft1ChildSend', subBuilder: SlpV1Nft1ChildSendMetadata.create)
     ..hasRequiredFields = false
   ;
 
@@ -3438,26 +3450,26 @@ class SlpTransactionInfo extends $pb.GeneratedMessage {
   SlpV1SendMetadata ensureV1Send() => $_ensure(7);
 
   @$pb.TagNumber(9)
-  SlpNft1ChildGenesisMetadata get nft1ChildGenesis => $_getN(8);
+  SlpV1Nft1ChildGenesisMetadata get v1Nft1ChildGenesis => $_getN(8);
   @$pb.TagNumber(9)
-  set nft1ChildGenesis(SlpNft1ChildGenesisMetadata v) { setField(9, v); }
+  set v1Nft1ChildGenesis(SlpV1Nft1ChildGenesisMetadata v) { setField(9, v); }
   @$pb.TagNumber(9)
-  $core.bool hasNft1ChildGenesis() => $_has(8);
+  $core.bool hasV1Nft1ChildGenesis() => $_has(8);
   @$pb.TagNumber(9)
-  void clearNft1ChildGenesis() => clearField(9);
+  void clearV1Nft1ChildGenesis() => clearField(9);
   @$pb.TagNumber(9)
-  SlpNft1ChildGenesisMetadata ensureNft1ChildGenesis() => $_ensure(8);
+  SlpV1Nft1ChildGenesisMetadata ensureV1Nft1ChildGenesis() => $_ensure(8);
 
   @$pb.TagNumber(10)
-  SlpNft1ChildSendMetadata get nft1ChildSend => $_getN(9);
+  SlpV1Nft1ChildSendMetadata get v1Nft1ChildSend => $_getN(9);
   @$pb.TagNumber(10)
-  set nft1ChildSend(SlpNft1ChildSendMetadata v) { setField(10, v); }
+  set v1Nft1ChildSend(SlpV1Nft1ChildSendMetadata v) { setField(10, v); }
   @$pb.TagNumber(10)
-  $core.bool hasNft1ChildSend() => $_has(9);
+  $core.bool hasV1Nft1ChildSend() => $_has(9);
   @$pb.TagNumber(10)
-  void clearNft1ChildSend() => clearField(10);
+  void clearV1Nft1ChildSend() => clearField(10);
   @$pb.TagNumber(10)
-  SlpNft1ChildSendMetadata ensureNft1ChildSend() => $_ensure(9);
+  SlpV1Nft1ChildSendMetadata ensureV1Nft1ChildSend() => $_ensure(9);
 }
 
 class SlpV1GenesisMetadata extends $pb.GeneratedMessage {
@@ -3617,8 +3629,8 @@ class SlpV1SendMetadata extends $pb.GeneratedMessage {
   $core.List<$fixnum.Int64> get amounts => $_getList(0);
 }
 
-class SlpNft1ChildGenesisMetadata extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpNft1ChildGenesisMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+class SlpV1Nft1ChildGenesisMetadata extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpV1Nft1ChildGenesisMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, 'name', $pb.PbFieldType.OY)
     ..a<$core.List<$core.int>>(2, 'ticker', $pb.PbFieldType.OY)
     ..a<$core.List<$core.int>>(3, 'documentUrl', $pb.PbFieldType.OY)
@@ -3628,20 +3640,20 @@ class SlpNft1ChildGenesisMetadata extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  SlpNft1ChildGenesisMetadata._() : super();
-  factory SlpNft1ChildGenesisMetadata() => create();
-  factory SlpNft1ChildGenesisMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory SlpNft1ChildGenesisMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  SlpNft1ChildGenesisMetadata clone() => SlpNft1ChildGenesisMetadata()..mergeFromMessage(this);
-  SlpNft1ChildGenesisMetadata copyWith(void Function(SlpNft1ChildGenesisMetadata) updates) => super.copyWith((message) => updates(message as SlpNft1ChildGenesisMetadata));
+  SlpV1Nft1ChildGenesisMetadata._() : super();
+  factory SlpV1Nft1ChildGenesisMetadata() => create();
+  factory SlpV1Nft1ChildGenesisMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpV1Nft1ChildGenesisMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpV1Nft1ChildGenesisMetadata clone() => SlpV1Nft1ChildGenesisMetadata()..mergeFromMessage(this);
+  SlpV1Nft1ChildGenesisMetadata copyWith(void Function(SlpV1Nft1ChildGenesisMetadata) updates) => super.copyWith((message) => updates(message as SlpV1Nft1ChildGenesisMetadata));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static SlpNft1ChildGenesisMetadata create() => SlpNft1ChildGenesisMetadata._();
-  SlpNft1ChildGenesisMetadata createEmptyInstance() => create();
-  static $pb.PbList<SlpNft1ChildGenesisMetadata> createRepeated() => $pb.PbList<SlpNft1ChildGenesisMetadata>();
+  static SlpV1Nft1ChildGenesisMetadata create() => SlpV1Nft1ChildGenesisMetadata._();
+  SlpV1Nft1ChildGenesisMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpV1Nft1ChildGenesisMetadata> createRepeated() => $pb.PbList<SlpV1Nft1ChildGenesisMetadata>();
   @$core.pragma('dart2js:noInline')
-  static SlpNft1ChildGenesisMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpNft1ChildGenesisMetadata>(create);
-  static SlpNft1ChildGenesisMetadata _defaultInstance;
+  static SlpV1Nft1ChildGenesisMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpV1Nft1ChildGenesisMetadata>(create);
+  static SlpV1Nft1ChildGenesisMetadata _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<$core.int> get name => $_getN(0);
@@ -3698,26 +3710,26 @@ class SlpNft1ChildGenesisMetadata extends $pb.GeneratedMessage {
   void clearGroupTokenId() => clearField(6);
 }
 
-class SlpNft1ChildSendMetadata extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpNft1ChildSendMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+class SlpV1Nft1ChildSendMetadata extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpV1Nft1ChildSendMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..a<$core.List<$core.int>>(1, 'groupTokenId', $pb.PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
-  SlpNft1ChildSendMetadata._() : super();
-  factory SlpNft1ChildSendMetadata() => create();
-  factory SlpNft1ChildSendMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory SlpNft1ChildSendMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  SlpNft1ChildSendMetadata clone() => SlpNft1ChildSendMetadata()..mergeFromMessage(this);
-  SlpNft1ChildSendMetadata copyWith(void Function(SlpNft1ChildSendMetadata) updates) => super.copyWith((message) => updates(message as SlpNft1ChildSendMetadata));
+  SlpV1Nft1ChildSendMetadata._() : super();
+  factory SlpV1Nft1ChildSendMetadata() => create();
+  factory SlpV1Nft1ChildSendMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpV1Nft1ChildSendMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpV1Nft1ChildSendMetadata clone() => SlpV1Nft1ChildSendMetadata()..mergeFromMessage(this);
+  SlpV1Nft1ChildSendMetadata copyWith(void Function(SlpV1Nft1ChildSendMetadata) updates) => super.copyWith((message) => updates(message as SlpV1Nft1ChildSendMetadata));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static SlpNft1ChildSendMetadata create() => SlpNft1ChildSendMetadata._();
-  SlpNft1ChildSendMetadata createEmptyInstance() => create();
-  static $pb.PbList<SlpNft1ChildSendMetadata> createRepeated() => $pb.PbList<SlpNft1ChildSendMetadata>();
+  static SlpV1Nft1ChildSendMetadata create() => SlpV1Nft1ChildSendMetadata._();
+  SlpV1Nft1ChildSendMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpV1Nft1ChildSendMetadata> createRepeated() => $pb.PbList<SlpV1Nft1ChildSendMetadata>();
   @$core.pragma('dart2js:noInline')
-  static SlpNft1ChildSendMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpNft1ChildSendMetadata>(create);
-  static SlpNft1ChildSendMetadata _defaultInstance;
+  static SlpV1Nft1ChildSendMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpV1Nft1ChildSendMetadata>(create);
+  static SlpV1Nft1ChildSendMetadata _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.List<$core.int> get groupTokenId => $_getN(0);
@@ -3729,55 +3741,55 @@ class SlpNft1ChildSendMetadata extends $pb.GeneratedMessage {
   void clearGroupTokenId() => clearField(1);
 }
 
-class TokenMetadataTokenType1 extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadataTokenType1', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(1, 'tokenTicker', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(2, 'tokenName', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(3, 'tokenDocumentUrl', $pb.PbFieldType.OY)
+class SlpTokenMetadata_V1Fungible extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpTokenMetadata.V1Fungible', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..aOS(1, 'tokenTicker')
+    ..aOS(2, 'tokenName')
+    ..aOS(3, 'tokenDocumentUrl')
     ..a<$core.List<$core.int>>(4, 'tokenDocumentHash', $pb.PbFieldType.OY)
     ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
-    ..a<$core.List<$core.int>>(6, 'mintBatonTxid', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(6, 'mintBatonHash', $pb.PbFieldType.OY)
     ..a<$core.int>(7, 'mintBatonVout', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
-  TokenMetadataTokenType1._() : super();
-  factory TokenMetadataTokenType1() => create();
-  factory TokenMetadataTokenType1.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TokenMetadataTokenType1.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TokenMetadataTokenType1 clone() => TokenMetadataTokenType1()..mergeFromMessage(this);
-  TokenMetadataTokenType1 copyWith(void Function(TokenMetadataTokenType1) updates) => super.copyWith((message) => updates(message as TokenMetadataTokenType1));
+  SlpTokenMetadata_V1Fungible._() : super();
+  factory SlpTokenMetadata_V1Fungible() => create();
+  factory SlpTokenMetadata_V1Fungible.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpTokenMetadata_V1Fungible.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpTokenMetadata_V1Fungible clone() => SlpTokenMetadata_V1Fungible()..mergeFromMessage(this);
+  SlpTokenMetadata_V1Fungible copyWith(void Function(SlpTokenMetadata_V1Fungible) updates) => super.copyWith((message) => updates(message as SlpTokenMetadata_V1Fungible));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TokenMetadataTokenType1 create() => TokenMetadataTokenType1._();
-  TokenMetadataTokenType1 createEmptyInstance() => create();
-  static $pb.PbList<TokenMetadataTokenType1> createRepeated() => $pb.PbList<TokenMetadataTokenType1>();
+  static SlpTokenMetadata_V1Fungible create() => SlpTokenMetadata_V1Fungible._();
+  SlpTokenMetadata_V1Fungible createEmptyInstance() => create();
+  static $pb.PbList<SlpTokenMetadata_V1Fungible> createRepeated() => $pb.PbList<SlpTokenMetadata_V1Fungible>();
   @$core.pragma('dart2js:noInline')
-  static TokenMetadataTokenType1 getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadataTokenType1>(create);
-  static TokenMetadataTokenType1 _defaultInstance;
+  static SlpTokenMetadata_V1Fungible getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpTokenMetadata_V1Fungible>(create);
+  static SlpTokenMetadata_V1Fungible _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$core.int> get tokenTicker => $_getN(0);
+  $core.String get tokenTicker => $_getSZ(0);
   @$pb.TagNumber(1)
-  set tokenTicker($core.List<$core.int> v) { $_setBytes(0, v); }
+  set tokenTicker($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasTokenTicker() => $_has(0);
   @$pb.TagNumber(1)
   void clearTokenTicker() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.List<$core.int> get tokenName => $_getN(1);
+  $core.String get tokenName => $_getSZ(1);
   @$pb.TagNumber(2)
-  set tokenName($core.List<$core.int> v) { $_setBytes(1, v); }
+  set tokenName($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasTokenName() => $_has(1);
   @$pb.TagNumber(2)
   void clearTokenName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.List<$core.int> get tokenDocumentUrl => $_getN(2);
+  $core.String get tokenDocumentUrl => $_getSZ(2);
   @$pb.TagNumber(3)
-  set tokenDocumentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  set tokenDocumentUrl($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasTokenDocumentUrl() => $_has(2);
   @$pb.TagNumber(3)
@@ -3802,13 +3814,13 @@ class TokenMetadataTokenType1 extends $pb.GeneratedMessage {
   void clearDecimals() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.List<$core.int> get mintBatonTxid => $_getN(5);
+  $core.List<$core.int> get mintBatonHash => $_getN(5);
   @$pb.TagNumber(6)
-  set mintBatonTxid($core.List<$core.int> v) { $_setBytes(5, v); }
+  set mintBatonHash($core.List<$core.int> v) { $_setBytes(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasMintBatonTxid() => $_has(5);
+  $core.bool hasMintBatonHash() => $_has(5);
   @$pb.TagNumber(6)
-  void clearMintBatonTxid() => clearField(6);
+  void clearMintBatonHash() => clearField(6);
 
   @$pb.TagNumber(7)
   $core.int get mintBatonVout => $_getIZ(6);
@@ -3820,55 +3832,55 @@ class TokenMetadataTokenType1 extends $pb.GeneratedMessage {
   void clearMintBatonVout() => clearField(7);
 }
 
-class TokenMetadataNFT1Group extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadataNFT1Group', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(1, 'tokenTicker', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(2, 'tokenName', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(3, 'tokenDocumentUrl', $pb.PbFieldType.OY)
+class SlpTokenMetadata_V1NFT1Group extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpTokenMetadata.V1NFT1Group', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..aOS(1, 'tokenTicker')
+    ..aOS(2, 'tokenName')
+    ..aOS(3, 'tokenDocumentUrl')
     ..a<$core.List<$core.int>>(4, 'tokenDocumentHash', $pb.PbFieldType.OY)
     ..a<$core.int>(5, 'decimals', $pb.PbFieldType.OU3)
-    ..a<$core.List<$core.int>>(6, 'mintBatonTxid', $pb.PbFieldType.OY)
+    ..a<$core.List<$core.int>>(6, 'mintBatonHash', $pb.PbFieldType.OY)
     ..a<$core.int>(7, 'mintBatonVout', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
   ;
 
-  TokenMetadataNFT1Group._() : super();
-  factory TokenMetadataNFT1Group() => create();
-  factory TokenMetadataNFT1Group.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TokenMetadataNFT1Group.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TokenMetadataNFT1Group clone() => TokenMetadataNFT1Group()..mergeFromMessage(this);
-  TokenMetadataNFT1Group copyWith(void Function(TokenMetadataNFT1Group) updates) => super.copyWith((message) => updates(message as TokenMetadataNFT1Group));
+  SlpTokenMetadata_V1NFT1Group._() : super();
+  factory SlpTokenMetadata_V1NFT1Group() => create();
+  factory SlpTokenMetadata_V1NFT1Group.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpTokenMetadata_V1NFT1Group.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpTokenMetadata_V1NFT1Group clone() => SlpTokenMetadata_V1NFT1Group()..mergeFromMessage(this);
+  SlpTokenMetadata_V1NFT1Group copyWith(void Function(SlpTokenMetadata_V1NFT1Group) updates) => super.copyWith((message) => updates(message as SlpTokenMetadata_V1NFT1Group));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TokenMetadataNFT1Group create() => TokenMetadataNFT1Group._();
-  TokenMetadataNFT1Group createEmptyInstance() => create();
-  static $pb.PbList<TokenMetadataNFT1Group> createRepeated() => $pb.PbList<TokenMetadataNFT1Group>();
+  static SlpTokenMetadata_V1NFT1Group create() => SlpTokenMetadata_V1NFT1Group._();
+  SlpTokenMetadata_V1NFT1Group createEmptyInstance() => create();
+  static $pb.PbList<SlpTokenMetadata_V1NFT1Group> createRepeated() => $pb.PbList<SlpTokenMetadata_V1NFT1Group>();
   @$core.pragma('dart2js:noInline')
-  static TokenMetadataNFT1Group getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadataNFT1Group>(create);
-  static TokenMetadataNFT1Group _defaultInstance;
+  static SlpTokenMetadata_V1NFT1Group getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpTokenMetadata_V1NFT1Group>(create);
+  static SlpTokenMetadata_V1NFT1Group _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$core.int> get tokenTicker => $_getN(0);
+  $core.String get tokenTicker => $_getSZ(0);
   @$pb.TagNumber(1)
-  set tokenTicker($core.List<$core.int> v) { $_setBytes(0, v); }
+  set tokenTicker($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasTokenTicker() => $_has(0);
   @$pb.TagNumber(1)
   void clearTokenTicker() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.List<$core.int> get tokenName => $_getN(1);
+  $core.String get tokenName => $_getSZ(1);
   @$pb.TagNumber(2)
-  set tokenName($core.List<$core.int> v) { $_setBytes(1, v); }
+  set tokenName($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasTokenName() => $_has(1);
   @$pb.TagNumber(2)
   void clearTokenName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.List<$core.int> get tokenDocumentUrl => $_getN(2);
+  $core.String get tokenDocumentUrl => $_getSZ(2);
   @$pb.TagNumber(3)
-  set tokenDocumentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  set tokenDocumentUrl($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasTokenDocumentUrl() => $_has(2);
   @$pb.TagNumber(3)
@@ -3893,13 +3905,13 @@ class TokenMetadataNFT1Group extends $pb.GeneratedMessage {
   void clearDecimals() => clearField(5);
 
   @$pb.TagNumber(6)
-  $core.List<$core.int> get mintBatonTxid => $_getN(5);
+  $core.List<$core.int> get mintBatonHash => $_getN(5);
   @$pb.TagNumber(6)
-  set mintBatonTxid($core.List<$core.int> v) { $_setBytes(5, v); }
+  set mintBatonHash($core.List<$core.int> v) { $_setBytes(5, v); }
   @$pb.TagNumber(6)
-  $core.bool hasMintBatonTxid() => $_has(5);
+  $core.bool hasMintBatonHash() => $_has(5);
   @$pb.TagNumber(6)
-  void clearMintBatonTxid() => clearField(6);
+  void clearMintBatonHash() => clearField(6);
 
   @$pb.TagNumber(7)
   $core.int get mintBatonVout => $_getIZ(6);
@@ -3911,53 +3923,53 @@ class TokenMetadataNFT1Group extends $pb.GeneratedMessage {
   void clearMintBatonVout() => clearField(7);
 }
 
-class TokenMetadataNFT1Child extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadataNFT1Child', package: const $pb.PackageName('pb'), createEmptyInstance: create)
-    ..a<$core.List<$core.int>>(1, 'tokenTicker', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(2, 'tokenName', $pb.PbFieldType.OY)
-    ..a<$core.List<$core.int>>(3, 'tokenDocumentUrl', $pb.PbFieldType.OY)
+class SlpTokenMetadata_V1NFT1Child extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpTokenMetadata.V1NFT1Child', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+    ..aOS(1, 'tokenTicker')
+    ..aOS(2, 'tokenName')
+    ..aOS(3, 'tokenDocumentUrl')
     ..a<$core.List<$core.int>>(4, 'tokenDocumentHash', $pb.PbFieldType.OY)
     ..a<$core.List<$core.int>>(5, 'groupId', $pb.PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
-  TokenMetadataNFT1Child._() : super();
-  factory TokenMetadataNFT1Child() => create();
-  factory TokenMetadataNFT1Child.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TokenMetadataNFT1Child.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TokenMetadataNFT1Child clone() => TokenMetadataNFT1Child()..mergeFromMessage(this);
-  TokenMetadataNFT1Child copyWith(void Function(TokenMetadataNFT1Child) updates) => super.copyWith((message) => updates(message as TokenMetadataNFT1Child));
+  SlpTokenMetadata_V1NFT1Child._() : super();
+  factory SlpTokenMetadata_V1NFT1Child() => create();
+  factory SlpTokenMetadata_V1NFT1Child.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpTokenMetadata_V1NFT1Child.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpTokenMetadata_V1NFT1Child clone() => SlpTokenMetadata_V1NFT1Child()..mergeFromMessage(this);
+  SlpTokenMetadata_V1NFT1Child copyWith(void Function(SlpTokenMetadata_V1NFT1Child) updates) => super.copyWith((message) => updates(message as SlpTokenMetadata_V1NFT1Child));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TokenMetadataNFT1Child create() => TokenMetadataNFT1Child._();
-  TokenMetadataNFT1Child createEmptyInstance() => create();
-  static $pb.PbList<TokenMetadataNFT1Child> createRepeated() => $pb.PbList<TokenMetadataNFT1Child>();
+  static SlpTokenMetadata_V1NFT1Child create() => SlpTokenMetadata_V1NFT1Child._();
+  SlpTokenMetadata_V1NFT1Child createEmptyInstance() => create();
+  static $pb.PbList<SlpTokenMetadata_V1NFT1Child> createRepeated() => $pb.PbList<SlpTokenMetadata_V1NFT1Child>();
   @$core.pragma('dart2js:noInline')
-  static TokenMetadataNFT1Child getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadataNFT1Child>(create);
-  static TokenMetadataNFT1Child _defaultInstance;
+  static SlpTokenMetadata_V1NFT1Child getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpTokenMetadata_V1NFT1Child>(create);
+  static SlpTokenMetadata_V1NFT1Child _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<$core.int> get tokenTicker => $_getN(0);
+  $core.String get tokenTicker => $_getSZ(0);
   @$pb.TagNumber(1)
-  set tokenTicker($core.List<$core.int> v) { $_setBytes(0, v); }
+  set tokenTicker($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
   $core.bool hasTokenTicker() => $_has(0);
   @$pb.TagNumber(1)
   void clearTokenTicker() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.List<$core.int> get tokenName => $_getN(1);
+  $core.String get tokenName => $_getSZ(1);
   @$pb.TagNumber(2)
-  set tokenName($core.List<$core.int> v) { $_setBytes(1, v); }
+  set tokenName($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
   $core.bool hasTokenName() => $_has(1);
   @$pb.TagNumber(2)
   void clearTokenName() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.List<$core.int> get tokenDocumentUrl => $_getN(2);
+  $core.String get tokenDocumentUrl => $_getSZ(2);
   @$pb.TagNumber(3)
-  set tokenDocumentUrl($core.List<$core.int> v) { $_setBytes(2, v); }
+  set tokenDocumentUrl($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
   $core.bool hasTokenDocumentUrl() => $_has(2);
   @$pb.TagNumber(3)
@@ -3982,46 +3994,46 @@ class TokenMetadataNFT1Child extends $pb.GeneratedMessage {
   void clearGroupId() => clearField(5);
 }
 
-enum TokenMetadata_TypeMetadata {
-  type1, 
-  nft1Group, 
-  nft1Child, 
+enum SlpTokenMetadata_TypeMetadata {
+  v1Fungible, 
+  v1Nft1Group, 
+  v1Nft1Child, 
   notSet
 }
 
-class TokenMetadata extends $pb.GeneratedMessage {
-  static const $core.Map<$core.int, TokenMetadata_TypeMetadata> _TokenMetadata_TypeMetadataByTag = {
-    3 : TokenMetadata_TypeMetadata.type1,
-    4 : TokenMetadata_TypeMetadata.nft1Group,
-    5 : TokenMetadata_TypeMetadata.nft1Child,
-    0 : TokenMetadata_TypeMetadata.notSet
+class SlpTokenMetadata extends $pb.GeneratedMessage {
+  static const $core.Map<$core.int, SlpTokenMetadata_TypeMetadata> _SlpTokenMetadata_TypeMetadataByTag = {
+    3 : SlpTokenMetadata_TypeMetadata.v1Fungible,
+    4 : SlpTokenMetadata_TypeMetadata.v1Nft1Group,
+    5 : SlpTokenMetadata_TypeMetadata.v1Nft1Child,
+    0 : SlpTokenMetadata_TypeMetadata.notSet
   };
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo('TokenMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('SlpTokenMetadata', package: const $pb.PackageName('pb'), createEmptyInstance: create)
     ..oo(0, [3, 4, 5])
     ..a<$core.List<$core.int>>(1, 'tokenId', $pb.PbFieldType.OY)
-    ..a<$core.int>(2, 'tokenType', $pb.PbFieldType.OU3)
-    ..aOM<TokenMetadataTokenType1>(3, 'type1', subBuilder: TokenMetadataTokenType1.create)
-    ..aOM<TokenMetadataNFT1Group>(4, 'nft1Group', subBuilder: TokenMetadataNFT1Group.create)
-    ..aOM<TokenMetadataNFT1Child>(5, 'nft1Child', subBuilder: TokenMetadataNFT1Child.create)
+    ..e<SlpTokenType>(2, 'tokenType', $pb.PbFieldType.OE, defaultOrMaker: SlpTokenType.VERSION_NOT_SET, valueOf: SlpTokenType.valueOf, enumValues: SlpTokenType.values)
+    ..aOM<SlpTokenMetadata_V1Fungible>(3, 'v1Fungible', subBuilder: SlpTokenMetadata_V1Fungible.create)
+    ..aOM<SlpTokenMetadata_V1NFT1Group>(4, 'v1Nft1Group', subBuilder: SlpTokenMetadata_V1NFT1Group.create)
+    ..aOM<SlpTokenMetadata_V1NFT1Child>(5, 'v1Nft1Child', subBuilder: SlpTokenMetadata_V1NFT1Child.create)
     ..hasRequiredFields = false
   ;
 
-  TokenMetadata._() : super();
-  factory TokenMetadata() => create();
-  factory TokenMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory TokenMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-  TokenMetadata clone() => TokenMetadata()..mergeFromMessage(this);
-  TokenMetadata copyWith(void Function(TokenMetadata) updates) => super.copyWith((message) => updates(message as TokenMetadata));
+  SlpTokenMetadata._() : super();
+  factory SlpTokenMetadata() => create();
+  factory SlpTokenMetadata.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory SlpTokenMetadata.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  SlpTokenMetadata clone() => SlpTokenMetadata()..mergeFromMessage(this);
+  SlpTokenMetadata copyWith(void Function(SlpTokenMetadata) updates) => super.copyWith((message) => updates(message as SlpTokenMetadata));
   $pb.BuilderInfo get info_ => _i;
   @$core.pragma('dart2js:noInline')
-  static TokenMetadata create() => TokenMetadata._();
-  TokenMetadata createEmptyInstance() => create();
-  static $pb.PbList<TokenMetadata> createRepeated() => $pb.PbList<TokenMetadata>();
+  static SlpTokenMetadata create() => SlpTokenMetadata._();
+  SlpTokenMetadata createEmptyInstance() => create();
+  static $pb.PbList<SlpTokenMetadata> createRepeated() => $pb.PbList<SlpTokenMetadata>();
   @$core.pragma('dart2js:noInline')
-  static TokenMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<TokenMetadata>(create);
-  static TokenMetadata _defaultInstance;
+  static SlpTokenMetadata getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<SlpTokenMetadata>(create);
+  static SlpTokenMetadata _defaultInstance;
 
-  TokenMetadata_TypeMetadata whichTypeMetadata() => _TokenMetadata_TypeMetadataByTag[$_whichOneof(0)];
+  SlpTokenMetadata_TypeMetadata whichTypeMetadata() => _SlpTokenMetadata_TypeMetadataByTag[$_whichOneof(0)];
   void clearTypeMetadata() => clearField($_whichOneof(0));
 
   @$pb.TagNumber(1)
@@ -4034,46 +4046,46 @@ class TokenMetadata extends $pb.GeneratedMessage {
   void clearTokenId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.int get tokenType => $_getIZ(1);
+  SlpTokenType get tokenType => $_getN(1);
   @$pb.TagNumber(2)
-  set tokenType($core.int v) { $_setUnsignedInt32(1, v); }
+  set tokenType(SlpTokenType v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasTokenType() => $_has(1);
   @$pb.TagNumber(2)
   void clearTokenType() => clearField(2);
 
   @$pb.TagNumber(3)
-  TokenMetadataTokenType1 get type1 => $_getN(2);
+  SlpTokenMetadata_V1Fungible get v1Fungible => $_getN(2);
   @$pb.TagNumber(3)
-  set type1(TokenMetadataTokenType1 v) { setField(3, v); }
+  set v1Fungible(SlpTokenMetadata_V1Fungible v) { setField(3, v); }
   @$pb.TagNumber(3)
-  $core.bool hasType1() => $_has(2);
+  $core.bool hasV1Fungible() => $_has(2);
   @$pb.TagNumber(3)
-  void clearType1() => clearField(3);
+  void clearV1Fungible() => clearField(3);
   @$pb.TagNumber(3)
-  TokenMetadataTokenType1 ensureType1() => $_ensure(2);
+  SlpTokenMetadata_V1Fungible ensureV1Fungible() => $_ensure(2);
 
   @$pb.TagNumber(4)
-  TokenMetadataNFT1Group get nft1Group => $_getN(3);
+  SlpTokenMetadata_V1NFT1Group get v1Nft1Group => $_getN(3);
   @$pb.TagNumber(4)
-  set nft1Group(TokenMetadataNFT1Group v) { setField(4, v); }
+  set v1Nft1Group(SlpTokenMetadata_V1NFT1Group v) { setField(4, v); }
   @$pb.TagNumber(4)
-  $core.bool hasNft1Group() => $_has(3);
+  $core.bool hasV1Nft1Group() => $_has(3);
   @$pb.TagNumber(4)
-  void clearNft1Group() => clearField(4);
+  void clearV1Nft1Group() => clearField(4);
   @$pb.TagNumber(4)
-  TokenMetadataNFT1Group ensureNft1Group() => $_ensure(3);
+  SlpTokenMetadata_V1NFT1Group ensureV1Nft1Group() => $_ensure(3);
 
   @$pb.TagNumber(5)
-  TokenMetadataNFT1Child get nft1Child => $_getN(4);
+  SlpTokenMetadata_V1NFT1Child get v1Nft1Child => $_getN(4);
   @$pb.TagNumber(5)
-  set nft1Child(TokenMetadataNFT1Child v) { setField(5, v); }
+  set v1Nft1Child(SlpTokenMetadata_V1NFT1Child v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasNft1Child() => $_has(4);
+  $core.bool hasV1Nft1Child() => $_has(4);
   @$pb.TagNumber(5)
-  void clearNft1Child() => clearField(5);
+  void clearV1Nft1Child() => clearField(5);
   @$pb.TagNumber(5)
-  TokenMetadataNFT1Child ensureNft1Child() => $_ensure(4);
+  SlpTokenMetadata_V1NFT1Child ensureV1Nft1Child() => $_ensure(4);
 }
 
 enum SlpRequiredBurn_BurnIntention {
@@ -4092,7 +4104,7 @@ class SlpRequiredBurn extends $pb.GeneratedMessage {
     ..oo(0, [4, 5])
     ..aOM<Transaction_Input_Outpoint>(1, 'outpoint', subBuilder: Transaction_Input_Outpoint.create)
     ..a<$core.List<$core.int>>(2, 'tokenId', $pb.PbFieldType.OY)
-    ..a<$core.int>(3, 'tokenType', $pb.PbFieldType.OU3)
+    ..e<SlpTokenType>(3, 'tokenType', $pb.PbFieldType.OE, defaultOrMaker: SlpTokenType.VERSION_NOT_SET, valueOf: SlpTokenType.valueOf, enumValues: SlpTokenType.values)
     ..a<$fixnum.Int64>(4, 'amount', $pb.PbFieldType.OU6, defaultOrMaker: $fixnum.Int64.ZERO)
     ..a<$core.int>(5, 'mintBatonVout', $pb.PbFieldType.OU3)
     ..hasRequiredFields = false
@@ -4137,9 +4149,9 @@ class SlpRequiredBurn extends $pb.GeneratedMessage {
   void clearTokenId() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.int get tokenType => $_getIZ(2);
+  SlpTokenType get tokenType => $_getN(2);
   @$pb.TagNumber(3)
-  set tokenType($core.int v) { $_setUnsignedInt32(2, v); }
+  set tokenType(SlpTokenType v) { setField(3, v); }
   @$pb.TagNumber(3)
   $core.bool hasTokenType() => $_has(2);
   @$pb.TagNumber(3)

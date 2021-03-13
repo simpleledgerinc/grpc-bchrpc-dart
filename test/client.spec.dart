@@ -2,8 +2,9 @@ import "dart:math";
 
 import 'package:fixnum/fixnum.dart';
 import 'package:test/test.dart';
-import "package:grpc_bchrpc/grpc_bchrpc.dart";
 import 'package:convert/convert.dart';
+
+import '../lib/grpc_bchrpc.dart';
 
 void main() {
   test("getRawTransaction returns the transaction (README example)", () async {
@@ -85,14 +86,8 @@ void main() {
         reversedHashOrder: true);
     var txnBuf = txnRes.transaction;
     var doesPrevent = false;
-    try {
-      await client.checkSlpTransaction(txnBuf);
-    } catch (err) {
-      expect(err.message,
-          "submitted transaction rejected to prevent token burn: inputs greater than outputs, use SlpRequiredBurn to allow burns");
-      doesPrevent = true;
-    }
-    if (!doesPrevent) {
+    var res = await client.checkSlpTransaction(txnBuf);
+    if (res.isValid) {
       throw Error();
     }
   });
@@ -107,7 +102,7 @@ void main() {
     var requiredSlpBurn = new SlpRequiredBurn();
     requiredSlpBurn.tokenId = hex.decode(
         "263ca75dd8ab35e699808896255212b374f2fb185fb0389297a11f63d8d41f7e");
-    requiredSlpBurn.tokenType = 1;
+    requiredSlpBurn.tokenType = SlpTokenType.V1_FUNGIBLE;
     requiredSlpBurn.amount = Int64(999990000000);
     var res = await client
         .checkSlpTransaction(txnBuf, requiredSlpBurns: [requiredSlpBurn]);

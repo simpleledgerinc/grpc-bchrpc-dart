@@ -106,31 +106,31 @@ class bchrpcClient extends $grpc.Client {
           ($0.GetMerkleProofRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $0.GetMerkleProofResponse.fromBuffer(value));
-  static final _$getTokenMetadata = $grpc.ClientMethod<
-          $0.GetTokenMetadataRequest, $0.GetTokenMetadataResponse>(
-      '/pb.bchrpc/GetTokenMetadata',
-      ($0.GetTokenMetadataRequest value) => value.writeToBuffer(),
+  static final _$getSlpTokenMetadata = $grpc.ClientMethod<
+          $0.GetSlpTokenMetadataRequest, $0.GetSlpTokenMetadataResponse>(
+      '/pb.bchrpc/GetSlpTokenMetadata',
+      ($0.GetSlpTokenMetadataRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
-          $0.GetTokenMetadataResponse.fromBuffer(value));
-  static final _$getParsedSlpScript = $grpc.ClientMethod<
-          $0.GetParsedSlpScriptRequest, $0.GetParsedSlpScriptResponse>(
-      '/pb.bchrpc/GetParsedSlpScript',
-      ($0.GetParsedSlpScriptRequest value) => value.writeToBuffer(),
+          $0.GetSlpTokenMetadataResponse.fromBuffer(value));
+  static final _$getSlpParsedScript = $grpc.ClientMethod<
+          $0.GetSlpParsedScriptRequest, $0.GetSlpParsedScriptResponse>(
+      '/pb.bchrpc/GetSlpParsedScript',
+      ($0.GetSlpParsedScriptRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
-          $0.GetParsedSlpScriptResponse.fromBuffer(value));
-  static final _$getTrustedSlpValidation = $grpc.ClientMethod<
-          $0.GetTrustedSlpValidationRequest,
-          $0.GetTrustedSlpValidationResponse>(
-      '/pb.bchrpc/GetTrustedSlpValidation',
-      ($0.GetTrustedSlpValidationRequest value) => value.writeToBuffer(),
+          $0.GetSlpParsedScriptResponse.fromBuffer(value));
+  static final _$getSlpTrustedValidation = $grpc.ClientMethod<
+          $0.GetSlpTrustedValidationRequest,
+          $0.GetSlpTrustedValidationResponse>(
+      '/pb.bchrpc/GetSlpTrustedValidation',
+      ($0.GetSlpTrustedValidationRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
-          $0.GetTrustedSlpValidationResponse.fromBuffer(value));
-  static final _$getBip44HdAddress = $grpc.ClientMethod<
-          $0.GetBip44HdAddressRequest, $0.GetBip44HdAddressResponse>(
-      '/pb.bchrpc/GetBip44HdAddress',
-      ($0.GetBip44HdAddressRequest value) => value.writeToBuffer(),
+          $0.GetSlpTrustedValidationResponse.fromBuffer(value));
+  static final _$getSlpGraphSearch = $grpc.ClientMethod<
+          $0.GetSlpGraphSearchRequest, $0.GetSlpGraphSearchResponse>(
+      '/pb.bchrpc/GetSlpGraphSearch',
+      ($0.GetSlpGraphSearchRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
-          $0.GetBip44HdAddressResponse.fromBuffer(value));
+          $0.GetSlpGraphSearchResponse.fromBuffer(value));
   static final _$checkSlpTransaction = $grpc.ClientMethod<
           $0.CheckSlpTransactionRequest, $0.CheckSlpTransactionResponse>(
       '/pb.bchrpc/CheckSlpTransaction',
@@ -298,38 +298,38 @@ class bchrpcClient extends $grpc.Client {
     return $grpc.ResponseFuture(call);
   }
 
-  $grpc.ResponseFuture<$0.GetTokenMetadataResponse> getTokenMetadata(
-      $0.GetTokenMetadataRequest request,
+  $grpc.ResponseFuture<$0.GetSlpTokenMetadataResponse> getSlpTokenMetadata(
+      $0.GetSlpTokenMetadataRequest request,
       {$grpc.CallOptions options}) {
     final call = $createCall(
-        _$getTokenMetadata, $async.Stream.fromIterable([request]),
+        _$getSlpTokenMetadata, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
 
-  $grpc.ResponseFuture<$0.GetParsedSlpScriptResponse> getParsedSlpScript(
-      $0.GetParsedSlpScriptRequest request,
+  $grpc.ResponseFuture<$0.GetSlpParsedScriptResponse> getSlpParsedScript(
+      $0.GetSlpParsedScriptRequest request,
       {$grpc.CallOptions options}) {
     final call = $createCall(
-        _$getParsedSlpScript, $async.Stream.fromIterable([request]),
+        _$getSlpParsedScript, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
 
-  $grpc.ResponseFuture<$0.GetTrustedSlpValidationResponse>
-      getTrustedSlpValidation($0.GetTrustedSlpValidationRequest request,
+  $grpc.ResponseFuture<$0.GetSlpTrustedValidationResponse>
+      getSlpTrustedValidation($0.GetSlpTrustedValidationRequest request,
           {$grpc.CallOptions options}) {
     final call = $createCall(
-        _$getTrustedSlpValidation, $async.Stream.fromIterable([request]),
+        _$getSlpTrustedValidation, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
 
-  $grpc.ResponseFuture<$0.GetBip44HdAddressResponse> getBip44HdAddress(
-      $0.GetBip44HdAddressRequest request,
+  $grpc.ResponseFuture<$0.GetSlpGraphSearchResponse> getSlpGraphSearch(
+      $0.GetSlpGraphSearchRequest request,
       {$grpc.CallOptions options}) {
     final call = $createCall(
-        _$getBip44HdAddress, $async.Stream.fromIterable([request]),
+        _$getSlpGraphSearch, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -512,42 +512,42 @@ abstract class bchrpcServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.GetMerkleProofRequest.fromBuffer(value),
         ($0.GetMerkleProofResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.GetTokenMetadataRequest,
-            $0.GetTokenMetadataResponse>(
-        'GetTokenMetadata',
-        getTokenMetadata_Pre,
+    $addMethod($grpc.ServiceMethod<$0.GetSlpTokenMetadataRequest,
+            $0.GetSlpTokenMetadataResponse>(
+        'GetSlpTokenMetadata',
+        getSlpTokenMetadata_Pre,
         false,
         false,
         ($core.List<$core.int> value) =>
-            $0.GetTokenMetadataRequest.fromBuffer(value),
-        ($0.GetTokenMetadataResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.GetParsedSlpScriptRequest,
-            $0.GetParsedSlpScriptResponse>(
-        'GetParsedSlpScript',
-        getParsedSlpScript_Pre,
+            $0.GetSlpTokenMetadataRequest.fromBuffer(value),
+        ($0.GetSlpTokenMetadataResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetSlpParsedScriptRequest,
+            $0.GetSlpParsedScriptResponse>(
+        'GetSlpParsedScript',
+        getSlpParsedScript_Pre,
         false,
         false,
         ($core.List<$core.int> value) =>
-            $0.GetParsedSlpScriptRequest.fromBuffer(value),
-        ($0.GetParsedSlpScriptResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.GetTrustedSlpValidationRequest,
-            $0.GetTrustedSlpValidationResponse>(
-        'GetTrustedSlpValidation',
-        getTrustedSlpValidation_Pre,
+            $0.GetSlpParsedScriptRequest.fromBuffer(value),
+        ($0.GetSlpParsedScriptResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetSlpTrustedValidationRequest,
+            $0.GetSlpTrustedValidationResponse>(
+        'GetSlpTrustedValidation',
+        getSlpTrustedValidation_Pre,
         false,
         false,
         ($core.List<$core.int> value) =>
-            $0.GetTrustedSlpValidationRequest.fromBuffer(value),
-        ($0.GetTrustedSlpValidationResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.GetBip44HdAddressRequest,
-            $0.GetBip44HdAddressResponse>(
-        'GetBip44HdAddress',
-        getBip44HdAddress_Pre,
+            $0.GetSlpTrustedValidationRequest.fromBuffer(value),
+        ($0.GetSlpTrustedValidationResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetSlpGraphSearchRequest,
+            $0.GetSlpGraphSearchResponse>(
+        'GetSlpGraphSearch',
+        getSlpGraphSearch_Pre,
         false,
         false,
         ($core.List<$core.int> value) =>
-            $0.GetBip44HdAddressRequest.fromBuffer(value),
-        ($0.GetBip44HdAddressResponse value) => value.writeToBuffer()));
+            $0.GetSlpGraphSearchRequest.fromBuffer(value),
+        ($0.GetSlpGraphSearchResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.CheckSlpTransactionRequest,
             $0.CheckSlpTransactionResponse>(
         'CheckSlpTransaction',
@@ -681,28 +681,28 @@ abstract class bchrpcServiceBase extends $grpc.Service {
     return getMerkleProof(call, await request);
   }
 
-  $async.Future<$0.GetTokenMetadataResponse> getTokenMetadata_Pre(
+  $async.Future<$0.GetSlpTokenMetadataResponse> getSlpTokenMetadata_Pre(
       $grpc.ServiceCall call,
-      $async.Future<$0.GetTokenMetadataRequest> request) async {
-    return getTokenMetadata(call, await request);
+      $async.Future<$0.GetSlpTokenMetadataRequest> request) async {
+    return getSlpTokenMetadata(call, await request);
   }
 
-  $async.Future<$0.GetParsedSlpScriptResponse> getParsedSlpScript_Pre(
+  $async.Future<$0.GetSlpParsedScriptResponse> getSlpParsedScript_Pre(
       $grpc.ServiceCall call,
-      $async.Future<$0.GetParsedSlpScriptRequest> request) async {
-    return getParsedSlpScript(call, await request);
+      $async.Future<$0.GetSlpParsedScriptRequest> request) async {
+    return getSlpParsedScript(call, await request);
   }
 
-  $async.Future<$0.GetTrustedSlpValidationResponse> getTrustedSlpValidation_Pre(
+  $async.Future<$0.GetSlpTrustedValidationResponse> getSlpTrustedValidation_Pre(
       $grpc.ServiceCall call,
-      $async.Future<$0.GetTrustedSlpValidationRequest> request) async {
-    return getTrustedSlpValidation(call, await request);
+      $async.Future<$0.GetSlpTrustedValidationRequest> request) async {
+    return getSlpTrustedValidation(call, await request);
   }
 
-  $async.Future<$0.GetBip44HdAddressResponse> getBip44HdAddress_Pre(
+  $async.Future<$0.GetSlpGraphSearchResponse> getSlpGraphSearch_Pre(
       $grpc.ServiceCall call,
-      $async.Future<$0.GetBip44HdAddressRequest> request) async {
-    return getBip44HdAddress(call, await request);
+      $async.Future<$0.GetSlpGraphSearchRequest> request) async {
+    return getSlpGraphSearch(call, await request);
   }
 
   $async.Future<$0.CheckSlpTransactionResponse> checkSlpTransaction_Pre(
@@ -759,14 +759,14 @@ abstract class bchrpcServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.GetUnspentOutputRequest request);
   $async.Future<$0.GetMerkleProofResponse> getMerkleProof(
       $grpc.ServiceCall call, $0.GetMerkleProofRequest request);
-  $async.Future<$0.GetTokenMetadataResponse> getTokenMetadata(
-      $grpc.ServiceCall call, $0.GetTokenMetadataRequest request);
-  $async.Future<$0.GetParsedSlpScriptResponse> getParsedSlpScript(
-      $grpc.ServiceCall call, $0.GetParsedSlpScriptRequest request);
-  $async.Future<$0.GetTrustedSlpValidationResponse> getTrustedSlpValidation(
-      $grpc.ServiceCall call, $0.GetTrustedSlpValidationRequest request);
-  $async.Future<$0.GetBip44HdAddressResponse> getBip44HdAddress(
-      $grpc.ServiceCall call, $0.GetBip44HdAddressRequest request);
+  $async.Future<$0.GetSlpTokenMetadataResponse> getSlpTokenMetadata(
+      $grpc.ServiceCall call, $0.GetSlpTokenMetadataRequest request);
+  $async.Future<$0.GetSlpParsedScriptResponse> getSlpParsedScript(
+      $grpc.ServiceCall call, $0.GetSlpParsedScriptRequest request);
+  $async.Future<$0.GetSlpTrustedValidationResponse> getSlpTrustedValidation(
+      $grpc.ServiceCall call, $0.GetSlpTrustedValidationRequest request);
+  $async.Future<$0.GetSlpGraphSearchResponse> getSlpGraphSearch(
+      $grpc.ServiceCall call, $0.GetSlpGraphSearchRequest request);
   $async.Future<$0.CheckSlpTransactionResponse> checkSlpTransaction(
       $grpc.ServiceCall call, $0.CheckSlpTransactionRequest request);
   $async.Future<$0.SubmitTransactionResponse> submitTransaction(

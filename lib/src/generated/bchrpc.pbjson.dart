@@ -5,6 +5,16 @@
 // @dart = 2.3
 // ignore_for_file: camel_case_types,non_constant_identifier_names,library_prefixes,unused_import,unused_shown_name,return_of_invalid_type
 
+const SlpTokenType$json = const {
+  '1': 'SlpTokenType',
+  '2': const [
+    const {'1': 'VERSION_NOT_SET', '2': 0},
+    const {'1': 'V1_FUNGIBLE', '2': 1},
+    const {'1': 'V1_NFT1_CHILD', '2': 65},
+    const {'1': 'V1_NFT1_GROUP', '2': 129},
+  ],
+};
+
 const SlpAction$json = const {
   '1': 'SlpAction',
   '2': const [
@@ -15,11 +25,11 @@ const SlpAction$json = const {
     const {'1': 'SLP_V1_GENESIS', '2': 4},
     const {'1': 'SLP_V1_MINT', '2': 5},
     const {'1': 'SLP_V1_SEND', '2': 6},
-    const {'1': 'SLP_NFT1_GROUP_GENESIS', '2': 7},
-    const {'1': 'SLP_NFT1_GROUP_MINT', '2': 8},
-    const {'1': 'SLP_NFT1_GROUP_SEND', '2': 9},
-    const {'1': 'SLP_NFT1_UNIQUE_CHILD_GENESIS', '2': 10},
-    const {'1': 'SLP_NFT1_UNIQUE_CHILD_SEND', '2': 11},
+    const {'1': 'SLP_V1_NFT1_GROUP_GENESIS', '2': 7},
+    const {'1': 'SLP_V1_NFT1_GROUP_MINT', '2': 8},
+    const {'1': 'SLP_V1_NFT1_GROUP_SEND', '2': 9},
+    const {'1': 'SLP_V1_NFT1_UNIQUE_CHILD_GENESIS', '2': 10},
+    const {'1': 'SLP_V1_NFT1_UNIQUE_CHILD_SEND', '2': 11},
   ],
 };
 
@@ -76,6 +86,7 @@ const GetBlockchainInfoResponse$json = const {
     const {'1': 'tx_index', '3': 6, '4': 1, '5': 8, '10': 'txIndex'},
     const {'1': 'addr_index', '3': 7, '4': 1, '5': 8, '10': 'addrIndex'},
     const {'1': 'slp_index', '3': 8, '4': 1, '5': 8, '10': 'slpIndex'},
+    const {'1': 'slp_graphsearch', '3': 9, '4': 1, '5': 8, '10': 'slpGraphsearch'},
   ],
   '4': const [GetBlockchainInfoResponse_BitcoinNet$json],
 };
@@ -190,7 +201,7 @@ const GetTransactionResponse$json = const {
   '1': 'GetTransactionResponse',
   '2': const [
     const {'1': 'transaction', '3': 1, '4': 1, '5': 11, '6': '.pb.Transaction', '10': 'transaction'},
-    const {'1': 'token_metadata', '3': 2, '4': 1, '5': 11, '6': '.pb.TokenMetadata', '10': 'tokenMetadata'},
+    const {'1': 'token_metadata', '3': 2, '4': 1, '5': 11, '6': '.pb.SlpTokenMetadata', '10': 'tokenMetadata'},
   ],
 };
 
@@ -265,7 +276,7 @@ const GetAddressUnspentOutputsResponse$json = const {
   '1': 'GetAddressUnspentOutputsResponse',
   '2': const [
     const {'1': 'outputs', '3': 1, '4': 3, '5': 11, '6': '.pb.UnspentOutput', '10': 'outputs'},
-    const {'1': 'token_metadata', '3': 2, '4': 3, '5': 11, '6': '.pb.TokenMetadata', '10': 'tokenMetadata'},
+    const {'1': 'token_metadata', '3': 2, '4': 3, '5': 11, '6': '.pb.SlpTokenMetadata', '10': 'tokenMetadata'},
   ],
 };
 
@@ -288,7 +299,7 @@ const GetUnspentOutputResponse$json = const {
     const {'1': 'is_coinbase', '3': 4, '4': 1, '5': 8, '10': 'isCoinbase'},
     const {'1': 'block_height', '3': 5, '4': 1, '5': 5, '10': 'blockHeight'},
     const {'1': 'slp_token', '3': 6, '4': 1, '5': 11, '6': '.pb.SlpToken', '10': 'slpToken'},
-    const {'1': 'token_metadata', '3': 7, '4': 1, '5': 11, '6': '.pb.TokenMetadata', '10': 'tokenMetadata'},
+    const {'1': 'token_metadata', '3': 7, '4': 1, '5': 11, '6': '.pb.SlpTokenMetadata', '10': 'tokenMetadata'},
   ],
 };
 
@@ -329,6 +340,7 @@ const CheckSlpTransactionRequest$json = const {
   '2': const [
     const {'1': 'transaction', '3': 1, '4': 1, '5': 12, '10': 'transaction'},
     const {'1': 'required_slp_burns', '3': 2, '4': 3, '5': 11, '6': '.pb.SlpRequiredBurn', '10': 'requiredSlpBurns'},
+    const {'1': 'use_spec_validity_judgement', '3': 3, '4': 1, '5': 8, '10': 'useSpecValidityJudgement'},
   ],
 };
 
@@ -336,6 +348,7 @@ const CheckSlpTransactionResponse$json = const {
   '1': 'CheckSlpTransactionResponse',
   '2': const [
     const {'1': 'is_valid', '3': 1, '4': 1, '5': 8, '10': 'isValid'},
+    const {'1': 'invalid_reason', '3': 2, '4': 1, '5': 9, '10': 'invalidReason'},
   ],
 };
 
@@ -359,77 +372,79 @@ const SubscribeBlocksRequest$json = const {
   ],
 };
 
-const GetTokenMetadataRequest$json = const {
-  '1': 'GetTokenMetadataRequest',
+const GetSlpTokenMetadataRequest$json = const {
+  '1': 'GetSlpTokenMetadataRequest',
   '2': const [
     const {'1': 'token_ids', '3': 1, '4': 3, '5': 12, '10': 'tokenIds'},
   ],
 };
 
-const GetTokenMetadataResponse$json = const {
-  '1': 'GetTokenMetadataResponse',
+const GetSlpTokenMetadataResponse$json = const {
+  '1': 'GetSlpTokenMetadataResponse',
   '2': const [
-    const {'1': 'token_metadata', '3': 1, '4': 3, '5': 11, '6': '.pb.TokenMetadata', '10': 'tokenMetadata'},
+    const {'1': 'token_metadata', '3': 1, '4': 3, '5': 11, '6': '.pb.SlpTokenMetadata', '10': 'tokenMetadata'},
   ],
 };
 
-const GetParsedSlpScriptRequest$json = const {
-  '1': 'GetParsedSlpScriptRequest',
+const GetSlpParsedScriptRequest$json = const {
+  '1': 'GetSlpParsedScriptRequest',
   '2': const [
     const {'1': 'slp_opreturn_script', '3': 1, '4': 1, '5': 12, '10': 'slpOpreturnScript'},
   ],
 };
 
-const GetParsedSlpScriptResponse$json = const {
-  '1': 'GetParsedSlpScriptResponse',
+const GetSlpParsedScriptResponse$json = const {
+  '1': 'GetSlpParsedScriptResponse',
   '2': const [
     const {'1': 'parsing_error', '3': 1, '4': 1, '5': 9, '10': 'parsingError'},
     const {'1': 'token_id', '3': 2, '4': 1, '5': 12, '10': 'tokenId'},
     const {'1': 'slp_action', '3': 3, '4': 1, '5': 14, '6': '.pb.SlpAction', '10': 'slpAction'},
-    const {'1': 'token_type', '3': 4, '4': 1, '5': 13, '10': 'tokenType'},
+    const {'1': 'token_type', '3': 4, '4': 1, '5': 14, '6': '.pb.SlpTokenType', '10': 'tokenType'},
     const {'1': 'v1_genesis', '3': 5, '4': 1, '5': 11, '6': '.pb.SlpV1GenesisMetadata', '9': 0, '10': 'v1Genesis'},
     const {'1': 'v1_mint', '3': 6, '4': 1, '5': 11, '6': '.pb.SlpV1MintMetadata', '9': 0, '10': 'v1Mint'},
     const {'1': 'v1_send', '3': 7, '4': 1, '5': 11, '6': '.pb.SlpV1SendMetadata', '9': 0, '10': 'v1Send'},
-    const {'1': 'nft1_child_genesis', '3': 8, '4': 1, '5': 11, '6': '.pb.SlpNft1ChildGenesisMetadata', '9': 0, '10': 'nft1ChildGenesis'},
-    const {'1': 'nft1_child_send', '3': 9, '4': 1, '5': 11, '6': '.pb.SlpNft1ChildSendMetadata', '9': 0, '10': 'nft1ChildSend'},
+    const {'1': 'v1_nft1_child_genesis', '3': 8, '4': 1, '5': 11, '6': '.pb.SlpV1Nft1ChildGenesisMetadata', '9': 0, '10': 'v1Nft1ChildGenesis'},
+    const {'1': 'v1_nft1_child_send', '3': 9, '4': 1, '5': 11, '6': '.pb.SlpV1Nft1ChildSendMetadata', '9': 0, '10': 'v1Nft1ChildSend'},
   ],
   '8': const [
     const {'1': 'slp_metadata'},
   ],
 };
 
-const GetTrustedSlpValidationRequest$json = const {
-  '1': 'GetTrustedSlpValidationRequest',
+const GetSlpTrustedValidationRequest$json = const {
+  '1': 'GetSlpTrustedValidationRequest',
   '2': const [
-    const {'1': 'queries', '3': 1, '4': 3, '5': 11, '6': '.pb.GetTrustedSlpValidationRequest.Query', '10': 'queries'},
+    const {'1': 'queries', '3': 1, '4': 3, '5': 11, '6': '.pb.GetSlpTrustedValidationRequest.Query', '10': 'queries'},
+    const {'1': 'include_graphsearch_count', '3': 2, '4': 1, '5': 8, '10': 'includeGraphsearchCount'},
   ],
-  '3': const [GetTrustedSlpValidationRequest_Query$json],
+  '3': const [GetSlpTrustedValidationRequest_Query$json],
 };
 
-const GetTrustedSlpValidationRequest_Query$json = const {
+const GetSlpTrustedValidationRequest_Query$json = const {
   '1': 'Query',
   '2': const [
     const {'1': 'prev_out_hash', '3': 1, '4': 1, '5': 12, '10': 'prevOutHash'},
     const {'1': 'prev_out_vout', '3': 2, '4': 1, '5': 13, '10': 'prevOutVout'},
+    const {'1': 'graphsearch_valid_hashes', '3': 3, '4': 3, '5': 12, '10': 'graphsearchValidHashes'},
   ],
 };
 
-const GetTrustedSlpValidationResponse$json = const {
-  '1': 'GetTrustedSlpValidationResponse',
+const GetSlpTrustedValidationResponse$json = const {
+  '1': 'GetSlpTrustedValidationResponse',
   '2': const [
-    const {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.pb.GetTrustedSlpValidationResponse.ValidityResult', '10': 'results'},
+    const {'1': 'results', '3': 1, '4': 3, '5': 11, '6': '.pb.GetSlpTrustedValidationResponse.ValidityResult', '10': 'results'},
   ],
-  '3': const [GetTrustedSlpValidationResponse_ValidityResult$json],
+  '3': const [GetSlpTrustedValidationResponse_ValidityResult$json],
 };
 
-const GetTrustedSlpValidationResponse_ValidityResult$json = const {
+const GetSlpTrustedValidationResponse_ValidityResult$json = const {
   '1': 'ValidityResult',
   '2': const [
     const {'1': 'prev_out_hash', '3': 1, '4': 1, '5': 12, '10': 'prevOutHash'},
     const {'1': 'prev_out_vout', '3': 2, '4': 1, '5': 13, '10': 'prevOutVout'},
     const {'1': 'token_id', '3': 3, '4': 1, '5': 12, '10': 'tokenId'},
     const {'1': 'slp_action', '3': 4, '4': 1, '5': 14, '6': '.pb.SlpAction', '10': 'slpAction'},
-    const {'1': 'token_type', '3': 5, '4': 1, '5': 13, '10': 'tokenType'},
+    const {'1': 'token_type', '3': 5, '4': 1, '5': 14, '6': '.pb.SlpTokenType', '10': 'tokenType'},
     const {
       '1': 'v1_token_amount',
       '3': 6,
@@ -441,27 +456,25 @@ const GetTrustedSlpValidationResponse_ValidityResult$json = const {
     },
     const {'1': 'v1_mint_baton', '3': 7, '4': 1, '5': 8, '9': 0, '10': 'v1MintBaton'},
     const {'1': 'slp_txn_opreturn', '3': 8, '4': 1, '5': 12, '10': 'slpTxnOpreturn'},
+    const {'1': 'graphsearch_txn_count', '3': 9, '4': 1, '5': 13, '10': 'graphsearchTxnCount'},
   ],
   '8': const [
     const {'1': 'validity_result_type'},
   ],
 };
 
-const GetBip44HdAddressRequest$json = const {
-  '1': 'GetBip44HdAddressRequest',
+const GetSlpGraphSearchRequest$json = const {
+  '1': 'GetSlpGraphSearchRequest',
   '2': const [
-    const {'1': 'xpub', '3': 1, '4': 1, '5': 9, '10': 'xpub'},
-    const {'1': 'change', '3': 2, '4': 1, '5': 8, '10': 'change'},
-    const {'1': 'address_index', '3': 3, '4': 1, '5': 13, '10': 'addressIndex'},
+    const {'1': 'hash', '3': 1, '4': 1, '5': 12, '10': 'hash'},
+    const {'1': 'valid_hashes', '3': 2, '4': 3, '5': 12, '10': 'validHashes'},
   ],
 };
 
-const GetBip44HdAddressResponse$json = const {
-  '1': 'GetBip44HdAddressResponse',
+const GetSlpGraphSearchResponse$json = const {
+  '1': 'GetSlpGraphSearchResponse',
   '2': const [
-    const {'1': 'pub_key', '3': 1, '4': 1, '5': 12, '10': 'pubKey'},
-    const {'1': 'cash_addr', '3': 2, '4': 1, '5': 9, '10': 'cashAddr'},
-    const {'1': 'slp_addr', '3': 3, '4': 1, '5': 9, '10': 'slpAddr'},
+    const {'1': 'txdata', '3': 1, '4': 3, '5': 12, '10': 'txdata'},
   ],
 };
 
@@ -654,7 +667,7 @@ const SlpToken$json = const {
     const {'1': 'address', '3': 4, '4': 1, '5': 9, '10': 'address'},
     const {'1': 'decimals', '3': 5, '4': 1, '5': 13, '10': 'decimals'},
     const {'1': 'slp_action', '3': 6, '4': 1, '5': 14, '6': '.pb.SlpAction', '10': 'slpAction'},
-    const {'1': 'token_type', '3': 7, '4': 1, '5': 13, '10': 'tokenType'},
+    const {'1': 'token_type', '3': 7, '4': 1, '5': 14, '6': '.pb.SlpTokenType', '10': 'tokenType'},
   ],
 };
 
@@ -669,8 +682,8 @@ const SlpTransactionInfo$json = const {
     const {'1': 'v1_genesis', '3': 6, '4': 1, '5': 11, '6': '.pb.SlpV1GenesisMetadata', '9': 0, '10': 'v1Genesis'},
     const {'1': 'v1_mint', '3': 7, '4': 1, '5': 11, '6': '.pb.SlpV1MintMetadata', '9': 0, '10': 'v1Mint'},
     const {'1': 'v1_send', '3': 8, '4': 1, '5': 11, '6': '.pb.SlpV1SendMetadata', '9': 0, '10': 'v1Send'},
-    const {'1': 'nft1_child_genesis', '3': 9, '4': 1, '5': 11, '6': '.pb.SlpNft1ChildGenesisMetadata', '9': 0, '10': 'nft1ChildGenesis'},
-    const {'1': 'nft1_child_send', '3': 10, '4': 1, '5': 11, '6': '.pb.SlpNft1ChildSendMetadata', '9': 0, '10': 'nft1ChildSend'},
+    const {'1': 'v1_nft1_child_genesis', '3': 9, '4': 1, '5': 11, '6': '.pb.SlpV1Nft1ChildGenesisMetadata', '9': 0, '10': 'v1Nft1ChildGenesis'},
+    const {'1': 'v1_nft1_child_send', '3': 10, '4': 1, '5': 11, '6': '.pb.SlpV1Nft1ChildSendMetadata', '9': 0, '10': 'v1Nft1ChildSend'},
   ],
   '4': const [SlpTransactionInfo_ValidityJudgement$json, SlpTransactionInfo_BurnFlags$json],
   '8': const [
@@ -746,8 +759,8 @@ const SlpV1SendMetadata$json = const {
   ],
 };
 
-const SlpNft1ChildGenesisMetadata$json = const {
-  '1': 'SlpNft1ChildGenesisMetadata',
+const SlpV1Nft1ChildGenesisMetadata$json = const {
+  '1': 'SlpV1Nft1ChildGenesisMetadata',
   '2': const [
     const {'1': 'name', '3': 1, '4': 1, '5': 12, '10': 'name'},
     const {'1': 'ticker', '3': 2, '4': 1, '5': 12, '10': 'ticker'},
@@ -758,61 +771,62 @@ const SlpNft1ChildGenesisMetadata$json = const {
   ],
 };
 
-const SlpNft1ChildSendMetadata$json = const {
-  '1': 'SlpNft1ChildSendMetadata',
+const SlpV1Nft1ChildSendMetadata$json = const {
+  '1': 'SlpV1Nft1ChildSendMetadata',
   '2': const [
     const {'1': 'group_token_id', '3': 1, '4': 1, '5': 12, '10': 'groupTokenId'},
   ],
 };
 
-const TokenMetadataTokenType1$json = const {
-  '1': 'TokenMetadataTokenType1',
-  '2': const [
-    const {'1': 'token_ticker', '3': 1, '4': 1, '5': 12, '10': 'tokenTicker'},
-    const {'1': 'token_name', '3': 2, '4': 1, '5': 12, '10': 'tokenName'},
-    const {'1': 'token_document_url', '3': 3, '4': 1, '5': 12, '10': 'tokenDocumentUrl'},
-    const {'1': 'token_document_hash', '3': 4, '4': 1, '5': 12, '10': 'tokenDocumentHash'},
-    const {'1': 'decimals', '3': 5, '4': 1, '5': 13, '10': 'decimals'},
-    const {'1': 'mint_baton_txid', '3': 6, '4': 1, '5': 12, '10': 'mintBatonTxid'},
-    const {'1': 'mint_baton_vout', '3': 7, '4': 1, '5': 13, '10': 'mintBatonVout'},
-  ],
-};
-
-const TokenMetadataNFT1Group$json = const {
-  '1': 'TokenMetadataNFT1Group',
-  '2': const [
-    const {'1': 'token_ticker', '3': 1, '4': 1, '5': 12, '10': 'tokenTicker'},
-    const {'1': 'token_name', '3': 2, '4': 1, '5': 12, '10': 'tokenName'},
-    const {'1': 'token_document_url', '3': 3, '4': 1, '5': 12, '10': 'tokenDocumentUrl'},
-    const {'1': 'token_document_hash', '3': 4, '4': 1, '5': 12, '10': 'tokenDocumentHash'},
-    const {'1': 'decimals', '3': 5, '4': 1, '5': 13, '10': 'decimals'},
-    const {'1': 'mint_baton_txid', '3': 6, '4': 1, '5': 12, '10': 'mintBatonTxid'},
-    const {'1': 'mint_baton_vout', '3': 7, '4': 1, '5': 13, '10': 'mintBatonVout'},
-  ],
-};
-
-const TokenMetadataNFT1Child$json = const {
-  '1': 'TokenMetadataNFT1Child',
-  '2': const [
-    const {'1': 'token_ticker', '3': 1, '4': 1, '5': 12, '10': 'tokenTicker'},
-    const {'1': 'token_name', '3': 2, '4': 1, '5': 12, '10': 'tokenName'},
-    const {'1': 'token_document_url', '3': 3, '4': 1, '5': 12, '10': 'tokenDocumentUrl'},
-    const {'1': 'token_document_hash', '3': 4, '4': 1, '5': 12, '10': 'tokenDocumentHash'},
-    const {'1': 'group_id', '3': 5, '4': 1, '5': 12, '10': 'groupId'},
-  ],
-};
-
-const TokenMetadata$json = const {
-  '1': 'TokenMetadata',
+const SlpTokenMetadata$json = const {
+  '1': 'SlpTokenMetadata',
   '2': const [
     const {'1': 'token_id', '3': 1, '4': 1, '5': 12, '10': 'tokenId'},
-    const {'1': 'token_type', '3': 2, '4': 1, '5': 13, '10': 'tokenType'},
-    const {'1': 'type1', '3': 3, '4': 1, '5': 11, '6': '.pb.TokenMetadataTokenType1', '9': 0, '10': 'type1'},
-    const {'1': 'nft1_group', '3': 4, '4': 1, '5': 11, '6': '.pb.TokenMetadataNFT1Group', '9': 0, '10': 'nft1Group'},
-    const {'1': 'nft1_child', '3': 5, '4': 1, '5': 11, '6': '.pb.TokenMetadataNFT1Child', '9': 0, '10': 'nft1Child'},
+    const {'1': 'token_type', '3': 2, '4': 1, '5': 14, '6': '.pb.SlpTokenType', '10': 'tokenType'},
+    const {'1': 'v1_fungible', '3': 3, '4': 1, '5': 11, '6': '.pb.SlpTokenMetadata.V1Fungible', '9': 0, '10': 'v1Fungible'},
+    const {'1': 'v1_nft1_group', '3': 4, '4': 1, '5': 11, '6': '.pb.SlpTokenMetadata.V1NFT1Group', '9': 0, '10': 'v1Nft1Group'},
+    const {'1': 'v1_nft1_child', '3': 5, '4': 1, '5': 11, '6': '.pb.SlpTokenMetadata.V1NFT1Child', '9': 0, '10': 'v1Nft1Child'},
   ],
+  '3': const [SlpTokenMetadata_V1Fungible$json, SlpTokenMetadata_V1NFT1Group$json, SlpTokenMetadata_V1NFT1Child$json],
   '8': const [
     const {'1': 'type_metadata'},
+  ],
+};
+
+const SlpTokenMetadata_V1Fungible$json = const {
+  '1': 'V1Fungible',
+  '2': const [
+    const {'1': 'token_ticker', '3': 1, '4': 1, '5': 9, '10': 'tokenTicker'},
+    const {'1': 'token_name', '3': 2, '4': 1, '5': 9, '10': 'tokenName'},
+    const {'1': 'token_document_url', '3': 3, '4': 1, '5': 9, '10': 'tokenDocumentUrl'},
+    const {'1': 'token_document_hash', '3': 4, '4': 1, '5': 12, '10': 'tokenDocumentHash'},
+    const {'1': 'decimals', '3': 5, '4': 1, '5': 13, '10': 'decimals'},
+    const {'1': 'mint_baton_hash', '3': 6, '4': 1, '5': 12, '10': 'mintBatonHash'},
+    const {'1': 'mint_baton_vout', '3': 7, '4': 1, '5': 13, '10': 'mintBatonVout'},
+  ],
+};
+
+const SlpTokenMetadata_V1NFT1Group$json = const {
+  '1': 'V1NFT1Group',
+  '2': const [
+    const {'1': 'token_ticker', '3': 1, '4': 1, '5': 9, '10': 'tokenTicker'},
+    const {'1': 'token_name', '3': 2, '4': 1, '5': 9, '10': 'tokenName'},
+    const {'1': 'token_document_url', '3': 3, '4': 1, '5': 9, '10': 'tokenDocumentUrl'},
+    const {'1': 'token_document_hash', '3': 4, '4': 1, '5': 12, '10': 'tokenDocumentHash'},
+    const {'1': 'decimals', '3': 5, '4': 1, '5': 13, '10': 'decimals'},
+    const {'1': 'mint_baton_hash', '3': 6, '4': 1, '5': 12, '10': 'mintBatonHash'},
+    const {'1': 'mint_baton_vout', '3': 7, '4': 1, '5': 13, '10': 'mintBatonVout'},
+  ],
+};
+
+const SlpTokenMetadata_V1NFT1Child$json = const {
+  '1': 'V1NFT1Child',
+  '2': const [
+    const {'1': 'token_ticker', '3': 1, '4': 1, '5': 9, '10': 'tokenTicker'},
+    const {'1': 'token_name', '3': 2, '4': 1, '5': 9, '10': 'tokenName'},
+    const {'1': 'token_document_url', '3': 3, '4': 1, '5': 9, '10': 'tokenDocumentUrl'},
+    const {'1': 'token_document_hash', '3': 4, '4': 1, '5': 12, '10': 'tokenDocumentHash'},
+    const {'1': 'group_id', '3': 5, '4': 1, '5': 12, '10': 'groupId'},
   ],
 };
 
@@ -821,7 +835,7 @@ const SlpRequiredBurn$json = const {
   '2': const [
     const {'1': 'outpoint', '3': 1, '4': 1, '5': 11, '6': '.pb.Transaction.Input.Outpoint', '10': 'outpoint'},
     const {'1': 'token_id', '3': 2, '4': 1, '5': 12, '10': 'tokenId'},
-    const {'1': 'token_type', '3': 3, '4': 1, '5': 13, '10': 'tokenType'},
+    const {'1': 'token_type', '3': 3, '4': 1, '5': 14, '6': '.pb.SlpTokenType', '10': 'tokenType'},
     const {
       '1': 'amount',
       '3': 4,

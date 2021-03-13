@@ -1,6 +1,6 @@
 import "package:grpc/grpc.dart";
-import "package:grpc_bchrpc/src/generated/bchrpc.pb.dart";
-import "package:grpc_bchrpc/src/generated/bchrpc.pbgrpc.dart";
+
+import '../grpc_bchrpc.dart';
 
 class GrpcClient {
   ClientChannel _channel;
@@ -20,8 +20,8 @@ class GrpcClient {
         host = "bchd-testnet.greyh.at";
         port = 18335;
       } else {
-        host = "bchd.ny1.simpleledger.io"; //"bchd.greyh.at";
-        //port = 8335;
+        host = "bchd.greyh.at";
+        port = 8335;
       }
     }
     if (!useSsl) {
@@ -286,18 +286,19 @@ class GrpcClient {
     return this._stub.checkSlpTransaction(req);
   }
 
-  Future<GetTokenMetadataResponse> getTokenMetadata(List<List<int>> tokenIds) {
-    final req = GetTokenMetadataRequest();
+  Future<GetSlpTokenMetadataResponse> getTokenMetadata(
+      List<List<int>> tokenIds) {
+    final req = GetSlpTokenMetadataRequest();
     for (var tokenId in tokenIds) {
       req.tokenIds.add(tokenId);
     }
-    return this._stub.getTokenMetadata(req);
+    return this._stub.getSlpTokenMetadata(req);
   }
 
-  Future<GetTrustedSlpValidationResponse> getTrustedSlpValidation(
-      List<GetTrustedSlpValidationRequest_Query> txos,
+  Future<GetSlpTrustedValidationResponse> getTrustedSlpValidation(
+      List<GetSlpTrustedValidationRequest_Query> txos,
       {bool reversedHashOrder}) {
-    final req = GetTrustedSlpValidationRequest();
+    final req = GetSlpTrustedValidationRequest();
     if (reversedHashOrder != null) {
       for (var txo in txos) {
         txo.prevOutHash = txo.prevOutHash.reversed.toList();
@@ -306,21 +307,12 @@ class GrpcClient {
     for (var txo in txos) {
       req.queries.add(txo);
     }
-    return this._stub.getTrustedSlpValidation(req);
+    return this._stub.getSlpTrustedValidation(req);
   }
 
-  Future<GetBip44HdAddressResponse> getBip44HdAddress(
-      String xpub, bool isChange, int addressIndex) {
-    final req = GetBip44HdAddressRequest();
-    req.xpub = xpub;
-    req.change = isChange;
-    req.addressIndex = addressIndex;
-    return this._stub.getBip44HdAddress(req);
-  }
-
-  Future<GetParsedSlpScriptResponse> getParsedSlpScript(List<int> script) {
-    final req = GetParsedSlpScriptRequest();
+  Future<GetSlpParsedScriptResponse> getParsedSlpScript(List<int> script) {
+    final req = GetSlpParsedScriptRequest();
     req.slpOpreturnScript = script;
-    return this._stub.getParsedSlpScript(req);
+    return this._stub.getSlpParsedScript(req);
   }
 }

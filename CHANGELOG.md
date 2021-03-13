@@ -1,3 +1,7 @@
+## 0.2.0
+    * Update bchrpc.proto for next BCHD release (includes some breaking changes)
+    * Updated dependencies
+
 ## 0.1.2
     * Remove experimental client for grpc-web, cannot use grpc-web in same project
 

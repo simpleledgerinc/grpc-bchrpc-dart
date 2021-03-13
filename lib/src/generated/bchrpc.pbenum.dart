@@ -9,6 +9,25 @@
 import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
+class SlpTokenType extends $pb.ProtobufEnum {
+  static const SlpTokenType VERSION_NOT_SET = SlpTokenType._(0, 'VERSION_NOT_SET');
+  static const SlpTokenType V1_FUNGIBLE = SlpTokenType._(1, 'V1_FUNGIBLE');
+  static const SlpTokenType V1_NFT1_CHILD = SlpTokenType._(65, 'V1_NFT1_CHILD');
+  static const SlpTokenType V1_NFT1_GROUP = SlpTokenType._(129, 'V1_NFT1_GROUP');
+
+  static const $core.List<SlpTokenType> values = <SlpTokenType> [
+    VERSION_NOT_SET,
+    V1_FUNGIBLE,
+    V1_NFT1_CHILD,
+    V1_NFT1_GROUP,
+  ];
+
+  static final $core.Map<$core.int, SlpTokenType> _byValue = $pb.ProtobufEnum.initByValue(values);
+  static SlpTokenType valueOf($core.int value) => _byValue[value];
+
+  const SlpTokenType._($core.int v, $core.String n) : super(v, n);
+}
+
 class SlpAction extends $pb.ProtobufEnum {
   static const SlpAction NON_SLP = SlpAction._(0, 'NON_SLP');
   static const SlpAction NON_SLP_BURN = SlpAction._(1, 'NON_SLP_BURN');
@@ -17,11 +36,11 @@ class SlpAction extends $pb.ProtobufEnum {
   static const SlpAction SLP_V1_GENESIS = SlpAction._(4, 'SLP_V1_GENESIS');
   static const SlpAction SLP_V1_MINT = SlpAction._(5, 'SLP_V1_MINT');
   static const SlpAction SLP_V1_SEND = SlpAction._(6, 'SLP_V1_SEND');
-  static const SlpAction SLP_NFT1_GROUP_GENESIS = SlpAction._(7, 'SLP_NFT1_GROUP_GENESIS');
-  static const SlpAction SLP_NFT1_GROUP_MINT = SlpAction._(8, 'SLP_NFT1_GROUP_MINT');
-  static const SlpAction SLP_NFT1_GROUP_SEND = SlpAction._(9, 'SLP_NFT1_GROUP_SEND');
-  static const SlpAction SLP_NFT1_UNIQUE_CHILD_GENESIS = SlpAction._(10, 'SLP_NFT1_UNIQUE_CHILD_GENESIS');
-  static const SlpAction SLP_NFT1_UNIQUE_CHILD_SEND = SlpAction._(11, 'SLP_NFT1_UNIQUE_CHILD_SEND');
+  static const SlpAction SLP_V1_NFT1_GROUP_GENESIS = SlpAction._(7, 'SLP_V1_NFT1_GROUP_GENESIS');
+  static const SlpAction SLP_V1_NFT1_GROUP_MINT = SlpAction._(8, 'SLP_V1_NFT1_GROUP_MINT');
+  static const SlpAction SLP_V1_NFT1_GROUP_SEND = SlpAction._(9, 'SLP_V1_NFT1_GROUP_SEND');
+  static const SlpAction SLP_V1_NFT1_UNIQUE_CHILD_GENESIS = SlpAction._(10, 'SLP_V1_NFT1_UNIQUE_CHILD_GENESIS');
+  static const SlpAction SLP_V1_NFT1_UNIQUE_CHILD_SEND = SlpAction._(11, 'SLP_V1_NFT1_UNIQUE_CHILD_SEND');
 
   static const $core.List<SlpAction> values = <SlpAction> [
     NON_SLP,
@@ -31,11 +50,11 @@ class SlpAction extends $pb.ProtobufEnum {
     SLP_V1_GENESIS,
     SLP_V1_MINT,
     SLP_V1_SEND,
-    SLP_NFT1_GROUP_GENESIS,
-    SLP_NFT1_GROUP_MINT,
-    SLP_NFT1_GROUP_SEND,
-    SLP_NFT1_UNIQUE_CHILD_GENESIS,
-    SLP_NFT1_UNIQUE_CHILD_SEND,
+    SLP_V1_NFT1_GROUP_GENESIS,
+    SLP_V1_NFT1_GROUP_MINT,
+    SLP_V1_NFT1_GROUP_SEND,
+    SLP_V1_NFT1_UNIQUE_CHILD_GENESIS,
+    SLP_V1_NFT1_UNIQUE_CHILD_SEND,
   ];
 
   static final $core.Map<$core.int, SlpAction> _byValue = $pb.ProtobufEnum.initByValue(values);
