@@ -64,10 +64,10 @@ void main() {
     var errorMsg = "";
     try {
       await client.submitTansaction(hex.decode(txnHex));
-    } catch (e) {
-      errorMsg = e.message;
+    } catch (err) {
+      errorMsg = "$err";
     }
-    expect(errorMsg, "tx rejected: transaction already exists");
+    expect(errorMsg.contains("tx rejected: transaction already exists"), true);
     client.close();
   });
 

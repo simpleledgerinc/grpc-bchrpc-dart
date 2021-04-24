@@ -3,16 +3,16 @@ import "package:grpc/grpc.dart";
 import '../grpc_bchrpc.dart';
 
 class GrpcClient {
-  ClientChannel _channel;
-  ChannelOptions _channelOptions;
-  bchrpcClient _stub;
-  bool _hostHasSlpIndex;
+  late ClientChannel _channel;
+  late ChannelOptions _channelOptions;
+  late bchrpcClient _stub;
+  late bool _hostHasSlpIndex;
 
   GrpcClient(
       {String host = "",
       int port = 443,
       bool useSsl = true,
-      List<int> certs,
+      List<int>? certs,
       bool testnet = false}) {
     ChannelCredentials _channelCredentials;
     if (host.isEmpty) {
@@ -34,9 +34,10 @@ class GrpcClient {
         _channelCredentials = ChannelCredentials.secure(certificates: certs);
       }
     }
-    _channelOptions = ChannelOptions(credentials: _channelCredentials);
-    _channel = ClientChannel(host, port: port, options: _channelOptions);
-    _stub = bchrpcClient(_channel);
+    this._channelOptions = ChannelOptions(credentials: _channelCredentials);
+    this._channel =
+        new ClientChannel(host, port: port, options: this._channelOptions);
+    this._stub = bchrpcClient(_channel);
   }
 
   close() {
@@ -85,7 +86,7 @@ class GrpcClient {
       {int nbSkip = -1,
       int nbFetch = -1,
       int height = -1,
-      List<int> hash,
+      List<int>? hash,
       bool reversedHashOrder = false}) {
     final req = GetAddressTransactionsRequest();
     if (nbSkip > -1) {
@@ -144,7 +145,7 @@ class GrpcClient {
   }
 
   Future<GetRawBlockResponse> getRawBlock(
-      {List<int> hash, int height = -1, bool reversedHashOrder = false}) {
+      {List<int>? hash, int height = -1, bool reversedHashOrder = false}) {
     final req = GetRawBlockRequest();
     if (height > -1) {
       req.height = height;
@@ -162,7 +163,7 @@ class GrpcClient {
   }
 
   Future<GetBlockResponse> getBlock(
-      {List<int> hash, int height = -1, bool reversedHashOrder = false}) {
+      {List<int>? hash, int height = -1, bool reversedHashOrder = false}) {
     final req = GetBlockRequest();
     if (height > -1) {
       req.height = height;
@@ -180,7 +181,7 @@ class GrpcClient {
   }
 
   Future<GetBlockInfoResponse> getBlockInfo({
-    List<int> hash,
+    List<int>? hash,
     int height = -1,
     bool reversedHashOrder = false,
   }) {
@@ -210,7 +211,7 @@ class GrpcClient {
   }
 
   Future<SubmitTransactionResponse> submitTansaction(List<int> txn,
-      {List<SlpRequiredBurn> requiredSlpBurns, bool skipSlpValidityChecks}) {
+      {List<SlpRequiredBurn>? requiredSlpBurns, bool? skipSlpValidityChecks}) {
     final req = SubmitTransactionRequest();
     req.transaction = txn;
 
@@ -231,9 +232,9 @@ class GrpcClient {
       bool includeBlockAcceptance = false,
       bool includeSerializedTxn = false,
       bool includeOnlySlp = false,
-      List<List<int>> slpTokenIds,
-      List<String> addresses,
-      List<Transaction_Input_Outpoint> outpoints}) {
+      List<List<int>>? slpTokenIds,
+      List<String>? addresses,
+      List<Transaction_Input_Outpoint>? outpoints}) {
     final req = SubscribeTransactionsRequest();
     includeMempoolAcceptance
         ? req.includeMempool = true
@@ -275,7 +276,7 @@ class GrpcClient {
   }
 
   Future<CheckSlpTransactionResponse> checkSlpTransaction(List<int> txn,
-      {List<SlpRequiredBurn> requiredSlpBurns}) {
+      {List<SlpRequiredBurn>? requiredSlpBurns}) {
     final req = CheckSlpTransactionRequest();
     if (requiredSlpBurns != null) {
       for (var burn in requiredSlpBurns) {
@@ -297,7 +298,7 @@ class GrpcClient {
 
   Future<GetSlpTrustedValidationResponse> getTrustedSlpValidation(
       List<GetSlpTrustedValidationRequest_Query> txos,
-      {bool reversedHashOrder}) {
+      {bool? reversedHashOrder}) {
     final req = GetSlpTrustedValidationRequest();
     if (reversedHashOrder != null) {
       for (var txo in txos) {

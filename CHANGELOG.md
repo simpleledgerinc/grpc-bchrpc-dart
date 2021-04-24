@@ -1,3 +1,6 @@
+## 1.0.0
+    * Null safety update
+
 ## 0.2.0
     * Update bchrpc.proto for next BCHD release (includes some breaking changes)
     * Updated dependencies
